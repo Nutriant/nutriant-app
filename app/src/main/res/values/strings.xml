@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Nutrient</string>
+    <string name="email_format_not_valid">Email must be valid format!</string>
+    <string name="eight_char_password">Password cannot be less than 8 characters</string>
+    <string-array name="gender_options">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>

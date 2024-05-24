@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".SelfAssesmentActivity">
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/assesmentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Fill out the Self Assesment"
+            android:textSize="24sp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitleHeight"/>
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/tvTitleHeight"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutHeight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/assesmentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="HEIGHT (CM)"
+            android:textSize="12sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutHeight"
+            style="@style/LoginTextInputOuterFieldStyle"
+            app:boxStrokeColor="@color/greenApps"
+            app:hintTextColor="@color/greenApps"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitleWeight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleHeight"
+            app:startIconDrawable="@drawable/baseline_height_24"
+            tools:alpha="100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:alpha="1">
+
+            <EditText
+                android:id="@+id/ed_register_username"
+                style="@style/LoginTextInputInnerFieldStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsregular"
+                android:hint="Type your height"
+                android:inputType="text"
+                android:padding="18dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvTitleWeight"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutWeight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="WEIGHT (KG)"
+            android:textSize="12sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutWeight"
+            style="@style/LoginTextInputOuterFieldStyle"
+            app:boxStrokeColor="@color/greenApps"
+            app:hintTextColor="@color/greenApps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleWeight"
+            app:startIconDrawable="@drawable/baseline_height_24"
+            tools:alpha="100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:alpha="1">
+
+            <EditText
+                android:id="@+id/ed_assesment_weight"
+                style="@style/LoginTextInputInnerFieldStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsregular"
+                android:hint="Type your weight"
+                android:inputType="text"
+                android:padding="18dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.dicoding.nutrient.customview.CustomButton
+            android:layout_marginTop="24dp"
+            android:id="@+id/buttonSelfAssesment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutWeight"
+            tools:alpha="100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:alpha="1"
+            android:enabled="false"
+            android:fontFamily="@font/poppinsregular"
+            android:text="NEXT"
+            android:textColor="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

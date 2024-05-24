@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".RegisterActivity"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/registerTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Create an Account"
+            android:textSize="24sp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitleUsername"/>
+
+        <TextView
+            android:id="@+id/tvTitleUsername"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="USERNAME"
+            android:textSize="12sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/LoginTextInputOuterFieldStyle"
+            app:boxStrokeColor="@color/greenApps"
+            app:hintTextColor="@color/greenApps"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitleGender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleUsername"
+            app:startIconDrawable="@drawable/baseline_people_24"
+            tools:alpha="100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:alpha="1">
+
+            <com.dicoding.nutrient.customview.CustomEditTextEmail
+                android:id="@+id/ed_register_username"
+                style="@style/LoginTextInputInnerFieldStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsregular"
+                android:hint="Type your username"
+                android:inputType="text"
+                android:padding="18dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:id="@+id/tvTitleGender"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerGender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="GENDER"
+            android:textSize="12sp" />
+
+        <!--    Spinner goes here -->
+        <Spinner
+            android:id="@+id/spinnerGender"
+            android:layout_width="0dp"
+            android:padding="8dp"
+            android:minHeight="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitleDateOfBirth"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleGender" />
+
+        <TextView
+            android:id="@+id/tvTitleDateOfBirth"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutDOB"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="DATE OF BIRTH"
+            android:textSize="12sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutDOB"
+            style="@style/LoginTextInputOuterFieldStyle"
+            app:boxStrokeColor="@color/greenApps"
+            app:hintTextColor="@color/greenApps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleDateOfBirth"
+            app:layout_constraintBottom_toTopOf="@id/tvTitleEmail"
+            app:startIconDrawable="@drawable/baseline_calendar_month_24"
+            tools:alpha="100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:alpha="1">
+
+            <EditText
+                android:id="@+id/ed_register_dob"
+                style="@style/LoginTextInputInnerFieldStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsregular"
+                android:hint="Type your date of birth"
+                android:inputType="date"
+                android:padding="18dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvTitleEmail"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDOB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="VERIFY THROUGH EMAIL"
+            android:textSize="12sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutEmail"
+            style="@style/LoginTextInputOuterFieldStyle"
+            app:boxStrokeColor="@color/greenApps"
+            app:hintTextColor="@color/greenApps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleEmail"
+            app:layout_constraintBottom_toTopOf="@id/tvTitlePassword"
+            app:startIconDrawable="@drawable/baseline_email_24"
+            tools:alpha="100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:alpha="1">
+
+            <com.dicoding.nutrient.customview.CustomEditTextEmail
+                android:id="@+id/ed_register_email"
+                style="@style/LoginTextInputInnerFieldStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsregular"
+                android:hint="Type your email"
+                android:inputType="textEmailAddress"
+                android:padding="18dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvTitlePassword"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="PASSWORD"
+            android:textSize="12sp" />
+
+        <com.dicoding.nutrient.customview.CustomTextInputLayout
+            android:id="@+id/textInputLayoutPassword"
+            style="@style/LoginTextInputOuterFieldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:alpha="1"
+            app:boxStrokeColor="@color/greenApps"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/greenApps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitlePassword"
+            app:layout_constraintBottom_toTopOf="@id/tvTitlePasswordConfirm"
+            app:startIconDrawable="@drawable/baseline_password_24"
+            tools:alpha="100">
+
+            <com.dicoding.nutrient.customview.CustomEditTextPassword
+                android:padding="18dp"
+                android:id="@+id/ed_register_password"
+                style="@style/LoginTextInputInnerFieldStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsregular"
+                android:hint="Type your password"
+                android:inputType="textPassword" />
+        </com.dicoding.nutrient.customview.CustomTextInputLayout>
+
+        <TextView
+            android:id="@+id/tvTitlePasswordConfirm"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutPasswordConfirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="CONFIRM PASSWORD"
+            android:textSize="12sp" />
+
+        <com.dicoding.nutrient.customview.CustomTextInputLayout
+            android:id="@+id/textInputLayoutPasswordConfirm"
+            style="@style/LoginTextInputOuterFieldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:alpha="1"
+            app:boxStrokeColor="@color/greenApps"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/greenApps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitlePasswordConfirm"
+            app:layout_constraintBottom_toTopOf="@+id/buttonRegisterActivity"
+            app:startIconDrawable="@drawable/baseline_password_24"
+            tools:alpha="100">
+
+            <com.dicoding.nutrient.customview.CustomEditTextPassword
+                android:id="@+id/ed_register_password_confirm"
+                style="@style/LoginTextInputInnerFieldStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsregular"
+                android:hint="Retype your password"
+                android:inputType="textPassword" />
+        </com.dicoding.nutrient.customview.CustomTextInputLayout>
+
+        <com.dicoding.nutrient.customview.CustomButton
+            android:id="@+id/buttonRegisterActivity"
+            app:layout_constraintBottom_toTopOf="@+id/tvRegisterNow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPasswordConfirm"
+            tools:alpha="100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:alpha="1"
+            android:enabled="false"
+            android:fontFamily="@font/poppinsregular"
+            android:text="Register Account"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tvLoginNow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonRegisterActivity"
+            tools:alpha="100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:alpha="1"
+            android:fontFamily="@font/poppinsregular"
+            android:text="Back to Login"
+            android:textColor="@color/greenApps"
+            android:textStyle="italic" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
