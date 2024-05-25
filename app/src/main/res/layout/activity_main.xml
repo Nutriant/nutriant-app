@@ -8,6 +8,17 @@
     tools:context=".MainActivity"
     android:background="@color/white">
 
+    <ImageView
+        android:id="@+id/ivFirstOnboarding"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/nutrientlogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvTitleWelcome"/>
+
     <TextView
         android:id="@+id/tvTitleWelcome"
         android:layout_width="0dp"
