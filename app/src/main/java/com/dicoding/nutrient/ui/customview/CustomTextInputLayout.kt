@@ -1,4 +1,4 @@
-package com.dicoding.nutrient.customview
+package com.dicoding.nutrient.ui.customview
 
 import android.content.Context
 import android.util.AttributeSet

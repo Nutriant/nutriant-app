@@ -1,4 +1,4 @@
-package com.dicoding.nutrient
+package com.dicoding.nutrient.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         
         binding.apply { 
             btnGetStarted.setOnClickListener {
-                startActivity(Intent(this@MainActivity, FirstOnboardingActivity::class.java))
+                startActivity(Intent(this@MainActivity, OnboardActivity::class.java))
             }
         }
     }

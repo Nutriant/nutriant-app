@@ -1,4 +1,4 @@
-package com.dicoding.nutrient
+package com.dicoding.nutrient.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

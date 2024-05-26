@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".SelfAssesmentActivity">
+        tools:context=".ui.activities.SelfAssesmentActivity">
 
         <TextView
             android:layout_marginTop="16dp"
@@ -107,7 +107,7 @@
                 android:padding="18dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.dicoding.nutrient.customview.CustomButton
+        <com.dicoding.nutrient.ui.customview.CustomButton
             android:layout_marginTop="24dp"
             android:id="@+id/buttonSelfAssesment"
             app:layout_constraintBottom_toBottomOf="parent"
