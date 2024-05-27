@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppinsbold"
-            android:text="Create an Account"
+            android:text="@string/create_account"
             android:textSize="24sp"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
-            android:text="USERNAME"
+            android:text="@string/username"
             android:textSize="12sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
-                android:hint="Type your username"
+                android:hint="@string/ph_username"
                 android:inputType="text"
                 android:padding="18dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
-            android:text="GENDER"
+            android:text="@string/gender"
             android:textSize="12sp" />
 
         <!--    Spinner goes here -->
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
-            android:text="DATE OF BIRTH"
+            android:text="@string/date_of_birth"
             android:textSize="12sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -129,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
-                android:hint="Type your date of birth"
+                android:hint="@string/ph_dateOfBirth"
                 android:inputType="date"
                 android:padding="18dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -144,8 +144,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
-            android:text="VERIFY THROUGH EMAIL"
-            android:textSize="12sp" />
+            android:text="@string/verify_through_email"
+            android:textSize="12sp"
+            android:paddingTop="16dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutEmail"
@@ -169,7 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
-                android:hint="Type your email"
+                android:hint="@string/ph_email"
                 android:inputType="textEmailAddress"
                 android:padding="18dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -184,8 +185,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
-            android:text="PASSWORD"
-            android:textSize="12sp" />
+            android:text="@string/password"
+            android:textSize="12sp"
+            android:paddingTop="16dp"/>
 
         <com.dicoding.nutrient.ui.customview.CustomTextInputLayout
             android:id="@+id/textInputLayoutPassword"
@@ -212,7 +214,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
-                android:hint="Type your password"
+                android:hint="@string/ph_password"
                 android:inputType="textPassword" />
         </com.dicoding.nutrient.ui.customview.CustomTextInputLayout>
 
@@ -226,7 +228,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
-            android:text="CONFIRM PASSWORD"
+            android:text="@string/confirm_password"
             android:textSize="12sp" />
 
         <com.dicoding.nutrient.ui.customview.CustomTextInputLayout
@@ -253,13 +255,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
-                android:hint="Retype your password"
+                android:hint="@string/ph_retypePassword"
                 android:inputType="textPassword" />
         </com.dicoding.nutrient.ui.customview.CustomTextInputLayout>
 
         <com.dicoding.nutrient.ui.customview.CustomButton
             android:id="@+id/buttonRegisterActivity"
-            app:layout_constraintBottom_toTopOf="@+id/tvRegisterNow"
+            app:layout_constraintBottom_toTopOf="@+id/tvLoginNow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPasswordConfirm"
@@ -270,7 +272,7 @@
             android:alpha="1"
             android:enabled="false"
             android:fontFamily="@font/poppinsregular"
-            android:text="Register Account"
+            android:text="@string/register_account"
             android:textColor="@color/white" />
 
         <TextView
@@ -285,7 +287,7 @@
             android:layout_marginTop="8dp"
             android:alpha="1"
             android:fontFamily="@font/poppinsregular"
-            android:text="Back to Login"
+            android:text="@string/back_to_login"
             android:textColor="@color/greenApps"
             android:textStyle="italic" />
 

@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppinsbold"
-            android:text="Fill out the Self Assesment"
+            android:text="@string/self_assesment"
             android:textSize="24sp"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
-            android:text="HEIGHT (CM)"
+            android:text="@string/height_cm"
             android:textSize="12sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -63,9 +63,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
-                android:hint="Type your height"
-                android:inputType="text"
-                android:padding="18dp" />
+                android:hint="@string/ph_height"
+                android:inputType="number"
+                android:padding="18dp"
+                android:autofillHints="" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -78,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
-            android:text="WEIGHT (KG)"
+            android:text="@string/weight_kg"
             android:textSize="12sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -102,9 +103,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
-                android:hint="Type your weight"
-                android:inputType="text"
-                android:padding="18dp" />
+                android:hint="@string/ph_weight"
+                android:inputType="number"
+                android:padding="18dp"
+                android:autofillHints="" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.dicoding.nutrient.ui.customview.CustomButton
@@ -121,7 +123,7 @@
             android:alpha="1"
             android:enabled="false"
             android:fontFamily="@font/poppinsregular"
-            android:text="NEXT"
+            android:text="@string/next_to_assesment"
             android:textColor="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

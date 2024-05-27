@@ -8,4 +8,37 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nutrient_title">Nutrient</string>
+    <string name="onboarding_started1">Make it easy with</string>
+    <string name="onboarding_started2">Nutrition Table Assistant</string>
+    <string name="get_started">Get Started</string>
+    <string name="getinformation_description">Don\'t worry about the information provided by the nutrition label, you can see all the detailed information that will be calculated with your daily health status.</string>
+    <string name="get_information_title">Get Information</string>
+    <string name="trackwithlabel_title">Track with Label</string>
+    <string name="trackwithlabel_description">You can scan the nutrition label to see the detailed information on the package.</string>
+    <string name="connectBMI_description">Connect your BMI so that you can know the nutrition obtained from the packaged food or drinks that you will consume every day.</string>
+    <string name="connectBMI_title">Connect Your BMI</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email_title">EMAIL</string>
+    <string name="ph_email">Type your email</string>
+    <string name="password">PASSWORD</string>
+    <string name="ph_password">Type your password</string>
+    <string name="register_here">Register here</string>
+    <string name="create_account">Create an Account</string>
+    <string name="username">USERNAME</string>
+    <string name="ph_username">Type your username</string>
+    <string name="gender">GENDER</string>
+    <string name="date_of_birth">DATE OF BIRTH</string>
+    <string name="ph_dateOfBirth">Type your date of birth</string>
+    <string name="verify_through_email">VERIFY THROUGH EMAIL</string>
+    <string name="confirm_password">CONFIRM PASSWORD</string>
+    <string name="ph_retypePassword">Retype your password</string>
+    <string name="register_account">Register Account</string>
+    <string name="back_to_login">Back to Login</string>
+    <string name="self_assesment">Fill out the Self Assesment</string>
+    <string name="height_cm">HEIGHT (CM)</string>
+    <string name="ph_height">Type your height</string>
+    <string name="weight_kg">WEIGHT (KG)</string>
+    <string name="ph_weight">Type your weight</string>
+    <string name="next_to_assesment">NEXT</string>
 </resources>

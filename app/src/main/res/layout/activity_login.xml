@@ -37,9 +37,9 @@
                 tools:alpha="100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha="0"
+                android:alpha="1"
                 android:fontFamily="@font/poppinsbold"
-                android:text="Sign In"
+                android:text="@string/sign_in"
                 android:textSize="40sp"
                 android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:fontFamily="@font/poppinsregular"
-                android:text="EMAIL"
+                android:text="@string/email_title"
                 android:textSize="12sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -78,7 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinsregular"
-                    android:hint="Type your email"
+                    android:hint="@string/ph_email"
                     android:inputType="textEmailAddress"
                     android:padding="18dp"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -94,7 +94,7 @@
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppinsregular"
-                android:text="PASSWORD"
+                android:text="@string/password"
                 android:textSize="12sp" />
 
             <com.dicoding.nutrient.ui.customview.CustomTextInputLayout
@@ -106,7 +106,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/buttonLoginActivity"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textInputLayout"
+                app:layout_constraintTop_toBottomOf="@id/tvTitlePassword"
                 app:startIconDrawable="@drawable/baseline_password_24"
                 tools:alpha="100"
                 app:errorEnabled="true"
@@ -122,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinsregular"
-                    android:hint="Type your password"
+                    android:hint="@string/ph_password"
                     android:inputType="textPassword"
                     android:padding="18dp" />
             </com.dicoding.nutrient.ui.customview.CustomTextInputLayout>
@@ -140,7 +140,7 @@
                 android:alpha="1"
                 android:enabled="false"
                 android:fontFamily="@font/poppinsregular"
-                android:text="Sign In"
+                android:text="@string/sign_in"
                 android:textColor="@color/white" />
 
             <TextView
@@ -155,7 +155,7 @@
                 android:layout_marginTop="8dp"
                 android:alpha="1"
                 android:fontFamily="@font/poppinsregular"
-                android:text="Register here"
+                android:text="@string/register_here"
                 android:textColor="@color/greenApps"
                 android:textStyle="italic" />
 
