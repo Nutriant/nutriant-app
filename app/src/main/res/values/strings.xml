@@ -41,4 +41,8 @@
     <string name="weight_kg">WEIGHT (KG)</string>
     <string name="ph_weight">Type your weight</string>
     <string name="next_to_assesment">NEXT</string>
+    <string name="homeBotNav">Home</string>
+    <string name="historyBotNav">History</string>
+    <string name="newsBotNav">News</string>
+    <string name="profileBotNav">Profile</string>
 </resources>
