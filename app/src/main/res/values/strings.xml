@@ -45,4 +45,7 @@
     <string name="historyBotNav">History</string>
     <string name="newsBotNav">News</string>
     <string name="profileBotNav">Profile</string>
+    <string name="welcome_back">Welcome Back,</string>
+    <string name="search_food_amp_bev"><![CDATA[Search Food & Bev]]></string>
+    <string name="product_information">Product Information</string>
 </resources>

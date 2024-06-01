@@ -67,4 +67,10 @@ dependencies {
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
+
+    // Viewpager
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }
