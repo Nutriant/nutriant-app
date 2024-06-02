@@ -1,5 +1,7 @@
 package com.dicoding.nutrient.ui.fragments.dashboard
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
@@ -8,14 +10,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.nutrient.R
 import com.dicoding.nutrient.databinding.ActivityHomeFragmentBinding
+import com.dicoding.nutrient.ui.activities.SearchHomeActivity
 import com.dicoding.nutrient.ui.adapters.BannerAdapter
+import com.dicoding.nutrient.ui.adapters.ListBmiAdapter
 import com.dicoding.nutrient.ui.adapters.ProductBannerAdapter
 import com.dicoding.nutrient.utils.Banner
+import com.dicoding.nutrient.utils.Dummy
 import java.lang.reflect.Array
 
 class HomeFragment : Fragment() {
@@ -38,6 +45,8 @@ class HomeFragment : Fragment() {
 
         showBanner()
         showRecyclerProductBanner()
+        showRecyclerListBmi()
+        setupAction()
         return binding.root
     }
 
@@ -77,6 +86,24 @@ class HomeFragment : Fragment() {
         val rvProductBanner = binding.rvProductBanner
         rvProductBanner.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rvProductBanner.adapter = ProductBannerAdapter(Banner.getDataProductBanner)
+    }
+
+    private fun showRecyclerListBmi(){
+        val rvHistoryBmi = binding.rvHistoryBmi
+        rvHistoryBmi.layoutManager = LinearLayoutManager(requireContext())
+        rvHistoryBmi.adapter = ListBmiAdapter(Dummy.getListDataBmi)
+    }
+
+    private fun setupAction(){
+        binding.edSearch.setOnClickListener {
+            val intent = Intent(requireContext(), SearchHomeActivity::class.java)
+            val optionsCompat: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                requireContext() as Activity,
+                Pair(binding.edSearch as View, "search")
+            )
+            // Start activity with the transition
+            startActivity(intent, optionsCompat.toBundle())
+        }
     }
 
     override fun onDestroyView() {
