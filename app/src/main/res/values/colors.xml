@@ -6,4 +6,6 @@
     <color name="greenDark">#1F6543</color>
     <color name="grayApps">#7B6F72</color>
     <color name="gray">#5E5E5E</color>
+    <color name="redApps">#FF0000</color>
+    <color name="lightGray">#E2E6EA</color>
 </resources>
