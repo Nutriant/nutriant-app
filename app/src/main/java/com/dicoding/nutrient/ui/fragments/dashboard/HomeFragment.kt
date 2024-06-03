@@ -42,12 +42,16 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = ActivityHomeFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         showBanner()
         showRecyclerProductBanner()
         showRecyclerListBmi()
         setupAction()
-        return binding.root
     }
 
     private fun showBanner(){
