@@ -68,4 +68,11 @@
     <string name="title_custom_logout">Are you sure want to sign out account?</string>
     <string name="cancel">Cancel</string>
     <string name="log_out">Log Out</string>
+    <string name="what_news">What\'s News?</string>
+    <string name="bmi_information_title">BMI Information</string>
+    <string name="articlesTitle">Articles Title</string>
+    <string name="nutrition_information_title">Nutrition Information</string>
+    <string name="search_articles">Search Articles</string>
+    <string name="articlesDescription">Description</string>
+    <string name="articlesReleaseDate">Released Date</string>
 </resources>

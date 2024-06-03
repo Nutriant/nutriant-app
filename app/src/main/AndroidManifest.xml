@@ -20,9 +20,12 @@
         android:theme="@style/Theme.Nutrient"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.SearchArticlesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.SearchHomeActivity"
             android:exported="false"
-            android:theme="@style/SearchTheme"/>
+            android:theme="@style/SearchTheme" />
         <activity
             android:name=".ui.activities.CameraActivity"
             android:exported="false"

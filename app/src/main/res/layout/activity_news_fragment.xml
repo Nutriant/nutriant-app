@@ -1,21 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.dashboard.NewsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.dashboard.NewsFragment"
+    android:padding="16dp"
+    android:orientation="vertical">
 
     <TextView
-        android:fontFamily="@font/poppinsregular"
-        android:id="@+id/tvNews"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/tvNewsTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="News Fragment"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:fontFamily="@font/poppinsbold"
+        android:textSize="18sp"
+        android:text="@string/what_news"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:id="@+id/tvBMIInformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppinsbold"
+        android:textSize="18sp"
+        android:text="@string/bmi_information_title"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_horizontal_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="12dp"
+        tools:listitem="@layout/item_bmi_articles"/>
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:id="@+id/tvNutritionInformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppinsbold"
+        android:textSize="18sp"
+        android:text="@string/nutrition_information_title"/>
+
+    <EditText
+        android:id="@+id/ed_search"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="8dp"
+        android:paddingStart="12dp"
+        android:background="@drawable/rectangle_search"
+        android:hint="@string/search_articles"
+        android:focusable="true"
+        android:focusableInTouchMode="false"
+        android:clickable="true"
+        android:inputType="text"
+        android:importantForAutofill="no" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_vertical_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="12dp"
+        tools:listitem="@layout/item_nutrition_articles"/>
+
+
+</LinearLayout>
