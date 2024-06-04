@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.nutrient.R
-import com.dicoding.nutrient.data.model.banner.DataListBmi
+import com.dicoding.nutrient.data.model.history.DataListBmi
 import com.dicoding.nutrient.databinding.ItemListBmiBinding
 
 class ListBmiAdapter(private val dataListBmi: ArrayList<DataListBmi>) :

@@ -1,4 +1,4 @@
-package com.dicoding.nutrient.data.model.banner
+package com.dicoding.nutrient.data.model.history
 
 data class DataListBmi(
     val id: String,
