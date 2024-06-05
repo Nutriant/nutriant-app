@@ -1,6 +1,7 @@
 package com.dicoding.nutrient.ui.fragments.dashboard
 
 import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.dicoding.nutrient.R
 import com.dicoding.nutrient.databinding.ActivityProfileFragmentBinding
 import com.dicoding.nutrient.databinding.CustomPopupDialogBinding
+import com.dicoding.nutrient.ui.activities.PersonalDataActivity
 import com.google.android.material.button.MaterialButton
 
 class ProfileFragment : Fragment() {
@@ -29,6 +31,10 @@ class ProfileFragment : Fragment() {
 
         binding.layoutSignOut.setOnClickListener {
             showDialog()
+        }
+
+        binding.layoutPersonalData.setOnClickListener{
+            startActivity(Intent(requireContext(), PersonalDataActivity::class.java))
         }
     }
 

@@ -76,4 +76,10 @@
     <string name="articlesDescription">Description</string>
     <string name="articlesReleaseDate">Released Date</string>
     <string name="history">History</string>
+    <string name="ph_gender">Male/Female</string>
+    <string name="heightTitle">HEIGHT</string>
+    <string name="save_profile">SAVE PROFILE</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="title_custom_confirmation">Are you sure want to change your profile information?</string>
+    <string name="yes_confirmation">Yes</string>
 </resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/titlePopUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/save_changes"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/confirmation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:text="@string/title_custom_confirmation"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/titlePopUp"
+            app:layout_constraintStart_toStartOf="@id/titlePopUp"
+            app:layout_constraintTop_toBottomOf="@id/titlePopUp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirmation">
+
+            <com.google.android.material.button.MaterialButton
+                android:padding="12dp"
+                android:id="@+id/btDialogCancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/lightGray"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/cancel"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginEnd="12dp"
+                app:cornerRadius="6dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:padding="12dp"
+                android:id="@+id/btDialogLogout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/greenApps"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/yes_confirmation"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:strokeWidth="1dp"
+                android:layout_marginEnd="12dp"
+                app:cornerRadius="6dp"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
