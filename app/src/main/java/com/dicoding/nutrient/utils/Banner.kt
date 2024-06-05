@@ -9,8 +9,8 @@ object Banner {
 
     private val imageBanner = arrayOf(
         R.drawable.banner1,
-        R.drawable.banner1,
-        R.drawable.banner1
+        R.drawable.marasmus,
+        R.drawable.kwashiorkor
     )
 
     private val idBanner = arrayOf(
