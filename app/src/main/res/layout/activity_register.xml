@@ -56,7 +56,7 @@
             android:layout_marginHorizontal="16dp"
             android:alpha="1">
 
-            <com.dicoding.nutrient.ui.customview.CustomEditTextEmail
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_register_username"
                 style="@style/LoginTextInputInnerFieldStyle"
                 android:layout_width="match_parent"
@@ -123,13 +123,14 @@
             android:layout_marginHorizontal="16dp"
             android:alpha="1">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_register_dob"
                 style="@style/LoginTextInputInnerFieldStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
                 android:hint="@string/ph_dateOfBirth"
+                android:focusableInTouchMode="false"
                 android:inputType="date"
                 android:padding="18dp" />
         </com.google.android.material.textfield.TextInputLayout>

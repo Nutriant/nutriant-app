@@ -77,4 +77,13 @@ dependencies {
     // Circle Image View
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
+    // datastore
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+    // extra viewmodel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.1")
+
+    // Sweet alert
+    implementation("com.github.f0ris.sweetalert:library:1.6.2")
 }

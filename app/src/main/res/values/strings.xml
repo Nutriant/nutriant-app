@@ -76,4 +76,8 @@
     <string name="articlesDescription">Description</string>
     <string name="articlesReleaseDate">Released Date</string>
     <string name="history">History</string>
+    <string name="loading">Loading…</string>
+    <string name="success">Success</string>
+    <string name="account_created">Account has been created, Please login</string>
+    <string name="alright">Alright</string>
 </resources>
