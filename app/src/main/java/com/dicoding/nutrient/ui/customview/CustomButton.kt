@@ -27,9 +27,9 @@ class CustomButton : AppCompatButton {
         etEmailResult: CharSequence?,
         etPasswordResult: CharSequence?
     ) {
-        isEnabled = (etNameResult != null && etNameResult.toString().isNotEmpty()) ||
-                (etEmailResult != null && etEmailResult.toString().isNotEmpty()) ||
-                (etPasswordResult != null && etPasswordResult.toString().isNotEmpty())
+        isEnabled = ((etNameResult != null && etNameResult.toString().isNotEmpty())) &&
+                ((etEmailResult != null && etEmailResult.toString().isNotEmpty())) &&
+                ((etPasswordResult != null && etPasswordResult.toString().isNotEmpty()))
     }
 
     fun setButtonEnableLogin(
@@ -37,8 +37,8 @@ class CustomButton : AppCompatButton {
         etPasswordResult: CharSequence?
     ) {
         isEnabled =
-            (etEmailResult != null && etEmailResult.toString().isNotEmpty()) ||
-                    (etPasswordResult != null && etPasswordResult.toString().isNotEmpty())
+            ((etEmailResult != null && etEmailResult.toString().isNotEmpty())) &&
+                    ((etPasswordResult != null && etPasswordResult.toString().isNotEmpty()))
     }
 
 }

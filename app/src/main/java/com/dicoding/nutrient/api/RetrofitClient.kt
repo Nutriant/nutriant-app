@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     private const val BASE_URL = BuildConfig.BASE_API_URL_LARAVEL
-    val instance: ApiService by lazy {
+    val instanceApiLaravel: ApiService by lazy {
         val loggingInterceptor = if(BuildConfig.DEBUG) {
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         } else {

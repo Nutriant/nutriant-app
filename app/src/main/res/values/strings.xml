@@ -82,4 +82,8 @@
     <string name="save_changes">Save Changes</string>
     <string name="title_custom_confirmation">Are you sure want to change your profile information?</string>
     <string name="yes_confirmation">Yes</string>
+    <string name="loading">Loading…</string>
+    <string name="success">Success</string>
+    <string name="account_created">Account has been created, Please login</string>
+    <string name="alright">Alright</string>
 </resources>
