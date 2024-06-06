@@ -8,4 +8,5 @@
     <color name="gray">#5E5E5E</color>
     <color name="redApps">#FF0000</color>
     <color name="lightGray">#E2E6EA</color>
+    <color name="grayButton">#BAB9B9</color>
 </resources>

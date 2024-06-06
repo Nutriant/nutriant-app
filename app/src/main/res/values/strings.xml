@@ -86,4 +86,26 @@
     <string name="success">Success</string>
     <string name="account_created">Account has been created, Please login</string>
     <string name="alright">Alright</string>
+    <string name="information_log">Information Log</string>
+    <string name="nutrition_facts">Nutrition Facts</string>
+    <string name="food_and_beverage">FOOD AND BEVERAGE</string>
+    <string name="glucose">GLUCOSE</string>
+    <string name="carbo">CARBO</string>
+    <string name="ph_food_and_bev">Type your food or beverage</string>
+    <string name="protein">PROTEIN</string>
+    <string name="fat">FAT</string>
+    <string name="consumptiontime">Consumption Time</string>
+    <string name="caloriestotal">Calories Total:</string>
+    <string name="save_history">SAVE HISTORY</string>
+    <string name="nutrition_scan">Nutrition Scan</string>
+    <string name="failure_title">Oops, Something Went Wrong</string>
+    <string name="tv_failure_description">Sorry there was an error when scanning the label, don\'t worry you can fill in the nutritional information manually or repeat the label scan!</string>
+    <string name="fill_manual">Fill Manual</string>
+    <string name="scan_again">Scan Again</string>
+    <string name="manual_form">Manual Form</string>
+    <string name="portion">PORTION</string>
+    <string name="serving">SERVING (GRAM)</string>
+    <string name="morning">Morning</string>
+    <string name="afternoon">Afternoon</string>
+    <string name="evening">Evening</string>
 </resources>
