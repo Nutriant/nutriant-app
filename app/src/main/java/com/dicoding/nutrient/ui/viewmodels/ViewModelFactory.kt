@@ -20,8 +20,9 @@ class ViewModelFactory private constructor(
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when (modelClass){
-            LoginViewModel::class.java -> LoginViewModel(instanceApiLaravel, userPreferences, authRepository) as T
+            LoginViewModel::class.java -> LoginViewModel(userPreferences, authRepository) as T
             RegisterViewModel::class.java -> RegisterViewModel(authRepository) as T
+            MainViewModel::class.java -> MainViewModel(userPreferences) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }

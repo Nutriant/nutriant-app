@@ -1,8 +1,10 @@
 package com.dicoding.nutrient.api
 
+import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.register.RegisterResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface ApiService {
@@ -16,4 +18,12 @@ interface ApiService {
         @Field("birthdate") birthdate: String,
         @Field("gender") gender: Int,
     ) : RegisterResponse
+
+    @FormUrlEncoded
+    @POST("api/login")
+    @Headers("Accept: application/json")
+    suspend fun login(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ) : LoginResponse
 }
