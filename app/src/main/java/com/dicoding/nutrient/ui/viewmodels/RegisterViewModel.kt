@@ -49,7 +49,7 @@ class RegisterViewModel(
                 result.value = Result.ErrorRegister(errorBody)
             } catch (e: Exception){
                 e.printStackTrace()
-                result.value = Result.ServerError("Something wrong")
+                result.value = Result.ServerError(e.message.toString())
             }
         }
         return result

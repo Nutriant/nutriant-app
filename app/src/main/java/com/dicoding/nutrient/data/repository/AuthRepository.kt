@@ -1,6 +1,7 @@
 package com.dicoding.nutrient.data.repository
 
 import com.dicoding.nutrient.api.ApiService
+import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.register.RegisterResponse
 
 class AuthRepository(private val apiService: ApiService) {
@@ -20,5 +21,9 @@ class AuthRepository(private val apiService: ApiService) {
             birthdate,
             gender
         )
+    }
+
+    suspend fun login(email: String, password: String) : LoginResponse {
+        return apiService.login(email, password)
     }
 }
