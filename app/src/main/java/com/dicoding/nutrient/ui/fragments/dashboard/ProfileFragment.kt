@@ -45,6 +45,7 @@ class ProfileFragment : Fragment() {
         initComponents()
         initViewModel()
         setupAction()
+        setupComponent()
     }
 
     private fun showDialog() {
@@ -96,6 +97,12 @@ class ProfileFragment : Fragment() {
 
         binding.layoutPersonalData.setOnClickListener{
             startActivity(Intent(requireContext(), PersonalDataActivity::class.java))
+        }
+    }
+
+    private fun setupComponent(){
+        userPreferencesViewModel.getUsername().observe(viewLifecycleOwner){ username ->
+            binding.tvUsername.text = username
         }
     }
 

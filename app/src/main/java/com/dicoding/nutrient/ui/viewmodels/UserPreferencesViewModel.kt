@@ -13,4 +13,8 @@ class UserPreferencesViewModel(private val userPreference: UserPreference) : Vie
     fun getTokenValue() : LiveData<String> {
         return userPreference.getTokenValue().asLiveData()
     }
+
+    fun getUsername() : LiveData<String> {
+        return userPreference.getUsername().asLiveData()
+    }
 }

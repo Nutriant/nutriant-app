@@ -31,6 +31,12 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    fun getUsername(): Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[USERNAME] ?: ""
+        }
+    }
+
     fun getUserLoginStatus(): Flow<Boolean> {
         return dataStore.data.map { preferences ->
             preferences[IS_LOGGED_IN_KEY] ?: false

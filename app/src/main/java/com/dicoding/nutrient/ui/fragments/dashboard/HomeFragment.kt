@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.nutrient.R
@@ -21,6 +22,9 @@ import com.dicoding.nutrient.ui.activities.SearchHomeActivity
 import com.dicoding.nutrient.ui.adapters.BannerAdapter
 import com.dicoding.nutrient.ui.adapters.ListBmiAdapter
 import com.dicoding.nutrient.ui.adapters.ProductBannerAdapter
+import com.dicoding.nutrient.ui.viewmodels.LogoutViewModel
+import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
+import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import com.dicoding.nutrient.utils.Banner
 import com.dicoding.nutrient.utils.Dummy
 import java.lang.reflect.Array
@@ -29,6 +33,7 @@ class HomeFragment : Fragment() {
     private var _binding: ActivityHomeFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var pageChangeListener: ViewPager2.OnPageChangeCallback
+    private lateinit var userPreferencesViewModel: UserPreferencesViewModel
 
     private val params = LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -48,10 +53,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViewModel()
         showBanner()
         showRecyclerProductBanner()
         showRecyclerListBmi()
         setupAction()
+        setupComponent()
     }
 
     private fun showBanner(){
@@ -110,9 +117,21 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setupComponent(){
+        userPreferencesViewModel.getUsername().observe(viewLifecycleOwner){ username ->
+            binding.tvUsername.text = username
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding.viewpager2.unregisterOnPageChangeCallback(pageChangeListener)
         _binding = null
+    }
+
+    private fun initViewModel(){
+        val factory = ViewModelFactory.getInstance(requireActivity().application)
+        userPreferencesViewModel = ViewModelProvider(requireActivity(),factory).get(
+            UserPreferencesViewModel::class.java)
     }
 }
