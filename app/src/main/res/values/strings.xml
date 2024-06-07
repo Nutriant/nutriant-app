@@ -108,4 +108,7 @@
     <string name="morning">Morning</string>
     <string name="afternoon">Afternoon</string>
     <string name="evening">Evening</string>
+    <string name="before_register">Don\'t have an account?</string>
+    <string name="before_back_to_login">Already have an account?</string>
+    <string name="done">DONE</string>
 </resources>

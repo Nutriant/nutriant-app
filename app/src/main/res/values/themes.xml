@@ -38,4 +38,12 @@
     <style name="AfterScanTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/greenApps</item>
     </style>
+
+    <style name="DatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/greenApps</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/greenLight</item>
+    </style>
 </resources>

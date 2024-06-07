@@ -36,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
             titleText = getString(R.string.loading)
             progressHelper.barColor = ContextCompat.getColor(this@LoginActivity, R.color.greenApps)
             setCancelable(false)
+            setTheme(R.style.DialogTheme)
         }
         alertDialog = SweetAlertDialog(this@LoginActivity, SweetAlertDialog.ERROR_TYPE)
         alertDialog.setCancelable(false)

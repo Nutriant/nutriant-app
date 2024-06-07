@@ -8,56 +8,71 @@
     tools:context=".ui.activities.MainActivity"
     android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/ivFirstOnboarding"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/nutrientlogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tvTitleWelcome"/>
-
-    <TextView
-        android:id="@+id/tvTitleWelcome"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/centerLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsbold"
-        android:gravity="center"
-        android:text="@string/nutrient_title"
-        android:textColor="@color/greenApps"
-        android:textSize="50sp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvDescriptionWelcome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsregular"
-        android:gravity="center"
-        android:text="@string/onboarding_started1"
-        android:textColor="@color/grayApps"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitleWelcome" />
+        <ImageView
+            android:id="@+id/ivFirstOnboarding"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/nutrientlogo"
+            app:layout_constraintEnd_toEndOf="@id/centerLayout"
+            app:layout_constraintStart_toStartOf="@id/centerLayout"
+            app:layout_constraintTop_toTopOf="@id/centerLayout"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitleWelcome"/>
 
-    <TextView
-        android:id="@+id/tvDescriptionWelcome2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsregular"
-        android:gravity="center"
-        android:text="@string/onboarding_started2"
-        android:textColor="@color/grayApps"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDescriptionWelcome" />
+        <TextView
+            android:id="@+id/tvTitleWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="center"
+            android:text="@string/nutrient_title"
+            android:textColor="@color/greenApps"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivFirstOnboarding" />
+
+        <TextView
+            android:id="@+id/tvDescriptionWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:gravity="center"
+            android:text="@string/onboarding_started1"
+            android:textColor="@color/grayApps"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleWelcome" />
+
+        <TextView
+            android:id="@+id/tvDescriptionWelcome2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:gravity="center"
+            android:text="@string/onboarding_started2"
+            android:textColor="@color/grayApps"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescriptionWelcome" />
+
+
+    </LinearLayout>
+
+
 
 <!--    <Button-->
 <!--        android:id="@+id/btnGetStarted"-->
