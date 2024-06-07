@@ -3,6 +3,7 @@ package com.dicoding.nutrient.data.repository
 import com.dicoding.nutrient.api.ApiService
 import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.register.RegisterResponse
+import com.dicoding.nutrient.data.model.response.userstatus.UserStatusResponse
 
 class AuthRepository(private val apiService: ApiService) {
     suspend fun register(
@@ -29,5 +30,9 @@ class AuthRepository(private val apiService: ApiService) {
 
     suspend fun logout(token: String) : Int {
         return apiService.logout("Bearer $token")
+    }
+
+    suspend fun userStatus(token: String) : UserStatusResponse {
+        return apiService.userStatus("Bearer $token")
     }
 }

@@ -2,8 +2,10 @@ package com.dicoding.nutrient.api
 
 import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.register.RegisterResponse
+import com.dicoding.nutrient.data.model.response.userstatus.UserStatusResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -31,4 +33,8 @@ interface ApiService {
     @POST("api/logout")
     @Headers("Accept: application/json")
     suspend fun logout(@Header("Authorization") token: String) : Int
+
+    @GET("api/user-status")
+    @Headers("Accept: application/json")
+    suspend fun userStatus(@Header("Authorization") token: String) : UserStatusResponse
 }
