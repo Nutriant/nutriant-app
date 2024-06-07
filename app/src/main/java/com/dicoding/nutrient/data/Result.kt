@@ -8,5 +8,6 @@ sealed class Result<out R> private constructor(){
     data class ErrorRegister(val error: ErrorRegisterResponse) : Result<Nothing>()
     data class ServerError(val serverError: String) : Result<Nothing>()
     data class ErrorLogin(val errorLogin: ErrorLoginResponse) : Result<Nothing>()
+    data class Error(val errorMessage: String) : Result<Nothing>()
     object Loading : Result<Nothing>()
 }

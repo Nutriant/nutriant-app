@@ -1,7 +1,6 @@
 package com.dicoding.nutrient.ui.viewmodels
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.nutrient.api.ApiService
@@ -22,7 +21,8 @@ class ViewModelFactory private constructor(
         return when (modelClass){
             LoginViewModel::class.java -> LoginViewModel(userPreferences, authRepository) as T
             RegisterViewModel::class.java -> RegisterViewModel(authRepository) as T
-            MainViewModel::class.java -> MainViewModel(userPreferences) as T
+            UserPreferencesViewModel::class.java -> UserPreferencesViewModel(userPreferences) as T
+            LogoutViewModel::class.java -> LogoutViewModel(userPreferences, authRepository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }

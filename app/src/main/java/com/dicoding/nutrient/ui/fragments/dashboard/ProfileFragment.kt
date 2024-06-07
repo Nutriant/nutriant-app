@@ -7,16 +7,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.dicoding.nutrient.R
+import com.dicoding.nutrient.data.Result
 import com.dicoding.nutrient.databinding.ActivityProfileFragmentBinding
 import com.dicoding.nutrient.databinding.CustomPopupDialogBinding
 import com.dicoding.nutrient.ui.activities.PersonalDataActivity
+import com.dicoding.nutrient.ui.viewmodels.LogoutViewModel
+import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
+import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import com.google.android.material.button.MaterialButton
 
 class ProfileFragment : Fragment() {
     private var _binding: ActivityProfileFragmentBinding? = null
     private val binding get() = _binding!!
+    private lateinit var logoutViewModel: LogoutViewModel
+    private lateinit var userPreferencesViewModel: UserPreferencesViewModel
+    private lateinit var loadingDialog: SweetAlertDialog
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,13 +42,9 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.layoutSignOut.setOnClickListener {
-            showDialog()
-        }
-
-        binding.layoutPersonalData.setOnClickListener{
-            startActivity(Intent(requireContext(), PersonalDataActivity::class.java))
-        }
+        initComponents()
+        initViewModel()
+        setupAction()
     }
 
     private fun showDialog() {
@@ -50,7 +59,58 @@ class ProfileFragment : Fragment() {
 
         dialogBinding.btDialogLogout.setOnClickListener {
             // Code for logout
-            dialog.dismiss()
+            userPreferencesViewModel.getTokenValue().observe(viewLifecycleOwner){ token ->
+                val logoutObserver = object : Observer<Result<Int>> {
+                    override fun onChanged(value: Result<Int>) {
+                        when (value) {
+                            is Result.Loading -> {
+                                dialog.dismiss()
+                                loadingDialog.show()
+                            }
+                            is Result.Success -> {
+                                dialog.dismiss()
+                                loadingDialog.dismiss()
+                                requireActivity().finishAffinity()
+                                logoutViewModel.logout(token).removeObserver(this)
+                            }
+                            is Result.Error -> {
+                                dialog.dismiss()
+                                loadingDialog.dismiss()
+                                Toast.makeText(requireContext(), value.errorMessage, Toast.LENGTH_LONG).show()
+                                logoutViewModel.logout(token).removeObserver(this)
+                            }
+                            else -> {}
+                        }
+                    }
+                }
+
+                logoutViewModel.logout(token).observe(viewLifecycleOwner, logoutObserver)
+            }
         }
+    }
+
+    private fun setupAction(){
+        binding.layoutSignOut.setOnClickListener {
+            showDialog()
+        }
+
+        binding.layoutPersonalData.setOnClickListener{
+            startActivity(Intent(requireContext(), PersonalDataActivity::class.java))
+        }
+    }
+
+    private fun initComponents(){
+        loadingDialog = SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE)
+        loadingDialog.apply {
+            titleText = getString(R.string.loading)
+            progressHelper.barColor = ContextCompat.getColor(requireContext(), R.color.greenApps)
+            setCancelable(false)
+        }
+    }
+
+    private fun initViewModel(){
+        val factory = ViewModelFactory.getInstance(requireActivity().application)
+        logoutViewModel = ViewModelProvider(requireActivity(), factory).get(LogoutViewModel::class.java)
+        userPreferencesViewModel = ViewModelProvider(requireActivity(),factory).get(UserPreferencesViewModel::class.java)
     }
 }
