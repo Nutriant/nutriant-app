@@ -58,7 +58,7 @@
             android:alpha="1">
 
             <EditText
-                android:id="@+id/ed_register_username"
+                android:id="@+id/ed_assesment_height"
                 style="@style/LoginTextInputInnerFieldStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

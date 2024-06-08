@@ -41,4 +41,12 @@ class CustomButton : AppCompatButton {
                     ((etPasswordResult != null && etPasswordResult.toString().isNotEmpty()))
     }
 
+    fun setButtonEnableAssestment(
+        etHeightResult: CharSequence?,
+        etWeightResult: CharSequence?
+    ){
+        isEnabled = (etWeightResult != null && etWeightResult.toString().isNotEmpty()) &&
+                (etHeightResult != null && etHeightResult.toString().isNotEmpty())
+    }
+
 }

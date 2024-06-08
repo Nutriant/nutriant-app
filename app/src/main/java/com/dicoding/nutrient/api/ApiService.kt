@@ -1,5 +1,6 @@
 package com.dicoding.nutrient.api
 
+import com.dicoding.nutrient.data.model.response.assestment.AssestmentResponse
 import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.register.RegisterResponse
 import com.dicoding.nutrient.data.model.response.userstatus.UserStatusResponse
@@ -37,4 +38,13 @@ interface ApiService {
     @GET("api/user-status")
     @Headers("Accept: application/json")
     suspend fun userStatus(@Header("Authorization") token: String) : UserStatusResponse
+
+    @FormUrlEncoded
+    @POST("api/fill-assestment")
+    @Headers("Accept: application/json")
+    suspend fun fillAssestment(
+        @Header("Authorization") token: String,
+        @Field("weight") weight: Double,
+        @Field("height") height: Double
+    ) : AssestmentResponse
 }
