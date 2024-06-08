@@ -111,4 +111,8 @@
     <string name="before_register">Don\'t have an account?</string>
     <string name="before_back_to_login">Already have an account?</string>
     <string name="done">DONE</string>
+    <string name="descriptionProduct">Description Product</string>
+    <string name="nutritionProduct">Nutrition Product</string>
+    <string name="info_fnb">The information on food and beverages listed here is the result of the circulation of food and beverages in the country of Indonesia.</string>
+    <string name="product_title">Product Title</string>
 </resources>

@@ -10,4 +10,6 @@
     <color name="redApps">#FF0000</color>
     <color name="lightGray">#E2E6EA</color>
     <color name="grayButton">#BAB9B9</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="semiBlack">#252525</color>
 </resources>

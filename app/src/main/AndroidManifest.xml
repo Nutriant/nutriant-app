@@ -22,9 +22,14 @@
         android:theme="@style/Theme.Nutrient"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.DetailBannerActivity"
+            android:exported="true"
+            android:theme="@style/DetailProductBanner">
+        </activity>
+        <activity
             android:name=".ui.activities.ManualInputActivity"
             android:exported="false"
-            android:theme="@style/AfterScanTheme"/>
+            android:theme="@style/AfterScanTheme" />
         <activity
             android:name=".ui.activities.NutritionScanFailActivity"
             android:exported="false">
@@ -63,7 +68,13 @@
         <activity
             android:name=".ui.activities.DashboardWithBotNavActivity"
             android:exported="true"
-            android:theme="@style/DashboardTheme" />
+            android:theme="@style/DashboardTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.activities.OnboardActivity"
             android:exported="false" />
@@ -79,11 +90,6 @@
         <activity
             android:name=".ui.activities.MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
