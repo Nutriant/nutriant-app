@@ -25,6 +25,7 @@
             android:name=".ui.activities.DetailBannerActivity"
             android:exported="true"
             android:theme="@style/DetailProductBanner">
+
         </activity>
         <activity
             android:name=".ui.activities.ManualInputActivity"
@@ -33,11 +34,13 @@
         <activity
             android:name=".ui.activities.NutritionScanFailActivity"
             android:exported="false">
+
         </activity>
         <activity
             android:name=".ui.activities.InformationLogActivity"
             android:exported="false"
             android:theme="@style/AfterScanTheme">
+
         </activity>
         <activity
             android:name=".ui.activities.PersonalDataActivity"
@@ -69,11 +72,6 @@
             android:name=".ui.activities.DashboardWithBotNavActivity"
             android:exported="true"
             android:theme="@style/DashboardTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activities.OnboardActivity"
@@ -90,6 +88,11 @@
         <activity
             android:name=".ui.activities.MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
