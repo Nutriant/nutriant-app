@@ -13,12 +13,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.dicoding.nutrient.R
 import com.dicoding.nutrient.data.Result
 import com.dicoding.nutrient.databinding.ActivityProfileFragmentBinding
 import com.dicoding.nutrient.databinding.CustomPopupDialogBinding
 import com.dicoding.nutrient.ui.activities.PersonalDataActivity
 import com.dicoding.nutrient.ui.viewmodels.LogoutViewModel
+import com.dicoding.nutrient.ui.viewmodels.ProfileViewModel
 import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
 import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import com.google.android.material.button.MaterialButton
@@ -28,6 +31,7 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var logoutViewModel: LogoutViewModel
     private lateinit var userPreferencesViewModel: UserPreferencesViewModel
+    private lateinit var profileViewModel: ProfileViewModel
     private lateinit var loadingDialog: SweetAlertDialog
 
     override fun onCreateView(
@@ -104,6 +108,39 @@ class ProfileFragment : Fragment() {
         userPreferencesViewModel.getUsername().observe(viewLifecycleOwner){ username ->
             binding.tvUsername.text = username
         }
+
+        userPreferencesViewModel.getTokenValue().observe(viewLifecycleOwner){ token ->
+            profileViewModel.getMyProfile(token).observe(viewLifecycleOwner){ result ->
+                when (result){
+                    is Result.Loading -> {
+                        binding.apply {
+                            layoutProfile.visibility = View.GONE
+                            loadingProfile.visibility = View.VISIBLE
+                        }
+                    }
+                    is Result.Success -> {
+                        binding.apply {
+                            layoutProfile.visibility = View.VISIBLE
+                            loadingProfile.visibility = View.GONE
+                        }
+                        val getData = result.data.data
+                        binding.tvHeightProfile.text = getString(R.string.centi_meter, getData.height)
+                        binding.tvWeightProfile.text = getString(R.string.kilo_gram, getData.weight)
+                        binding.tvAgeProfile.text = getString(R.string.years_old, getData.age)
+                        Glide.with(requireContext())
+                            .load(getData.image)
+                            .apply(RequestOptions().placeholder(R.drawable.avatar_dummy).fitCenter())
+                            .into(binding.imgProfile)
+                    }
+                    is Result.ServerError -> {
+                        Toast.makeText(requireContext(), result.serverError, Toast.LENGTH_LONG).show()
+                    }
+                    else -> {
+
+                    }
+                }
+            }
+        }
     }
 
     private fun initComponents(){
@@ -119,5 +156,6 @@ class ProfileFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireActivity().application)
         logoutViewModel = ViewModelProvider(requireActivity(), factory).get(LogoutViewModel::class.java)
         userPreferencesViewModel = ViewModelProvider(requireActivity(),factory).get(UserPreferencesViewModel::class.java)
+        profileViewModel = ViewModelProvider(requireActivity(), factory).get(ProfileViewModel::class.java)
     }
 }
