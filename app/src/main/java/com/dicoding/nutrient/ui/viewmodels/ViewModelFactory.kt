@@ -27,6 +27,7 @@ class ViewModelFactory private constructor(
             LogoutViewModel::class.java -> LogoutViewModel(userPreferences, authRepository) as T
             UserStatusViewModel::class.java -> UserStatusViewModel(authRepository) as T
             AssestmentViewModel::class.java -> AssestmentViewModel(userDataRepository) as T
+            ProfileViewModel::class.java -> ProfileViewModel(userDataRepository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }
