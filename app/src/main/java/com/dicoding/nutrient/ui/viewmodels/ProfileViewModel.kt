@@ -1,7 +1,7 @@
 package com.dicoding.nutrient.ui.viewmodels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dicoding.nutrient.data.Result
@@ -11,20 +11,20 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel(private val userDataRepository: UserDataRepository) : ViewModel() {
 
-    private val result = MediatorLiveData<Result<MyProfileResponse>>()
+    private val _userData = MutableLiveData<Result<MyProfileResponse>>()
+    val userData: LiveData<Result<MyProfileResponse>> get() = _userData
 
-    fun getMyProfile(token: String) : LiveData<Result<MyProfileResponse>> {
-        viewModelScope.launch {
-            result.value = Result.Loading
-
-            try {
-                val response = userDataRepository.getMyProfile(token)
-                result.value = Result.Success(response)
-            } catch (e: Exception){
-                result.value = Result.ServerError(e.message.toString())
+    fun getMyProfile(token: String) {
+        if (_userData.value == null) {
+            viewModelScope.launch {
+                _userData.value = Result.Loading
+                try {
+                    val response = userDataRepository.getMyProfile(token)
+                    _userData.value = Result.Success(response)
+                } catch (e: Exception) {
+                    _userData.value = Result.ServerError(e.message.toString())
+                }
             }
         }
-
-        return result
     }
 }

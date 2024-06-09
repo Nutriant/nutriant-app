@@ -110,8 +110,9 @@ class ProfileFragment : Fragment() {
         }
 
         userPreferencesViewModel.getTokenValue().observe(viewLifecycleOwner){ token ->
-            profileViewModel.getMyProfile(token).observe(viewLifecycleOwner){ result ->
-                when (result){
+            profileViewModel.getMyProfile(token)
+            profileViewModel.userData.observe(viewLifecycleOwner) { result ->
+                when (result) {
                     is Result.Loading -> {
                         binding.apply {
                             layoutProfile.visibility = View.GONE
@@ -135,9 +136,7 @@ class ProfileFragment : Fragment() {
                     is Result.ServerError -> {
                         Toast.makeText(requireContext(), result.serverError, Toast.LENGTH_LONG).show()
                     }
-                    else -> {
-
-                    }
+                    else -> { }
                 }
             }
         }
