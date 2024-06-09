@@ -115,4 +115,10 @@
     <string name="nutritionProduct">Nutrition Product</string>
     <string name="info_fnb">The information on food and beverages listed here is the result of the circulation of food and beverages in the country of Indonesia.</string>
     <string name="product_title">Product Title</string>
+    <string name="scan_label">Scan Your Label</string>
+    <string name="scan">Scan</string>
+    <string name="gallery">Gallery</string>
+    <string name="flashlight">Flashlight</string>
+    <string name="flashlight_on">Flashlight On</string>
+    <string name="flashlight_off">Flashlight Off</string>
 </resources>

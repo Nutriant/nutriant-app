@@ -35,7 +35,7 @@
             android:padding="16dp"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:text="Scan Your Label"
+            android:text="@string/scan_label"
             android:fontFamily="@font/poppinsbold"/>
         <ImageView
             android:id="@+id/ivBackNavs"
@@ -62,6 +62,29 @@
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/greenApps"
-            android:src="@drawable/camera"/>
+            android:src="@drawable/camera"
+            android:contentDescription="@string/scan"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/bx_photo_album"
+            android:contentDescription="@string/gallery"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabFlashlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_marginStart="64dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/flashlight_svgrepo_com"
+            android:contentDescription="@string/flashlight"/>
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
