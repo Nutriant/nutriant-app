@@ -1,18 +1,23 @@
 package com.dicoding.nutrient.ui.adapters
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.nutrient.data.model.banner.DataBMIArticle
+import com.bumptech.glide.Glide
+import com.dicoding.nutrient.data.model.response.news.ArticlesItem
 import com.dicoding.nutrient.databinding.ItemBmiArticlesBinding
 
-class ArticleBMIAdapter(private val listBMIArticle: ArrayList<DataBMIArticle>) :
+class ArticleBMIAdapter(private val listBMIArticle: List<ArticlesItem>) :
     RecyclerView.Adapter<ArticleBMIAdapter.ViewHolder>() {
 
-    inner class ViewHolder(var binding: ItemBmiArticlesBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(var binding: ItemBmiArticlesBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemBmiArticlesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemBmiArticlesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -24,7 +29,16 @@ class ArticleBMIAdapter(private val listBMIArticle: ArrayList<DataBMIArticle>) :
         val getBMIArticle = listBMIArticle[position]
         holder.binding.apply {
             tvArticleTitles.text = getBMIArticle.title
-            ivImageBMI.setImageResource(getBMIArticle.image)
+            Glide.with(ivImageBMI.context)
+                .load(getBMIArticle.urlToImage)
+                .into(ivImageBMI)
+        }
+
+        holder.itemView.setOnClickListener{
+            val url = listBMIArticle[position].url
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            holder.itemView.context.startActivity(intent)
         }
     }
 

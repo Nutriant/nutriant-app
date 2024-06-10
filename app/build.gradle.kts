@@ -20,6 +20,8 @@ android {
 
         val properties = gradleLocalProperties(rootDir)
         buildConfigField("String", "BASE_API_URL_LARAVEL", "\"${properties.get("BASE_API_URL_LARAVEL")}\"")
+        buildConfigField("String", "BASE_API_NEWS_URL", "\"${properties.get("BASE_API_URL_NEWS_ARTICLES")}\"")
+        buildConfigField("String", "TOKEN_NEWS_URL", "\"${properties.get("NEWS_ARTICLES_TOKEN")}\"")
     }
 
     buildFeatures {

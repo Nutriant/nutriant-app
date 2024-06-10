@@ -1,12 +1,15 @@
 package com.dicoding.nutrient.ui.adapters
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.nutrient.data.model.banner.DataNutritionArticle
+import com.bumptech.glide.Glide
+import com.dicoding.nutrient.data.model.response.news.ArticlesItem
 import com.dicoding.nutrient.databinding.ItemNutritionArticlesBinding
 
-class ArticleNutritionAdapter(private val listNutritionArticle: ArrayList<DataNutritionArticle>) :
+class ArticleNutritionAdapter(private val listNutritionArticle: List<ArticlesItem>) :
     RecyclerView.Adapter<ArticleNutritionAdapter.ViewHolder>() {
 
     inner class ViewHolder(var binding: ItemNutritionArticlesBinding) :
@@ -27,8 +30,17 @@ class ArticleNutritionAdapter(private val listNutritionArticle: ArrayList<DataNu
         holder.binding.apply {
             tvArticleTitles.text = getNutritionArticle.title
             tvDescription.text = getNutritionArticle.description
-            tvReleaseDate.text = getNutritionArticle.dateReleased
-            ivNutritionArticles.setImageResource(getNutritionArticle.image)
+            tvReleaseDate.text = getNutritionArticle.publish
+            Glide.with(ivNutritionArticles.context)
+                .load(getNutritionArticle.urlToImage)
+                .into(ivNutritionArticles)
+        }
+
+        holder.itemView.setOnClickListener{
+            val url = listNutritionArticle[position].url
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            holder.itemView.context.startActivity(intent)
         }
     }
 

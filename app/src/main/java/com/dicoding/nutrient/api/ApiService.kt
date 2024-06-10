@@ -3,14 +3,17 @@ package com.dicoding.nutrient.api
 import com.dicoding.nutrient.data.model.response.assestment.AssestmentResponse
 import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.myprofile.MyProfileResponse
+import com.dicoding.nutrient.data.model.response.news.NewsResponse
 import com.dicoding.nutrient.data.model.response.register.RegisterResponse
 import com.dicoding.nutrient.data.model.response.userstatus.UserStatusResponse
+import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
     @FormUrlEncoded
@@ -22,7 +25,7 @@ interface ApiService {
         @Field("password_confirmation") password_confirm: String,
         @Field("birthdate") birthdate: String,
         @Field("gender") gender: Int,
-    ) : RegisterResponse
+    ): RegisterResponse
 
     @FormUrlEncoded
     @POST("api/login")
@@ -30,15 +33,15 @@ interface ApiService {
     suspend fun login(
         @Field("email") email: String,
         @Field("password") password: String
-    ) : LoginResponse
+    ): LoginResponse
 
     @POST("api/logout")
     @Headers("Accept: application/json")
-    suspend fun logout(@Header("Authorization") token: String) : Int
+    suspend fun logout(@Header("Authorization") token: String): Int
 
     @GET("api/user-status")
     @Headers("Accept: application/json")
-    suspend fun userStatus(@Header("Authorization") token: String) : UserStatusResponse
+    suspend fun userStatus(@Header("Authorization") token: String): UserStatusResponse
 
     @FormUrlEncoded
     @POST("api/fill-assestment")
@@ -47,9 +50,17 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Field("weight") weight: Double,
         @Field("height") height: Double
-    ) : AssestmentResponse
+    ): AssestmentResponse
 
     @GET("api/myprofile")
     @Headers("Accept: application/json")
-    suspend fun getMyProfile(@Header("Authorization") token: String) : MyProfileResponse
+    suspend fun getMyProfile(@Header("Authorization") token: String): MyProfileResponse
+
+    @GET("v2/top-headlines")
+    fun getTopHeadlines(
+        @Query("q") query: String,
+        @Query("category") category: String,
+        @Query("language") language: String,
+        @Query("apiKey") apiKey: String
+    ): Call<NewsResponse>
 }

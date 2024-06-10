@@ -1,75 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.dashboard.NewsFragment"
+    android:orientation="vertical"
     android:padding="16dp"
-    android:orientation="vertical">
+    tools:context=".ui.fragments.dashboard.NewsFragment">
 
-    <TextView
-        android:layout_marginTop="16dp"
-        android:id="@+id/tvNewsTitle"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsbold"
-        android:textSize="18sp"
-        android:text="@string/what_news"
-        android:gravity="center"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_marginTop="16dp"
-        android:id="@+id/tvBMIInformation"
+        <ProgressBar
+            android:id="@+id/loading_profile"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:progressTint="@color/greenApps"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsbold"
-        android:textSize="18sp"
-        android:text="@string/bmi_information_title"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_horizontal_news"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_marginTop="12dp"
-        tools:listitem="@layout/item_bmi_articles"/>
+        <TextView
+            android:id="@+id/tvNewsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="center"
+            android:text="@string/what_news"
+            android:textSize="18sp" />
 
-    <TextView
-        android:layout_marginTop="16dp"
-        android:id="@+id/tvNutritionInformation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsbold"
-        android:textSize="18sp"
-        android:text="@string/nutrition_information_title"/>
+        <TextView
+            android:id="@+id/tvBMIInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/bmi_information_title"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/ed_search"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_search"
-        android:drawablePadding="8dp"
-        android:paddingStart="12dp"
-        android:background="@drawable/rectangle_search"
-        android:hint="@string/search_articles"
-        android:focusable="true"
-        android:focusableInTouchMode="false"
-        android:clickable="true"
-        android:inputType="text"
-        android:importantForAutofill="no" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_horizontal_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_bmi_articles" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_vertical_news"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_marginTop="12dp"
-        tools:listitem="@layout/item_nutrition_articles"/>
+        <TextView
+            android:id="@+id/tvNutritionInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/nutrition_information_title"
+            android:textSize="18sp" />
 
+        <EditText
+            android:id="@+id/ed_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rectangle_search"
+            android:clickable="true"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:hint="@string/search_articles"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingStart="12dp" />
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_vertical_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_nutrition_articles" />
+    </LinearLayout>
+</FrameLayout>
