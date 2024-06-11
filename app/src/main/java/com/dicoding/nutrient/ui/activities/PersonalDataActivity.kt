@@ -1,13 +1,16 @@
 package com.dicoding.nutrient.ui.activities
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.View
+import android.widget.DatePicker
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
@@ -29,6 +32,9 @@ import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
 import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import com.dicoding.nutrient.utils.Gender
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class PersonalDataActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPersonalDataBinding
@@ -87,6 +93,33 @@ class PersonalDataActivity : AppCompatActivity() {
 
         binding.avImage.setOnClickListener {
             launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
+        binding.edField1.setOnClickListener {
+            val dateOfBirth = Calendar.getInstance()
+            val date =
+                DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                    dateOfBirth[Calendar.YEAR] = year
+                    dateOfBirth[Calendar.MONTH] = monthOfYear
+                    dateOfBirth[Calendar.DAY_OF_MONTH] = dayOfMonth
+                    val getTime = dateOfBirth.time
+                    val strFormatDefault = "yyyy-MM-dd"
+                    val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
+                    binding.edField1.setText(simpleDateFormat.format(getTime))
+                }
+            val datePickerDialog = DatePickerDialog(
+                this, R.style.DatePickerDialogTheme, date,
+                dateOfBirth[Calendar.YEAR],
+                dateOfBirth[Calendar.MONTH],
+                dateOfBirth[Calendar.DAY_OF_MONTH]
+            )
+            datePickerDialog.setOnShowListener {
+                val positiveButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
+                positiveButton.setTextColor(Color.BLACK)
+
+                val negativeButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)
+                negativeButton.setTextColor(Color.BLACK)
+            }
+            datePickerDialog.show()
         }
     }
 

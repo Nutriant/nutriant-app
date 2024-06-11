@@ -156,6 +156,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppinsregular"
                             android:hint="@string/ph_dateOfBirth"
+                            android:focusableInTouchMode="false"
                             android:inputType="date" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
