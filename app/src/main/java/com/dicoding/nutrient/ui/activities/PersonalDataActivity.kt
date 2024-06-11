@@ -144,7 +144,8 @@ class PersonalDataActivity : AppCompatActivity() {
                 weight,
                 filePhoto,
                 _method
-            ).observe(this){ result ->
+            )
+            profileViewModel.resultUpdateProfile.observe(this){ result ->
                 when (result){
                     is Result.Loading -> {
                         loadingDialog.show()

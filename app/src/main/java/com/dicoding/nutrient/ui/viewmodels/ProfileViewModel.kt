@@ -37,7 +37,8 @@ class ProfileViewModel(
         }
     }
 
-    val resultUpdateProfile = MediatorLiveData<Result<UpdateProfileResponse>>()
+    val _resultUpdateProfile = MutableLiveData<Result<UpdateProfileResponse>>()
+    val resultUpdateProfile: LiveData<Result<UpdateProfileResponse>> get() = _resultUpdateProfile
 
     fun updateProfile(
         token: String,
@@ -48,21 +49,22 @@ class ProfileViewModel(
         weight: Int,
         image: File?,
         _method: String
-    ) : LiveData<Result<UpdateProfileResponse>> {
-        viewModelScope.launch {
-            resultUpdateProfile.value = Result.Loading
+    ) {
+        if (_resultUpdateProfile.value == null){
+            viewModelScope.launch {
+                _resultUpdateProfile.value = Result.Loading
 
-            try {
-                val response = userDataRepository.updateProfile(
-                    token, username, birthdate, gender, height, weight, image, _method
-                )
-                userPreferences.setUsernameUser(username)
-                resultUpdateProfile.value = Result.Success(response)
-            } catch (e: Exception){
-                resultUpdateProfile.value = Result.ServerError(e.message.toString())
+                try {
+                    val response = userDataRepository.updateProfile(
+                        token, username, birthdate, gender, height, weight, image, _method
+                    )
+                    userPreferences.setUsernameUser(username)
+                    _resultUpdateProfile.value = Result.Success(response)
+                } catch (e: Exception){
+                    _resultUpdateProfile.value = Result.ServerError(e.message.toString())
+                }
             }
         }
-        return resultUpdateProfile
     }
 
     private val _resultAllMyProfile = MutableLiveData<Result<GetProfilesResponse>>()
