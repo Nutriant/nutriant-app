@@ -50,6 +50,12 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    suspend fun setUsernameUser(username: String){
+        dataStore.edit { preferences ->
+            preferences[USERNAME] = username
+        }
+    }
+
     suspend fun setUserLoginStatus(isLoggedIn: Boolean) {
         dataStore.edit { preferences ->
             preferences[IS_LOGGED_IN_KEY] = isLoggedIn
