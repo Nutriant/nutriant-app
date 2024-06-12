@@ -2,6 +2,7 @@ package com.dicoding.nutrient.ui.activities
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -50,43 +51,51 @@ class RegisterActivity : AppCompatActivity() {
                     password_confirm = edRegisterPasswordConfirm.text.toString(),
                     birthdate = edRegisterDob.text.toString(),
                     gender = Gender.valueOf(selectedGender).genderValue
-                )
-                    .observe(this@RegisterActivity){ result ->
-                        if (result != null){
+                ).observe(this@RegisterActivity) { result ->
+                        if (result != null) {
                             when (result) {
                                 is Result.Loading -> {
                                     loadingDialog.show()
                                 }
+
                                 is Result.Success -> {
                                     loadingDialog.dismiss()
                                     infoDialog.show()
                                 }
+
                                 is Result.ErrorRegister -> {
                                     loadingDialog.dismiss()
                                     val error = result.error.message
-                                    if (error.username.isNotEmpty()){
+                                    if (error.username.isNotEmpty()) {
                                         edRegisterUsername.error = error.username[0]
                                     }
-                                    if (error.email.isNotEmpty()){
+                                    if (error.email.isNotEmpty()) {
                                         edRegisterEmail.error = error.email[0]
                                     }
-                                    if (error.birthdate.isNotEmpty()){
+                                    if (error.birthdate.isNotEmpty()) {
                                         edRegisterDob.error = error.birthdate[0]
                                     }
-                                    if (error.password.isNotEmpty()){
+                                    if (error.password.isNotEmpty()) {
                                         edRegisterPassword.error = error.password[0]
                                     }
-                                    if (error.password_confirmation.isNotEmpty()){
-                                        edRegisterPasswordConfirm.error = error.password_confirmation[0]
+                                    if (error.password_confirmation.isNotEmpty()) {
+                                        edRegisterPasswordConfirm.error =
+                                            error.password_confirmation[0]
                                     }
-                                    if (error.gender.isNotEmpty()){
-                                        Toast.makeText(this@RegisterActivity, error.gender[0], Toast.LENGTH_LONG).show()
+                                    if (error.gender.isNotEmpty()) {
+                                        Toast.makeText(
+                                            this@RegisterActivity,
+                                            error.gender[0],
+                                            Toast.LENGTH_LONG
+                                        ).show()
                                     }
                                 }
+
                                 is Result.ServerError -> {
                                     loadingDialog.dismiss()
                                     Log.d("RegisterActivity", result.serverError)
                                 }
+
                                 else -> {
                                     loadingDialog.dismiss()
                                 }
@@ -101,12 +110,14 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun initComponents(){
+    private fun initComponents() {
         loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
         loadingDialog.apply {
             titleText = getString(R.string.loading)
-            progressHelper.barColor = ContextCompat.getColor(this@RegisterActivity, R.color.greenApps)
+            progressHelper.barColor =
+                ContextCompat.getColor(this@RegisterActivity, R.color.greenApps)
             setCancelable(false)
+            setTheme(R.style.DialogTheme)
         }
 
         infoDialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
@@ -117,6 +128,7 @@ class RegisterActivity : AppCompatActivity() {
             setConfirmClickListener {
                 finish()
             }
+            setTheme(R.style.DialogTheme)
         }
 
         val spinner: Spinner = findViewById(R.id.spinnerGender)
@@ -147,21 +159,30 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.edRegisterDob.setOnClickListener {
             val dateOfBirth = Calendar.getInstance()
-            val date = DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                dateOfBirth[Calendar.YEAR] = year
-                dateOfBirth[Calendar.MONTH] = monthOfYear
-                dateOfBirth[Calendar.DAY_OF_MONTH] = dayOfMonth
-                val getTime = dateOfBirth.time
-                val strFormatDefault = "yyyy-MM-dd"
-                val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
-                binding.edRegisterDob.setText(simpleDateFormat.format(getTime))
-            }
-            DatePickerDialog(
-                this, date,
+            val date =
+                DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                    dateOfBirth[Calendar.YEAR] = year
+                    dateOfBirth[Calendar.MONTH] = monthOfYear
+                    dateOfBirth[Calendar.DAY_OF_MONTH] = dayOfMonth
+                    val getTime = dateOfBirth.time
+                    val strFormatDefault = "yyyy-MM-dd"
+                    val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
+                    binding.edRegisterDob.setText(simpleDateFormat.format(getTime))
+                }
+            val datePickerDialog = DatePickerDialog(
+                this, R.style.DatePickerDialogTheme, date,
                 dateOfBirth[Calendar.YEAR],
                 dateOfBirth[Calendar.MONTH],
                 dateOfBirth[Calendar.DAY_OF_MONTH]
-            ).show()
+            )
+            datePickerDialog.setOnShowListener {
+                val positiveButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
+                positiveButton.setTextColor(Color.BLACK)
+
+                val negativeButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)
+                negativeButton.setTextColor(Color.BLACK)
+            }
+            datePickerDialog.show()
         }
 
         val textWatcher = object : TextWatcher {
@@ -190,7 +211,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.edRegisterPassword.addTextChangedListener(textWatcher)
     }
 
-    private fun initViewModel(){
+    private fun initViewModel() {
         val factory = ViewModelFactory.getInstance(this@RegisterActivity.application)
         registerViewModel = ViewModelProvider(this, factory).get(RegisterViewModel::class.java)
     }

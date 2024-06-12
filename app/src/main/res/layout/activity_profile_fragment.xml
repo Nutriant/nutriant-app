@@ -26,12 +26,14 @@
         android:layout_marginTop="32dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_profile"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/avatar_dummy"
             app:civ_border_width="0.5dp"/>
 
         <TextView
+            android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/account_name"
@@ -41,95 +43,109 @@
             android:layout_marginStart="16dp"/>
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="32dp">
-
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/layout_profile"
+            android:visibility="gone"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_profile_information"
-            android:padding="16dp">
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp">
 
-            <TextView
-                android:id="@+id/tvHeightProfile"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/centi_meter"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:fontFamily="@font/poppinsbold"
-                android:textColor="@color/greenApps"/>
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_profile_information"
+                android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvHeightProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/centi_meter"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppinsbold"
+                    android:textColor="@color/greenApps"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/height_normal"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppinsregular"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/height_normal"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:fontFamily="@font/poppinsregular"/>
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_profile_information"
+                android:padding="16dp"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:id="@+id/tvWeightProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kilo_gram"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppinsbold"
+                    android:textColor="@color/greenApps"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weight_normal"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppinsregular"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_profile_information"
+                android:padding="16dp"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:id="@+id/tvAgeProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/years_old"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppinsbold"
+                    android:textColor="@color/greenApps"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/age"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppinsregular"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_profile_information"
-            android:padding="16dp"
-            android:layout_marginStart="16dp">
-
-            <TextView
-                android:id="@+id/tvWeightProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/kilo_gram"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:fontFamily="@font/poppinsbold"
-                android:textColor="@color/greenApps"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/weight_normal"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:fontFamily="@font/poppinsregular"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_profile_information"
-            android:padding="16dp"
-            android:layout_marginStart="16dp">
-
-            <TextView
-                android:id="@+id/tvAgeProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/years_old"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:fontFamily="@font/poppinsbold"
-                android:textColor="@color/greenApps"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/age"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:fontFamily="@font/poppinsregular"/>
-        </LinearLayout>
-    </LinearLayout>
+        <ProgressBar
+            android:id="@+id/loading_profile"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:progressTint="@color/greenApps"
+            android:layout_gravity="center"/>
+    </FrameLayout>
 
     <RelativeLayout
         android:id="@+id/layoutPersonalData"

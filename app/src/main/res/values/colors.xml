@@ -3,9 +3,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="greenApps">#00BF63</color>
+    <color name="greenLight">#D08CD526</color>
     <color name="greenDark">#1F6543</color>
     <color name="grayApps">#7B6F72</color>
     <color name="gray">#5E5E5E</color>
     <color name="redApps">#FF0000</color>
     <color name="lightGray">#E2E6EA</color>
+    <color name="grayButton">#BAB9B9</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="semiBlack">#252525</color>
 </resources>

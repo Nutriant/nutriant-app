@@ -1,7 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Nutrient" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/greenApps</item>
+        <item name="android:statusBarColor">@color/white</item>
         <item name="android:textColor">@color/gray</item>
     </style>
 
@@ -28,4 +29,16 @@
     </style>
 
     <style name="Theme.Nutrient" parent="Base.Theme.Nutrient" />
+
+    <style name="AfterScanTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/greenApps</item>
+    </style>
+
+    <style name="DatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/greenLight</item>
+    </style>
+    <style name="DetailProductBanner" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+    </style>
 </resources>

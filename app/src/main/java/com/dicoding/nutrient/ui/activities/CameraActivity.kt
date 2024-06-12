@@ -1,13 +1,14 @@
 package com.dicoding.nutrient.ui.activities
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -24,6 +25,10 @@ import java.util.Locale
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var imageCapture: ImageCapture? = null
+    private var currentImageUri: Uri? = null
+    private var isFlashlightOn: Boolean = false
+    private var camera: androidx.camera.core.Camera? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +44,14 @@ class CameraActivity : AppCompatActivity() {
 
         binding.ivBackNavs.setOnClickListener {
             finish()
+        }
+
+        binding.fabGallery.setOnClickListener {
+            startGallery()
+        }
+
+        binding.fabFlashlight.setOnClickListener {
+            toggleFlashLight()
         }
     }
 
@@ -77,7 +90,7 @@ class CameraActivity : AppCompatActivity() {
                     it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                 }
 
-            imageCapture = ImageCapture.Builder().build()
+            imageCapture = ImageCapture.Builder().setFlashMode(ImageCapture.FLASH_MODE_OFF).build()
 
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -86,7 +99,7 @@ class CameraActivity : AppCompatActivity() {
                 // Unbind use cases before rebinding
                 cameraProvider.unbindAll()
                 // Bind use cases to camera
-                cameraProvider.bindToLifecycle(
+                camera = cameraProvider.bindToLifecycle(
                     this, cameraSelector, preview, imageCapture
                 )
 
@@ -120,6 +133,43 @@ class CameraActivity : AppCompatActivity() {
             }
         )
 
+    }
+
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            currentImageUri = uri
+        } else {
+            Log.d("Photo Picker", "No media selected")
+        }
+    }
+
+    private fun startGallery() {
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private fun toggleFlashLight() {
+        if (!isFlashlightOn) {
+            turnOnFlashlight()
+            binding.fabFlashlight.setImageResource(R.drawable.flashlight_svgrepo_com_yellow)
+            showToast(getString(R.string.flashlight_on))
+        } else {
+            turnOffFlashlight()
+            binding.fabFlashlight.setImageResource(R.drawable.flashlight_svgrepo_com)
+            showToast(getString(R.string.flashlight_off))
+        }
+        binding.fabFlashlight.invalidate()
+    }
+
+    private fun turnOnFlashlight() {
+        camera?.cameraControl?.enableTorch(true)
+        isFlashlightOn = true
+    }
+
+    private fun turnOffFlashlight() {
+        camera?.cameraControl?.enableTorch(false)
+        isFlashlightOn = false
     }
 
     private fun showToast(message: String) {

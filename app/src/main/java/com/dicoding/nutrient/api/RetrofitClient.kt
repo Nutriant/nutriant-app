@@ -7,8 +7,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = BuildConfig.BASE_API_URL_LARAVEL
+    private const val BASE_URL_LARAVEL = BuildConfig.BASE_API_URL_LARAVEL
     val instanceApiLaravel: ApiService by lazy {
+        createRetrofitService(BASE_URL_LARAVEL)
+    }
+    fun createOtherApiService(baseUrl: String): ApiService {
+        return createRetrofitService(baseUrl)
+    }
+
+    private fun createRetrofitService(baseUrl: String): ApiService {
         val loggingInterceptor = if(BuildConfig.DEBUG) {
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         } else {
@@ -18,10 +25,10 @@ object RetrofitClient {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-        retrofit.create(ApiService::class.java)
+        return retrofit.create(ApiService::class.java)
     }
 }

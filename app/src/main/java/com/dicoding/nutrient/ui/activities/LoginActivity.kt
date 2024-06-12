@@ -36,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
             titleText = getString(R.string.loading)
             progressHelper.barColor = ContextCompat.getColor(this@LoginActivity, R.color.greenApps)
             setCancelable(false)
+            setTheme(R.style.DialogTheme)
         }
         alertDialog = SweetAlertDialog(this@LoginActivity, SweetAlertDialog.ERROR_TYPE)
         alertDialog.setCancelable(false)
@@ -57,9 +58,15 @@ class LoginActivity : AppCompatActivity() {
                         }
                         is Result.Success -> {
                             loadingDialog.dismiss()
-                            val intent = Intent(this@LoginActivity, DashboardWithBotNavActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
+                            if (result.data.new_user == 1){
+                                val intent = Intent(this@LoginActivity, SelfAssesmentActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
+                            } else {
+                                val intent = Intent(this@LoginActivity, DashboardWithBotNavActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
+                            }
                         }
                         is Result.ErrorLogin -> {
                             loadingDialog.dismiss()

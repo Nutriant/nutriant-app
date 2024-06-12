@@ -1,10 +1,11 @@
 package com.dicoding.nutrient.ui.fragments.dashboard
 
+import com.dicoding.nutrient.ui.animation.DepthPageTransformer
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import android.widget.LinearLayout
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.nutrient.R
@@ -21,14 +23,19 @@ import com.dicoding.nutrient.ui.activities.SearchHomeActivity
 import com.dicoding.nutrient.ui.adapters.BannerAdapter
 import com.dicoding.nutrient.ui.adapters.ListBmiAdapter
 import com.dicoding.nutrient.ui.adapters.ProductBannerAdapter
+import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
+import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import com.dicoding.nutrient.utils.Banner
 import com.dicoding.nutrient.utils.Dummy
-import java.lang.reflect.Array
 
 class HomeFragment : Fragment() {
     private var _binding: ActivityHomeFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var pageChangeListener: ViewPager2.OnPageChangeCallback
+    private lateinit var userPreferencesViewModel: UserPreferencesViewModel
+    private var currentPage = 0
+    private var handler: Handler? = null
+    private lateinit var runnable: Runnable
 
     private val params = LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -36,6 +43,7 @@ class HomeFragment : Fragment() {
     ).apply {
         setMargins(8, 0, 8, 0)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,18 +56,22 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViewModel()
         showBanner()
         showRecyclerProductBanner()
         showRecyclerListBmi()
         setupAction()
+        setupComponent()
     }
 
-    private fun showBanner(){
+    private fun showBanner() {
         val bannerAdapter = BannerAdapter()
         binding.viewpager2.adapter = bannerAdapter
         bannerAdapter.submitList(Banner.getDataBanner)
 
-        val dotsImage = Array(Banner.getDataBanner.size){
+        binding.viewpager2.setPageTransformer(DepthPageTransformer())
+
+        val dotsImage = Array(Banner.getDataBanner.size) {
             ImageView(requireContext())
         }
 
@@ -68,10 +80,10 @@ class HomeFragment : Fragment() {
             binding.slideDotLL.addView(it, params)
         }
 
-        pageChangeListener = object : ViewPager2.OnPageChangeCallback(){
+        pageChangeListener = object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 dotsImage.mapIndexed { index, imageView ->
-                    if (position == index){
+                    if (position == index) {
                         imageView.setImageResource(
                             R.drawable.active_dot
                         )
@@ -84,35 +96,65 @@ class HomeFragment : Fragment() {
         }
 
         binding.viewpager2.registerOnPageChangeCallback(pageChangeListener)
+        autoSlideBanner()
     }
 
-    private fun showRecyclerProductBanner(){
+    private fun autoSlideBanner() {
+        handler = Handler(Looper.getMainLooper())
+        runnable = object : Runnable {
+            override fun run() {
+                if (currentPage == Banner.getDataBanner.size) {
+                    currentPage = 0
+                }
+                binding.viewpager2.setCurrentItem(currentPage++, true)
+                handler?.postDelayed(this, 3000)
+            }
+        }
+        handler?.postDelayed(runnable, 3000)
+    }
+
+    private fun showRecyclerProductBanner() {
         val rvProductBanner = binding.rvProductBanner
-        rvProductBanner.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        rvProductBanner.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rvProductBanner.adapter = ProductBannerAdapter(Banner.getDataProductBanner)
     }
 
-    private fun showRecyclerListBmi(){
+    private fun showRecyclerListBmi() {
         val rvHistoryBmi = binding.rvHistoryBmi
         rvHistoryBmi.layoutManager = LinearLayoutManager(requireContext())
         rvHistoryBmi.adapter = ListBmiAdapter(Dummy.getListDataBmi)
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.edSearch.setOnClickListener {
             val intent = Intent(requireContext(), SearchHomeActivity::class.java)
-            val optionsCompat: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                requireContext() as Activity,
-                Pair(binding.edSearch as View, "search")
-            )
+            val optionsCompat: ActivityOptionsCompat =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    requireContext() as Activity,
+                    Pair(binding.edSearch as View, "search")
+                )
             // Start activity with the transition
             startActivity(intent, optionsCompat.toBundle())
         }
     }
 
+    private fun setupComponent() {
+        userPreferencesViewModel.getUsername().observe(viewLifecycleOwner) { username ->
+            binding.tvUsername.text = username
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        handler?.removeCallbacks(runnable)
         binding.viewpager2.unregisterOnPageChangeCallback(pageChangeListener)
         _binding = null
+    }
+
+    private fun initViewModel() {
+        val factory = ViewModelFactory.getInstance(requireActivity().application)
+        userPreferencesViewModel =
+            ViewModelProvider(requireActivity(), factory)[UserPreferencesViewModel::class.java]
     }
 }

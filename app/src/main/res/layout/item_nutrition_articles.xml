@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
     android:layout_marginBottom="20dp"
     app:cardCornerRadius="16dp">
 
@@ -13,7 +14,7 @@
 
         <ImageView
             android:id="@+id/ivNutritionArticles"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="120dp"
             android:src="@drawable/bmidummyimages" />
 
@@ -28,7 +29,7 @@
             android:text="@string/articlesTitle"
             android:textSize="12sp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp" />
 
         <TextView
             android:id="@+id/tvDescription"
@@ -40,7 +41,9 @@
             android:fontFamily="@font/poppinsregular"
             android:text="@string/articlesDescription"
             android:textSize="12sp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:maxLines="1"
+            android:ellipsize="end" />
 
         <TextView
             android:id="@+id/tvReleaseDate"

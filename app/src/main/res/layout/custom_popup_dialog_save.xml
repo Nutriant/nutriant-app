@@ -59,7 +59,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:padding="12dp"
-                android:id="@+id/btDialogLogout"
+                android:id="@+id/btDialogSave"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

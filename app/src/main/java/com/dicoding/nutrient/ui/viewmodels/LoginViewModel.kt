@@ -28,6 +28,7 @@ class LoginViewModel(
             try {
                 val response = authRepository.login(email, password)
                 userPreferences.setTokenValue(response.token)
+                userPreferences.setDataUser(response.data.email, response.data.username)
                 userPreferences.setUserLoginStatus(true)
                 result.value = Result.Success(response)
             } catch (e: HttpException){

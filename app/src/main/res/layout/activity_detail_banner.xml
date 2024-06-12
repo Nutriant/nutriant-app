@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.DetailBannerActivity"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/backnavs"/>
+
+        <TextView
+            android:id="@+id/tvPersonalData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/product_information"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/productImageview"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:src="@drawable/chitato"
+        android:layout_gravity="center"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_profile_information">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutDetailProduct"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabMode="fixed"
+            app:tabIndicatorGravity="stretch"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabSelectedTextColor="@color/black"
+            app:tabIndicatorColor="@null"
+            app:tabIndicator="@drawable/tab_indicator"
+            android:background="@color/white"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerDetailProduct"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toBottomOf="@id/tabLayoutDetailProduct"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
