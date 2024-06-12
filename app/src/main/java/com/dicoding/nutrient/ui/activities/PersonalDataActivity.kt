@@ -1,5 +1,6 @@
 package com.dicoding.nutrient.ui.activities
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Intent
@@ -9,9 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.DatePicker
 import android.widget.LinearLayout
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -120,6 +123,29 @@ class PersonalDataActivity : AppCompatActivity() {
                 negativeButton.setTextColor(Color.BLACK)
             }
             datePickerDialog.show()
+        }
+
+        binding.edField2.setOnClickListener {
+            val popMenu = PopupMenu(this@PersonalDataActivity, binding.edField2)
+            popMenu.menuInflater.inflate(R.menu.gender_menu, popMenu.menu)
+            popMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
+                @SuppressLint("SetTextI18n")
+                override fun onMenuItemClick(p0: MenuItem?): Boolean {
+                    when (p0!!.itemId){
+                        R.id.male -> {
+                            binding.edField2.setText("Male")
+                        }
+                        R.id.female -> {
+                            binding.edField2.setText("Female")
+                        }
+                        else -> {
+
+                        }
+                    }
+                    return true
+                }
+            })
+            popMenu.show()
         }
     }
 
