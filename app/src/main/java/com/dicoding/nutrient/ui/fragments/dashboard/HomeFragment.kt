@@ -1,5 +1,6 @@
 package com.dicoding.nutrient.ui.fragments.dashboard
 
+import android.animation.ObjectAnimator
 import com.dicoding.nutrient.ui.animation.DepthPageTransformer
 import android.app.Activity
 import android.content.Intent
@@ -55,6 +56,14 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.progressbar.max = 100
+        binding.progressbar.progress = 75
+
+        val totalCalories = 2000
+        val currentCalories = 1500
+        val progressPercentage = (currentCalories.toDouble() / totalCalories.toDouble()) * 100
+        binding.progressbar.progress = progressPercentage.toInt()
 
         initViewModel()
         showBanner()
