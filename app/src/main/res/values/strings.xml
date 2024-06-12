@@ -122,4 +122,6 @@
     <string name="flashlight_on">Flashlight On</string>
     <string name="flashlight_off">Flashlight Off</string>
     <string name="load_your_profile">Load your profile...</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>

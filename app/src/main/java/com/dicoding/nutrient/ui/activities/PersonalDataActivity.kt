@@ -1,14 +1,20 @@
 package com.dicoding.nutrient.ui.activities
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
+import android.widget.DatePicker
 import android.widget.LinearLayout
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,6 +35,9 @@ import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
 import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import com.dicoding.nutrient.utils.Gender
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class PersonalDataActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPersonalDataBinding
@@ -87,6 +96,56 @@ class PersonalDataActivity : AppCompatActivity() {
 
         binding.avImage.setOnClickListener {
             launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
+        binding.edField1.setOnClickListener {
+            val dateOfBirth = Calendar.getInstance()
+            val date =
+                DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                    dateOfBirth[Calendar.YEAR] = year
+                    dateOfBirth[Calendar.MONTH] = monthOfYear
+                    dateOfBirth[Calendar.DAY_OF_MONTH] = dayOfMonth
+                    val getTime = dateOfBirth.time
+                    val strFormatDefault = "yyyy-MM-dd"
+                    val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
+                    binding.edField1.setText(simpleDateFormat.format(getTime))
+                }
+            val datePickerDialog = DatePickerDialog(
+                this, R.style.DatePickerDialogTheme, date,
+                dateOfBirth[Calendar.YEAR],
+                dateOfBirth[Calendar.MONTH],
+                dateOfBirth[Calendar.DAY_OF_MONTH]
+            )
+            datePickerDialog.setOnShowListener {
+                val positiveButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
+                positiveButton.setTextColor(Color.BLACK)
+
+                val negativeButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)
+                negativeButton.setTextColor(Color.BLACK)
+            }
+            datePickerDialog.show()
+        }
+
+        binding.edField2.setOnClickListener {
+            val popMenu = PopupMenu(this@PersonalDataActivity, binding.edField2)
+            popMenu.menuInflater.inflate(R.menu.gender_menu, popMenu.menu)
+            popMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
+                @SuppressLint("SetTextI18n")
+                override fun onMenuItemClick(p0: MenuItem?): Boolean {
+                    when (p0!!.itemId){
+                        R.id.male -> {
+                            binding.edField2.setText("Male")
+                        }
+                        R.id.female -> {
+                            binding.edField2.setText("Female")
+                        }
+                        else -> {
+
+                        }
+                    }
+                    return true
+                }
+            })
+            popMenu.show()
         }
     }
 
