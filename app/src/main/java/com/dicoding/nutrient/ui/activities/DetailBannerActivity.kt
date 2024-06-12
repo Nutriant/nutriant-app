@@ -1,5 +1,6 @@
 package com.dicoding.nutrient.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
@@ -17,6 +18,10 @@ class DetailBannerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBannerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.ivBack.setOnClickListener {
+            startActivity(Intent(this, DashboardWithBotNavActivity::class.java))
+        }
 
         // Get product details from intent
         val productImage = intent.getIntExtra(PRODUCT_IMAGE, 0)
