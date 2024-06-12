@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
@@ -18,11 +19,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.nutrient.R
+import com.dicoding.nutrient.data.Result
+import com.dicoding.nutrient.data.model.response.bmi.GetBmisHistoryResponse
 import com.dicoding.nutrient.databinding.ActivityHomeFragmentBinding
 import com.dicoding.nutrient.ui.activities.SearchHomeActivity
 import com.dicoding.nutrient.ui.adapters.BannerAdapter
 import com.dicoding.nutrient.ui.adapters.ListBmiAdapter
 import com.dicoding.nutrient.ui.adapters.ProductBannerAdapter
+import com.dicoding.nutrient.ui.viewmodels.BMIHistoryViewModel
 import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
 import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import com.dicoding.nutrient.utils.Banner
@@ -33,6 +37,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var pageChangeListener: ViewPager2.OnPageChangeCallback
     private lateinit var userPreferencesViewModel: UserPreferencesViewModel
+    private lateinit var bmiHistoryViewModel: BMIHistoryViewModel
     private var currentPage = 0
     private var handler: Handler? = null
     private lateinit var runnable: Runnable
@@ -59,7 +64,6 @@ class HomeFragment : Fragment() {
         initViewModel()
         showBanner()
         showRecyclerProductBanner()
-        showRecyclerListBmi()
         setupAction()
         setupComponent()
     }
@@ -120,10 +124,11 @@ class HomeFragment : Fragment() {
         rvProductBanner.adapter = ProductBannerAdapter(Banner.getDataProductBanner)
     }
 
-    private fun showRecyclerListBmi() {
+    private fun showRecyclerListBmi(dataHistoryBmi: GetBmisHistoryResponse) {
         val rvHistoryBmi = binding.rvHistoryBmi
         rvHistoryBmi.layoutManager = LinearLayoutManager(requireContext())
-        rvHistoryBmi.adapter = ListBmiAdapter(Dummy.getListDataBmi)
+//        rvHistoryBmi.adapter = ListBmiAdapter(Dummy.getListDataBmi)
+        rvHistoryBmi.adapter = ListBmiAdapter(dataHistoryBmi.data)
     }
 
     private fun setupAction() {
@@ -143,6 +148,28 @@ class HomeFragment : Fragment() {
         userPreferencesViewModel.getUsername().observe(viewLifecycleOwner) { username ->
             binding.tvUsername.text = username
         }
+
+        userPreferencesViewModel.getTokenValue().observe(viewLifecycleOwner){ token ->
+            bmiHistoryViewModel.getBmisHistory(token)
+            bmiHistoryViewModel.resultBmisHistory.observe(viewLifecycleOwner){ result ->
+                when (result){
+                    is Result.Loading -> {
+                        binding.loadingHistoryBmi.visibility = View.VISIBLE
+                        binding.rvHistoryBmi.visibility = View.GONE
+                    }
+                    is Result.Success -> {
+                        binding.loadingHistoryBmi.visibility = View.GONE
+                        binding.rvHistoryBmi.visibility = View.VISIBLE
+
+                        showRecyclerListBmi(result.data)
+                    }
+                    is Result.ServerError -> {
+                        Toast.makeText(requireContext(), result.serverError, Toast.LENGTH_LONG).show()
+                    }
+                    else -> {}
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -156,5 +183,6 @@ class HomeFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireActivity().application)
         userPreferencesViewModel =
             ViewModelProvider(requireActivity(), factory)[UserPreferencesViewModel::class.java]
+        bmiHistoryViewModel = ViewModelProvider(requireActivity(), factory)[BMIHistoryViewModel::class.java]
     }
 }

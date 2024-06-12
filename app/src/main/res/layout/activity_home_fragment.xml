@@ -100,12 +100,23 @@
                 android:fontFamily="@font/poppinsbold"
                 android:text="@string/bmi_information"
                 android:textSize="20sp"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_history_bmi"
-                android:layout_marginTop="19dp"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginBottom="40dp"/>
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_history_bmi"
+                    android:layout_marginTop="19dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_marginBottom="40dp"/>
+                <ProgressBar
+                    android:id="@+id/loading_history_bmi"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:progressTint="@color/greenApps"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
         </LinearLayout>
     </LinearLayout>
 
