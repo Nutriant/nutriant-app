@@ -9,6 +9,7 @@ import com.dicoding.nutrient.R
 import com.dicoding.nutrient.data.model.history.DataListBmi
 import com.dicoding.nutrient.data.model.response.bmi.DataBmisHistory
 import com.dicoding.nutrient.databinding.ItemListBmiBinding
+import com.dicoding.nutrient.utils.formatNumber
 
 class ListBmiAdapter(private val dataListBmi: ArrayList<DataBmisHistory>) :
  RecyclerView.Adapter<ListBmiAdapter.ViewHolder>() {
@@ -29,8 +30,8 @@ class ListBmiAdapter(private val dataListBmi: ArrayList<DataBmisHistory>) :
         val getDataListBmi = dataListBmi[position]
 
         holder.binding.apply {
-            tvHeight.text = holder.itemView.context.getString(R.string.height, getDataListBmi.height)
-            tvWeight.text = holder.itemView.context.getString(R.string.weight, getDataListBmi.weight)
+            tvHeight.text = holder.itemView.context.getString(R.string.height, formatNumber(getDataListBmi.height))
+            tvWeight.text = holder.itemView.context.getString(R.string.weight, formatNumber(getDataListBmi.weight))
             tvStatus.text = " " + getDataListBmi.status
 
             if (getDataListBmi.status == "Underweight"){
