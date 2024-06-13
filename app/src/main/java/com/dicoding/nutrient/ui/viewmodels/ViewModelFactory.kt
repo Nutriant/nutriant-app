@@ -34,6 +34,7 @@ class ViewModelFactory private constructor(
             ProfileViewModel::class.java -> ProfileViewModel(userDataRepository, userPreferences) as T
             BMIHistoryViewModel::class.java -> BMIHistoryViewModel(bmiRepository) as T
             FatsecretViewModel::class.java -> FatsecretViewModel(fatsecretRepository, userPreferences) as T
+            ChangePasswordViewModel::class.java -> ChangePasswordViewModel(authRepository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }
