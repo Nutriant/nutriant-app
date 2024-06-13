@@ -1,6 +1,7 @@
 package com.dicoding.nutrient.api
 
 import com.dicoding.nutrient.data.model.response.assestment.AssestmentResponse
+import com.dicoding.nutrient.data.model.response.bmi.GetBmisHistoryResponse
 import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.myprofile.MyProfileResponse
 import com.dicoding.nutrient.data.model.response.news.NewsResponse
@@ -87,4 +88,8 @@ interface ApiService {
     @GET("api/profiles")
     @Headers("Accept: application/json")
     suspend fun getAllMyProfile(@Header("Authorization") token: String) : GetProfilesResponse
+
+    @GET("api/bmis")
+    @Headers("Accept: application/json")
+    suspend fun getBmisHistory(@Header("Authorization") token: String) : GetBmisHistoryResponse
 }

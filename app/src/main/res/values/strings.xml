@@ -49,8 +49,8 @@
     <string name="search_food_amp_bev"><![CDATA[Search Food & Bev]]></string>
     <string name="product_information">Product Information</string>
     <string name="bmi_information">BMI Information</string>
-    <string name="weight">Weight : %1$d kg</string>
-    <string name="height">Height : %1$d cm</string>
+    <string name="weight">Weight : %1$s kg</string>
+    <string name="height">Height : %1$s cm</string>
     <string name="status">Status :</string>
     <string name="sign_out">Sign Out</string>
     <string name="about_apps">About Apps</string>
