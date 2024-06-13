@@ -10,6 +10,10 @@ class UserPreferencesViewModel(private val userPreference: UserPreference) : Vie
         return userPreference.getUserLoginStatus().asLiveData()
     }
 
+    fun getTokenFatsecret() : LiveData<String> {
+        return userPreference.getTokenFatsecret().asLiveData()
+    }
+
     fun getTokenValue() : LiveData<String> {
         return userPreference.getTokenValue().asLiveData()
     }

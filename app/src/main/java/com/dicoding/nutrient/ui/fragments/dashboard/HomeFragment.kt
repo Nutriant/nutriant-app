@@ -28,6 +28,7 @@ import com.dicoding.nutrient.ui.adapters.BannerAdapter
 import com.dicoding.nutrient.ui.adapters.ListBmiAdapter
 import com.dicoding.nutrient.ui.adapters.ProductBannerAdapter
 import com.dicoding.nutrient.ui.viewmodels.BMIHistoryViewModel
+import com.dicoding.nutrient.ui.viewmodels.FatsecretViewModel
 import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
 import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import com.dicoding.nutrient.utils.Banner
@@ -42,6 +43,7 @@ class HomeFragment : Fragment() {
     private var currentPage = 0
     private var handler: Handler? = null
     private lateinit var runnable: Runnable
+    private lateinit var fatsecretViewModel: FatsecretViewModel
 
     private val params = LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -193,5 +195,6 @@ class HomeFragment : Fragment() {
         userPreferencesViewModel =
             ViewModelProvider(requireActivity(), factory)[UserPreferencesViewModel::class.java]
         bmiHistoryViewModel = ViewModelProvider(requireActivity(), factory)[BMIHistoryViewModel::class.java]
+        fatsecretViewModel = ViewModelProvider(requireActivity(), factory)[FatsecretViewModel::class.java]
     }
 }
