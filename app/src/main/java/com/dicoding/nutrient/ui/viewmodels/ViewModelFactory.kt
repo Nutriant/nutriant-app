@@ -8,6 +8,7 @@ import com.dicoding.nutrient.api.RetrofitClient
 import com.dicoding.nutrient.data.preferences.UserPreference
 import com.dicoding.nutrient.data.repository.AuthRepository
 import com.dicoding.nutrient.data.repository.BmiRepository
+import com.dicoding.nutrient.data.repository.FatsecretRepository
 import com.dicoding.nutrient.data.repository.UserDataRepository
 import com.dicoding.nutrient.di.Injection
 
@@ -19,6 +20,7 @@ class ViewModelFactory private constructor(
     private val authRepository: AuthRepository = AuthRepository(instanceApiLaravel)
     private val userDataRepository: UserDataRepository = UserDataRepository(instanceApiLaravel)
     private val bmiRepository: BmiRepository = BmiRepository(instanceApiLaravel)
+    private val fatsecretRepository = FatsecretRepository(instanceApiLaravel)
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -31,6 +33,7 @@ class ViewModelFactory private constructor(
             AssestmentViewModel::class.java -> AssestmentViewModel(userDataRepository) as T
             ProfileViewModel::class.java -> ProfileViewModel(userDataRepository, userPreferences) as T
             BMIHistoryViewModel::class.java -> BMIHistoryViewModel(bmiRepository) as T
+            FatsecretViewModel::class.java -> FatsecretViewModel(fatsecretRepository, userPreferences) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }

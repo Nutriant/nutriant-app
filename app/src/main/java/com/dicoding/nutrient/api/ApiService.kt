@@ -2,6 +2,8 @@ package com.dicoding.nutrient.api
 
 import com.dicoding.nutrient.data.model.response.assestment.AssestmentResponse
 import com.dicoding.nutrient.data.model.response.bmi.GetBmisHistoryResponse
+import com.dicoding.nutrient.data.model.response.fatsecret.GetSearchFoodResponse
+import com.dicoding.nutrient.data.model.response.fatsecret.GetTokenFatsecretResponse
 import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.myprofile.MyProfileResponse
 import com.dicoding.nutrient.data.model.response.news.NewsResponse
@@ -92,4 +94,15 @@ interface ApiService {
     @GET("api/bmis")
     @Headers("Accept: application/json")
     suspend fun getBmisHistory(@Header("Authorization") token: String) : GetBmisHistoryResponse
+
+    @GET("api/fatsecret/search")
+    @Headers("Accept: application/json")
+    suspend fun searchProduct(
+        @Query("token") token: String,
+        @Query("search") search: String
+    ) : GetSearchFoodResponse
+
+    @GET("api/fatsecret/token")
+    @Headers("Accept: application/json")
+    suspend fun getTokenFatsecret() : GetTokenFatsecretResponse
 }
