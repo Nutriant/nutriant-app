@@ -23,7 +23,7 @@ class SearchFoodFatsecretAdapter
         val getFood = getItem(position)
 
         holder.binding.apply {
-            holder.binding.tvName.text = getFood.brand_name
+            holder.binding.tvName.text = getFood.food_name
         }
     }
 
