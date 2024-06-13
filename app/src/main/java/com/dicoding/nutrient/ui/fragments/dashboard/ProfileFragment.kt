@@ -1,9 +1,9 @@
 package com.dicoding.nutrient.ui.fragments.dashboard
 
+import com.dicoding.nutrient.ui.activities.ChangeLanguageActivity
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -117,7 +117,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.layoutChangeLanguage.setOnClickListener {
-            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            startActivity(Intent(requireContext(), ChangeLanguageActivity::class.java))
         }
 
         binding.layoutFnBHistory.setOnClickListener {

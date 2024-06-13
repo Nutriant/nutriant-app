@@ -160,5 +160,8 @@
     <string name="appsInformation">Apps Information</string>
     <string name="descChangePassword">Your new password must contains at least 8 characters or more than 8 characters</string>
     <string name="ph_newpassword">Type your new password</string>
-    <string name="ph_retypeNewPassword">Retype your new password</string>
+    <string name="ph_retypeNewPassword">Retpe your new password</string>
+    <string name="english">English</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="descriptionChangeLanguage">You can choose any language that you want to apply on your Nutrient Application</string>
 </resources>
