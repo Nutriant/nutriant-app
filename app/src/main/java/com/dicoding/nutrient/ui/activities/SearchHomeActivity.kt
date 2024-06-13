@@ -3,14 +3,15 @@ package com.dicoding.nutrient.ui.activities
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
+import android.view.View
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.nutrient.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.nutrient.data.Result
-import com.dicoding.nutrient.data.model.response.fatsecret.GetSearchFoodResponse
 import com.dicoding.nutrient.databinding.ActivitySearchHomeBinding
 import com.dicoding.nutrient.ui.adapters.SearchFoodFatsecretAdapter
 import com.dicoding.nutrient.ui.viewmodels.FatsecretViewModel
@@ -18,10 +19,13 @@ import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
 import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 
 class SearchHomeActivity : AppCompatActivity() {
+
     private lateinit var binding : ActivitySearchHomeBinding
     private lateinit var userPreferencesViewModel: UserPreferencesViewModel
     private lateinit var fatsecretViewModel: FatsecretViewModel
     private lateinit var searchFoodFatsecretAdapter: SearchFoodFatsecretAdapter
+    private var isLoading = false
+    private var currentQuery: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,33 +33,55 @@ class SearchHomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initViewModel()
+        initAdapter()
+
         setupAction()
     }
 
     private fun searchFood(search: String){
-        userPreferencesViewModel.getTokenFatsecret().observe(this){ token ->
-            fatsecretViewModel.searchProduct(token, search).observe(this){ result ->
-                when (result){
-                    is Result.Loading -> {
+        if (isLoading) return // Jangan lakukan pencarian jika sedang loading
+        isLoading = true
+        currentQuery = search
 
+        userPreferencesViewModel.getTokenFatsecret().observe(this) { token ->
+            fatsecretViewModel.searchProduct(token, search).observe(this) { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        binding.apply {
+                            rvSearch.visibility = View.GONE
+                            loadingSearch.visibility = View.VISIBLE
+                        }
                     }
                     is Result.Success -> {
-
+                        binding.apply {
+                            rvSearch.visibility = View.VISIBLE
+                            loadingSearch.visibility = View.GONE
+                            searchFoodFatsecretAdapter.submitList(result.data.foods.food)
+                        }
+                        isLoading = false // Reset status loading setelah selesai
                     }
-                    else -> {}
+                    is Result.ServerError -> {
+                        Toast.makeText(this@SearchHomeActivity, result.serverError, Toast.LENGTH_LONG).show()
+                        isLoading = false // Reset status loading setelah error
+                    }
+                    else -> {
+                        isLoading = false // Reset status loading jika ada hasil lain
+                    }
                 }
             }
         }
     }
 
     private fun initAdapter(){
-
+        searchFoodFatsecretAdapter = SearchFoodFatsecretAdapter()
+        binding.rvSearch.layoutManager = LinearLayoutManager(this)
+        binding.rvSearch.adapter = searchFoodFatsecretAdapter
     }
 
     private fun initViewModel(){
         val factory = ViewModelFactory.getInstance(this.application)
         userPreferencesViewModel = ViewModelProvider(this, factory)[UserPreferencesViewModel::class.java]
-        fatsecretViewModel = ViewModelProvider(this, factory)[fatsecretViewModel::class.java]
+        fatsecretViewModel = ViewModelProvider(this, factory)[FatsecretViewModel::class.java]
     }
 
     private fun setupAction(){
@@ -63,23 +89,18 @@ class SearchHomeActivity : AppCompatActivity() {
             finishAfterTransition()
         }
 
-        val textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                binding.apply {
-
+        binding.edSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null && query != currentQuery) {
+                    searchFood(query)
                 }
+                return true
             }
 
-        }
-
-        binding.edSearch.addTextChangedListener(textWatcher)
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
     }
 }

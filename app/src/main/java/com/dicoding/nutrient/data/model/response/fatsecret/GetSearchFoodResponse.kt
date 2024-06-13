@@ -5,7 +5,7 @@ data class GetSearchFoodResponse(
 )
 
 data class Food(
-    val foods: ArrayList<AllFood>
+    val food: ArrayList<AllFood>
 )
 
 data class AllFood(
