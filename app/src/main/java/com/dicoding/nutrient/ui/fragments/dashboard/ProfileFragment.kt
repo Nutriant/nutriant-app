@@ -3,6 +3,7 @@ package com.dicoding.nutrient.ui.fragments.dashboard
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,14 +19,14 @@ import com.dicoding.nutrient.R
 import com.dicoding.nutrient.data.Result
 import com.dicoding.nutrient.databinding.ActivityProfileFragmentBinding
 import com.dicoding.nutrient.databinding.CustomPopupDialogBinding
+import com.dicoding.nutrient.ui.activities.ChangePasswordActivity
+import com.dicoding.nutrient.ui.activities.DashboardWithBotNavActivity
 import com.dicoding.nutrient.ui.activities.PersonalDataActivity
 import com.dicoding.nutrient.ui.fragments.childfragment.BottomSheetAboutAppsFragment
 import com.dicoding.nutrient.ui.viewmodels.LogoutViewModel
 import com.dicoding.nutrient.ui.viewmodels.ProfileViewModel
 import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
 import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class ProfileFragment : Fragment() {
     private var _binding: ActivityProfileFragmentBinding? = null
@@ -109,6 +110,18 @@ class ProfileFragment : Fragment() {
 
         binding.layoutPersonalData.setOnClickListener {
             startActivity(Intent(requireContext(), PersonalDataActivity::class.java))
+        }
+
+        binding.layoutChangePassword.setOnClickListener {
+            startActivity(Intent(requireContext(), ChangePasswordActivity::class.java))
+        }
+
+        binding.layoutChangeLanguage.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
+
+        binding.layoutFnBHistory.setOnClickListener {
+            (activity as DashboardWithBotNavActivity).replaceFragment(HistoryFragment())
         }
 
         binding.layoutAboutApps.setOnClickListener {

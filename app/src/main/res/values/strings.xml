@@ -153,4 +153,12 @@
     <string name="join_us_on_the_journey_to_better_health">Join Us on the Journey to Better Health</string>
     <string name="joinUsAboutUs">By using Nutrient, you\'re taking a significant step towards improving your health and well-being. Our team is committed to continuously updating and enhancing the app to better serve your needs. Together, we can build a healthier community in Indonesia.</string>
     <string name="bottomsheet">Bottom Sheet</string>
+    <string name="personalInformation">Data Personalization</string>
+    <string name="change_password">Change Password</string>
+    <string name="food_and_beverage_history">Food &amp; Bev History</string>
+    <string name="changeLanguage">Change Language</string>
+    <string name="appsInformation">Apps Information</string>
+    <string name="descChangePassword">Your new password must contains at least 8 characters or more than 8 characters</string>
+    <string name="ph_newpassword">Type your new password</string>
+    <string name="ph_retypeNewPassword">Retype your new password</string>
 </resources>

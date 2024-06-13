@@ -49,4 +49,12 @@ class CustomButton : AppCompatButton {
                 (etHeightResult != null && etHeightResult.toString().isNotEmpty())
     }
 
+    fun setButtonEnableChangePassword(
+        etPasswordResult: CharSequence?,
+        etPasswordResultConfirmation: CharSequence?
+    ) {
+        isEnabled = (etPasswordResult != null && etPasswordResult.toString().isNotEmpty()) &&
+                (etPasswordResultConfirmation != null && etPasswordResultConfirmation.toString().isNotEmpty())
+    }
+
 }
