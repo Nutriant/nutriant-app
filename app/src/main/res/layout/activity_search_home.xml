@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.SearchHomeActivity">
+    tools:context=".ui.activities.SearchHomeActivity"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +20,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@color/white">
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/tool_bar"
                     android:layout_width="wrap_content"
@@ -65,6 +67,7 @@
                 android:progressTint="@color/greenApps"
                 android:layout_gravity="center"/>
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_margin="16dp"
                 android:id="@+id/rv_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
