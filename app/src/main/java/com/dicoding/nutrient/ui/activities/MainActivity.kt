@@ -67,6 +67,10 @@ class MainActivity : AppCompatActivity() {
                                 startActivity(intent)
                             }
                         }
+                        is Result.ServerError -> {
+                            Toast.makeText(this@MainActivity, tokenResult.serverError, Toast.LENGTH_LONG).show()
+                            Log.d("MainActivity", "error: ${tokenResult.serverError}")
+                        }
                         else -> {}
                     }
                 }
