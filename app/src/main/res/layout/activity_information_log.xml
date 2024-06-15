@@ -47,6 +47,7 @@
             android:background="@drawable/stroke_frame_infolog">
 
             <ImageView
+                android:id="@+id/img_food"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
@@ -312,6 +313,7 @@
         </RadioGroup>
 
         <TextView
+            android:id="@+id/tv_calor_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

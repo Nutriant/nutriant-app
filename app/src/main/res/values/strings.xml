@@ -95,7 +95,7 @@
     <string name="protein">PROTEIN</string>
     <string name="fat">FAT</string>
     <string name="consumptiontime">Consumption Time</string>
-    <string name="caloriestotal">Calories Total:</string>
+    <string name="caloriestotal">Calories Total: %1$d</string>
     <string name="save_history">SAVE HISTORY</string>
     <string name="nutrition_scan">Nutrition Scan</string>
     <string name="failure_title">Oops, Something Went Wrong</string>

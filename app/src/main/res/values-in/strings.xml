@@ -95,7 +95,7 @@
     <string name="protein">PROTEIN</string>
     <string name="fat">LEMAK</string>
     <string name="consumptiontime">WAKTU KONSUMSI</string>
-    <string name="caloriestotal">Total Kalori</string>
+    <string name="caloriestotal">Total Kalori: %1$d</string>
     <string name="save_history">SIMPAN RIWAYAT</string>
     <string name="nutrition_scan">Scan Nutrisi</string>
     <string name="failure_title">Ups, Ada yang Tidak Beres</string>

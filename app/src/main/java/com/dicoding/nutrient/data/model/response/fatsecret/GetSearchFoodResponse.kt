@@ -10,7 +10,7 @@ data class Food(
 
 data class AllFood(
     val brand_name: String,
-    val food_descripttion: String,
+    val food_description: String,
     val food_id: Long,
     val food_name: String,
     val food_type: String

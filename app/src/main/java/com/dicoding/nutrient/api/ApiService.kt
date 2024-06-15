@@ -4,6 +4,7 @@ import com.dicoding.nutrient.data.model.response.assestment.AssestmentResponse
 import com.dicoding.nutrient.data.model.response.bmi.GetBmisHistoryResponse
 import com.dicoding.nutrient.data.model.response.fatsecret.GetSearchFoodResponse
 import com.dicoding.nutrient.data.model.response.fatsecret.GetTokenFatsecretResponse
+import com.dicoding.nutrient.data.model.response.foods.PostFoodResponse
 import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.myprofile.MyProfileResponse
 import com.dicoding.nutrient.data.model.response.news.NewsResponse
@@ -116,4 +117,18 @@ interface ApiService {
         @Field("password") password: String,
         @Field("password_confirmation") password_confirm: String
     ) : ChangePasswordResponse
+
+    @Multipart
+    @POST("api/foods")
+    @Headers("Accept: application/json")
+    suspend fun postFood(
+        @Header("Authorization") token: String,
+        @Part("name") name: RequestBody,
+        @Part("calories") calories: RequestBody,
+        @Part("sugar") sugar: RequestBody,
+        @Part("fat") fat: RequestBody,
+        @Part("protein") protein: RequestBody,
+        @Part("carbohydrate") carbohydrate: RequestBody,
+        @Part image: MultipartBody.Part?
+    ) : PostFoodResponse
 }
