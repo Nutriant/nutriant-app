@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.nutrient.R
 import com.dicoding.nutrient.data.Result
+import com.dicoding.nutrient.data.model.response.foods.DataFoods
+import com.dicoding.nutrient.data.model.response.foods.GetFoodResponse
 import com.dicoding.nutrient.databinding.ActivityHistoryFragmentBinding
 import com.dicoding.nutrient.ui.adapters.HistoryLabelListAdapter
 import com.dicoding.nutrient.ui.viewmodels.FoodViewModel
@@ -39,13 +42,12 @@ class HistoryFragment : Fragment() {
 
         initViewModel()
         observeViewModel()
-        showHistoryLabel()
     }
 
-    private fun showHistoryLabel(){
+    private fun showHistoryLabel(historyFoods: ArrayList<DataFoods>){
         val rvHistory = binding.rvHistory
         rvHistory.layoutManager = LinearLayoutManager(requireContext())
-        rvHistory.adapter = HistoryLabelListAdapter(DummyHistoryLabel.getHistoryLabel)
+        rvHistory.adapter = HistoryLabelListAdapter(historyFoods)
     }
 
     override fun onDestroyView() {
@@ -59,13 +61,22 @@ class HistoryFragment : Fragment() {
             foodViewModel.resultGetFood.observe(viewLifecycleOwner){ result ->
                 when (result){
                     is Result.Loading -> {
-
+                        binding.apply {
+                            loadingHistory.visibility = View.VISIBLE
+                            rvHistory.visibility = View.GONE
+                        }
                     }
                     is Result.Success -> {
+                        binding.apply {
+                            loadingHistory.visibility = View.GONE
+                            rvHistory.visibility = View.VISIBLE
 
+                            showHistoryLabel(result.data.data)
+                        }
                     }
                     is Result.ServerError -> {
-
+                        Toast.makeText(requireContext(), result.serverError, Toast.LENGTH_LONG)
+                            .show()
                     }
                     else -> {}
                 }

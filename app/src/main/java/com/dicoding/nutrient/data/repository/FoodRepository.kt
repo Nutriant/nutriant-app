@@ -98,6 +98,6 @@ class FoodRepository(private val apiService: ApiService) {
     }
 
     suspend fun getFoods(token: String) : GetFoodResponse {
-        return apiService.getFoods(token)
+        return apiService.getFoods("Bearer $token")
     }
 }

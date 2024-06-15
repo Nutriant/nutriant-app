@@ -157,7 +157,7 @@ class ProfileFragment : Fragment() {
                         binding.tvWeightProfile.text = getString(R.string.kilo_gram, getData.weight)
                         binding.tvAgeProfile.text = getString(R.string.years_old, getData.age)
                         Glide.with(requireContext())
-                            .load(getData.image)
+                            .load("http://${getData.image}")
                             .apply(
                                 RequestOptions().placeholder(R.drawable.avatar_dummy).fitCenter()
                             )

@@ -126,7 +126,7 @@
     <string name="female">Female</string>
     <string name="dummyUsername">MD-11</string>
     <string name="daily_nutrition">Daily Nutrition</string>
-    <string name="calori_title">Calori</string>
+    <string name="calori_title">Calori: %1$s</string>
     <string name="dummyCurrentCal">2050</string>
     <string name="slash">/</string>
     <string name="dummyTargetCal">2700</string>
@@ -135,11 +135,11 @@
     <string name="sugarTitle">Sugar</string>
     <string name="gram">g</string>
     <string name="dummyCurrentSugar">7</string>
-    <string name="proteinTitle">Protein</string>
+    <string name="proteinTitle">Protein: %1$s</string>
     <string name="currentProtein">20</string>
-    <string name="fatTitle">Fat</string>
+    <string name="fatTitle">Fat: %1$s</string>
     <string name="currentFat">15</string>
-    <string name="carboTitle">Carbo</string>
+    <string name="carboTitle">Carbo: %1$s</string>
     <string name="dummyValueCarbo">30</string>
     <string name="about_nutrient">About Nutrient</string>
     <string name="descriptionNutrientAbout">Welcome to Nutrient, your personal nutrition table assistant designed to promote a healthier lifestyle and well-being for the people of Indonesia. Inspired by the dietary habits and health challenges faced by many Indonesians, our application aims to empower users to make informed dietary choices and adopt a healthier lifestyle.</string>
@@ -164,4 +164,8 @@
     <string name="english">English</string>
     <string name="indonesia">Indonesia</string>
     <string name="descriptionChangeLanguage">You can choose any language that you want to apply on your Nutrient Application</string>
+    <string name="protein_home">Protein</string>
+    <string name="fat_home">Fat</string>
+    <string name="carbo_home">Carbo</string>
+    <string name="calori_home">Calori</string>
 </resources>

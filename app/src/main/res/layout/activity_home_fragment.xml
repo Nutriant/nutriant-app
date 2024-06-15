@@ -93,7 +93,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppinsbold"
-                            android:text="@string/calori_title"
+                            android:text="@string/calori_home"
                             android:textColor="@color/grayApps"
                             android:textSize="14sp" />
 
@@ -224,7 +224,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsbold"
                                 android:gravity="center"
-                                android:text="@string/proteinTitle"
+                                android:text="@string/protein_home"
                                 android:textColor="@color/grayApps"
                                 android:textSize="14sp" />
 
@@ -266,7 +266,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsbold"
                                 android:gravity="center"
-                                android:text="@string/fatTitle"
+                                android:text="@string/fat_home"
                                 android:textColor="@color/grayApps"
                                 android:textSize="14sp" />
 
@@ -308,7 +308,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsbold"
                                 android:gravity="center"
-                                android:text="@string/carboTitle"
+                                android:text="@string/carbo_home"
                                 android:textColor="@color/grayApps"
                                 android:textSize="14sp" />
 
