@@ -10,6 +10,7 @@ import com.dicoding.nutrient.data.repository.AuthRepository
 import com.dicoding.nutrient.data.repository.BmiRepository
 import com.dicoding.nutrient.data.repository.FatsecretRepository
 import com.dicoding.nutrient.data.repository.FoodRepository
+import com.dicoding.nutrient.data.repository.NutritionRepository
 import com.dicoding.nutrient.data.repository.UserDataRepository
 import com.dicoding.nutrient.di.Injection
 
@@ -23,6 +24,7 @@ class ViewModelFactory private constructor(
     private val bmiRepository: BmiRepository = BmiRepository(instanceApiLaravel)
     private val fatsecretRepository = FatsecretRepository(instanceApiLaravel)
     private val foodRepository = FoodRepository(instanceApiLaravel)
+    private val nutritionRepository = NutritionRepository(instanceApiLaravel)
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -38,6 +40,7 @@ class ViewModelFactory private constructor(
             FatsecretViewModel::class.java -> FatsecretViewModel(fatsecretRepository, userPreferences) as T
             ChangePasswordViewModel::class.java -> ChangePasswordViewModel(authRepository) as T
             FoodViewModel::class.java -> FoodViewModel(foodRepository) as T
+            NutritionViewModel::class.java -> NutritionViewModel(nutritionRepository) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }

@@ -8,6 +8,7 @@ import com.dicoding.nutrient.data.model.response.foods.PostFoodResponse
 import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.myprofile.MyProfileResponse
 import com.dicoding.nutrient.data.model.response.news.NewsResponse
+import com.dicoding.nutrient.data.model.response.nutrition.GetDailyNutritionResponse
 import com.dicoding.nutrient.data.model.response.register.RegisterResponse
 import com.dicoding.nutrient.data.model.response.userstatus.UserStatusResponse
 import retrofit2.Call
@@ -131,4 +132,8 @@ interface ApiService {
         @Part("carbohydrate") carbohydrate: RequestBody,
         @Part image: MultipartBody.Part?
     ) : PostFoodResponse
+
+    @GET("api/daily-intake")
+    @Headers("Accept: application/json")
+    suspend fun getDailyNutrition(@Header("Authorization") token: String) : GetDailyNutritionResponse
 }
