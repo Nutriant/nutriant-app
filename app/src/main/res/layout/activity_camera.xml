@@ -46,6 +46,12 @@
             android:layout_marginStart="24dp"/>
     </FrameLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/framecamera"
+        android:foregroundGravity="center"/>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
