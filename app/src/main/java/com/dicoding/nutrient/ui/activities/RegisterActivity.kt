@@ -146,9 +146,13 @@ class RegisterActivity : AppCompatActivity() {
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val selected: String = p0?.getItemAtPosition(p2)?.toString() ?: ""
-                selectedGender = selected
-                Log.d("RegisterActivity", Gender.valueOf(selectedGender).genderValue.toString())
+//                val selected: String = p0?.getItemAtPosition(p2)?.toString() ?: ""
+                selectedGender = if (p2 == 1){
+                    Gender.valueOf(Gender.fromInt(p2-1).toString()).toString()
+                } else {
+                    Gender.valueOf(Gender.fromInt(p2+1).toString()).toString()
+                }
+                Log.d("RegisterActivity", selectedGender)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {

@@ -29,10 +29,13 @@ import com.dicoding.nutrient.ui.adapters.ListBmiAdapter
 import com.dicoding.nutrient.ui.adapters.ProductBannerAdapter
 import com.dicoding.nutrient.ui.viewmodels.BMIHistoryViewModel
 import com.dicoding.nutrient.ui.viewmodels.FatsecretViewModel
+import com.dicoding.nutrient.ui.viewmodels.FoodViewModel
+import com.dicoding.nutrient.ui.viewmodels.NutritionViewModel
 import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
 import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import com.dicoding.nutrient.utils.Banner
 import com.dicoding.nutrient.utils.Dummy
+import com.dicoding.nutrient.utils.formatNumber
 
 class HomeFragment : Fragment() {
     private var _binding: ActivityHomeFragmentBinding? = null
@@ -44,6 +47,7 @@ class HomeFragment : Fragment() {
     private var handler: Handler? = null
     private lateinit var runnable: Runnable
     private lateinit var fatsecretViewModel: FatsecretViewModel
+    private lateinit var nutritionViewModel: NutritionViewModel
 
     private val params = LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -65,12 +69,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.progressbar.max = 100
-        binding.progressbar.progress = 75
-
-        val totalCalories = 2000
-        val currentCalories = 1500
-        val progressPercentage = (currentCalories.toDouble() / totalCalories.toDouble()) * 100
-        binding.progressbar.progress = progressPercentage.toInt()
+        binding.progressbar.progress = 0
 
         initViewModel()
         showBanner()
@@ -181,6 +180,41 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
+        userPreferencesViewModel.getTokenValue().observe(viewLifecycleOwner){ token ->
+            nutritionViewModel.getDailyNutrition(token)
+            nutritionViewModel.resultGetDailyNutrition.observe(viewLifecycleOwner){ result ->
+                when (result){
+                    is Result.Loading -> {
+                        binding.cl2.visibility = View.GONE
+                        binding.loadingDailyNutrition.visibility = View.VISIBLE
+                    }
+                    is Result.Success -> {
+                        val getData = result.data.data
+                        binding.cl2.visibility = View.VISIBLE
+                        binding.loadingDailyNutrition.visibility = View.GONE
+
+                        binding.apply {
+                            val totalCalories = getData.max_calories
+                            val currentCalories = getData.daily_calories
+                            targetCal.text = totalCalories
+                            currentCal.text = currentCalories
+                            val progressPercentage = (currentCalories.toDouble() / totalCalories.toDouble()) * 100
+                            binding.progressbar.progress = progressPercentage.toInt()
+                            currentPercentageCal.text = formatNumber(progressPercentage.toString())
+                            tvCurrentSugar.text = getData.daily_sugar
+                            tvCurrentCarbo.text = getData.daily_carbohydrate
+                            tvCurrentFat.text = getData.daily_fat
+                            tvCurrentProtein.text = getData.daily_protein
+                        }
+                    }
+                    is Result.ServerError -> {
+                        Toast.makeText(requireContext(),result.serverError, Toast.LENGTH_LONG).show()
+                    }
+                    else -> {}
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -196,5 +230,6 @@ class HomeFragment : Fragment() {
             ViewModelProvider(requireActivity(), factory)[UserPreferencesViewModel::class.java]
         bmiHistoryViewModel = ViewModelProvider(requireActivity(), factory)[BMIHistoryViewModel::class.java]
         fatsecretViewModel = ViewModelProvider(requireActivity(), factory)[FatsecretViewModel::class.java]
+        nutritionViewModel = ViewModelProvider(requireActivity(), factory)[NutritionViewModel::class.java]
     }
 }

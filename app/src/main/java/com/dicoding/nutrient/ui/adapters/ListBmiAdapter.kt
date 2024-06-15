@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.nutrient.R
 import com.dicoding.nutrient.data.model.history.DataListBmi
@@ -40,6 +41,8 @@ class ListBmiAdapter(private val dataListBmi: ArrayList<DataBmisHistory>) :
                 tvStatus.setTextColor(Color.YELLOW)
             } else if (getDataListBmi.status == "Obesity"){
                 tvStatus.setTextColor(Color.RED)
+            } else {
+                tvStatus.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.greenApps))
             }
         }
     }
