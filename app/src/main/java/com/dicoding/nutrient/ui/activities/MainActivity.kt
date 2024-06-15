@@ -32,13 +32,15 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             delay(2000)
             userPreferencesViewModel.getUserLoginStatus().observe(this@MainActivity){ isLoggedIn ->
-                fatsecretViewModel.getTokenFatsecret().observe(this@MainActivity){ tokenResult ->
+                fatsecretViewModel.getTokenFatsecret()
+                fatsecretViewModel.resultTokenFatsecret.observe(this@MainActivity){ tokenResult ->
                     when (tokenResult){
                         is Result.Success -> {
                             Log.d("MainActivity", "token: ${tokenResult.data.access_token}")
                             if(isLoggedIn){
                                 userPreferencesViewModel.getTokenValue().observe(this@MainActivity){ token ->
-                                    userStatusViewModel.userStatus(token).observe(this@MainActivity){ result ->
+                                    userStatusViewModel.userStatus(token)
+                                    userStatusViewModel.result.observe(this@MainActivity){ result ->
                                         when(result){
                                             is Result.Loading -> {
 

@@ -2,6 +2,7 @@ package com.dicoding.nutrient.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dicoding.nutrient.data.Result
@@ -32,20 +33,23 @@ class FatsecretViewModel(
         return resultSearch
     }
 
-    val resutlTokenFatsecret = MediatorLiveData<Result<GetTokenFatsecretResponse>>()
+//    val resutlTokenFatsecret = MediatorLiveData<Result<GetTokenFatsecretResponse>>()
+    private val _resutlTokenFatsecret = MutableLiveData<Result<GetTokenFatsecretResponse>>()
+    val resultTokenFatsecret: LiveData<Result<GetTokenFatsecretResponse>> get() = _resutlTokenFatsecret
 
-    fun getTokenFatsecret() : LiveData<Result<GetTokenFatsecretResponse>> {
-        viewModelScope.launch {
-            resutlTokenFatsecret.value = Result.Loading
+    fun getTokenFatsecret(){
+        if (_resutlTokenFatsecret.value == null){
+            viewModelScope.launch {
+                _resutlTokenFatsecret.value = Result.Loading
 
-            try {
-                val response = fatsecretRepository.getTokenFatsecret()
-                userPreference.setTokenFatsecret(response.access_token)
-                resutlTokenFatsecret.value = Result.Success(response)
-            } catch (e: Exception){
-                resutlTokenFatsecret.value = Result.ServerError(e.message.toString())
+                try {
+                    val response = fatsecretRepository.getTokenFatsecret()
+                    userPreference.setTokenFatsecret(response.access_token)
+                    _resutlTokenFatsecret.value = Result.Success(response)
+                } catch (e: Exception){
+                    _resutlTokenFatsecret.value = Result.ServerError(e.message.toString())
+                }
             }
         }
-        return resutlTokenFatsecret
     }
 }
