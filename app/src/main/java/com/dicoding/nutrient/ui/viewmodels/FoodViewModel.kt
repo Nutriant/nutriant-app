@@ -2,10 +2,12 @@ package com.dicoding.nutrient.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dicoding.nutrient.data.Result
 import com.dicoding.nutrient.data.model.response.foods.ErrorPostFoodResponse
+import com.dicoding.nutrient.data.model.response.foods.GetFoodResponse
 import com.dicoding.nutrient.data.model.response.foods.PostFoodResponse
 import com.dicoding.nutrient.data.repository.FoodRepository
 import com.google.gson.Gson
@@ -42,5 +44,23 @@ class FoodViewModel(private val foodRepository: FoodRepository) : ViewModel() {
         }
 
         return resultPostFood
+    }
+
+    private val _resultGetFood = MutableLiveData<Result<GetFoodResponse>>()
+    val resultGetFood: LiveData<Result<GetFoodResponse>> get() = _resultGetFood
+
+    fun getFoods(token: String){
+        if (_resultGetFood.value == null){
+            viewModelScope.launch {
+                _resultGetFood.value = Result.Loading
+
+                try {
+                    val response = foodRepository.getFoods(token)
+                    _resultGetFood.value = Result.Success(response)
+                } catch (e: Exception){
+                    _resultGetFood.value = Result.ServerError(e.message.toString())
+                }
+            }
+        }
     }
 }

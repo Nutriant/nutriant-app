@@ -1,6 +1,7 @@
 package com.dicoding.nutrient.data.repository
 
 import com.dicoding.nutrient.api.ApiService
+import com.dicoding.nutrient.data.model.response.foods.GetFoodResponse
 import com.dicoding.nutrient.data.model.response.foods.PostFoodResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -94,5 +95,9 @@ class FoodRepository(private val apiService: ApiService) {
                 null
             )
         }
+    }
+
+    suspend fun getFoods(token: String) : GetFoodResponse {
+        return apiService.getFoods(token)
     }
 }

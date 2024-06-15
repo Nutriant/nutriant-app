@@ -4,6 +4,7 @@ import com.dicoding.nutrient.data.model.response.assestment.AssestmentResponse
 import com.dicoding.nutrient.data.model.response.bmi.GetBmisHistoryResponse
 import com.dicoding.nutrient.data.model.response.fatsecret.GetSearchFoodResponse
 import com.dicoding.nutrient.data.model.response.fatsecret.GetTokenFatsecretResponse
+import com.dicoding.nutrient.data.model.response.foods.GetFoodResponse
 import com.dicoding.nutrient.data.model.response.foods.PostFoodResponse
 import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.myprofile.MyProfileResponse
@@ -136,4 +137,8 @@ interface ApiService {
     @GET("api/daily-intake")
     @Headers("Accept: application/json")
     suspend fun getDailyNutrition(@Header("Authorization") token: String) : GetDailyNutritionResponse
+
+    @GET("api/foods")
+    @Headers("Accept: application/json")
+    suspend fun getFoods(@Header("Authorization") token: String) : GetFoodResponse
 }
