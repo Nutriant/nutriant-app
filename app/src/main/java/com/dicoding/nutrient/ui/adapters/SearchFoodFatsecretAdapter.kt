@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.nutrient.R
 import com.dicoding.nutrient.data.model.response.fatsecret.AllFood
 import com.dicoding.nutrient.data.model.response.fatsecret.GetSearchFoodResponse
 import com.dicoding.nutrient.databinding.ItemSearchFoodFatsecretBinding
@@ -48,10 +49,10 @@ class SearchFoodFatsecretAdapter
 
         holder.binding.apply {
             holder.binding.tvName.text = getFood.food_name
-            holder.binding.searchCalorDetail.text = mapOfNutrition.get("Calories")
-            holder.binding.searchCarboDetail.text = mapOfNutrition.get("Carbs")
-            holder.binding.searchFatDetail.text = mapOfNutrition.get("Fat")
-            holder.binding.searchProteinDetail.text = mapOfNutrition.get("Protein")
+            holder.binding.searchCalorDetail.text = holder.itemView.context.getString(R.string.calori_title, mapOfNutrition.get("Calories"))
+            holder.binding.searchCarboDetail.text = holder.itemView.context.getString(R.string.carboTitle, mapOfNutrition.get("Carbs"))
+            holder.binding.searchFatDetail.text = holder.itemView.context.getString(R.string.fatTitle, mapOfNutrition.get("Fat"))
+            holder.binding.searchProteinDetail.text = holder.itemView.context.getString(R.string.proteinTitle, mapOfNutrition.get("Protein"))
         }
     }
 
