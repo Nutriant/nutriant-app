@@ -1,14 +1,21 @@
 package com.dicoding.nutrient.api
 
 import com.dicoding.nutrient.data.model.response.assestment.AssestmentResponse
+import com.dicoding.nutrient.data.model.response.bmi.GetBmisHistoryResponse
+import com.dicoding.nutrient.data.model.response.fatsecret.GetSearchFoodResponse
+import com.dicoding.nutrient.data.model.response.fatsecret.GetTokenFatsecretResponse
+import com.dicoding.nutrient.data.model.response.foods.GetFoodResponse
+import com.dicoding.nutrient.data.model.response.foods.PostFoodResponse
 import com.dicoding.nutrient.data.model.response.login.LoginResponse
 import com.dicoding.nutrient.data.model.response.myprofile.MyProfileResponse
 import com.dicoding.nutrient.data.model.response.news.NewsResponse
+import com.dicoding.nutrient.data.model.response.nutrition.GetDailyNutritionResponse
 import com.dicoding.nutrient.data.model.response.register.RegisterResponse
 import com.dicoding.nutrient.data.model.response.userstatus.UserStatusResponse
 import retrofit2.Call
 import com.dicoding.nutrient.data.model.response.profiles.GetProfilesResponse
 import com.dicoding.nutrient.data.model.response.profiles.UpdateProfileResponse
+import com.dicoding.nutrient.data.model.response.setting.ChangePasswordResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Field
@@ -18,6 +25,7 @@ import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Query
 import retrofit2.http.Part
 
@@ -87,4 +95,50 @@ interface ApiService {
     @GET("api/profiles")
     @Headers("Accept: application/json")
     suspend fun getAllMyProfile(@Header("Authorization") token: String) : GetProfilesResponse
+
+    @GET("api/bmis")
+    @Headers("Accept: application/json")
+    suspend fun getBmisHistory(@Header("Authorization") token: String) : GetBmisHistoryResponse
+
+    @GET("api/fatsecret/search")
+    @Headers("Accept: application/json")
+    suspend fun searchProduct(
+        @Query("token") token: String,
+        @Query("search") search: String
+    ) : GetSearchFoodResponse
+
+    @GET("api/fatsecret/token")
+    @Headers("Accept: application/json")
+    suspend fun getTokenFatsecret() : GetTokenFatsecretResponse
+
+    @FormUrlEncoded
+    @PUT("api/change-password")
+    @Headers("Accept: application/json")
+    suspend fun changePassword(
+        @Header("Authorization") token: String,
+        @Field("password") password: String,
+        @Field("password_confirmation") password_confirm: String
+    ) : ChangePasswordResponse
+
+    @Multipart
+    @POST("api/foods")
+    @Headers("Accept: application/json")
+    suspend fun postFood(
+        @Header("Authorization") token: String,
+        @Part("name") name: RequestBody,
+        @Part("calories") calories: RequestBody,
+        @Part("sugar") sugar: RequestBody,
+        @Part("fat") fat: RequestBody,
+        @Part("protein") protein: RequestBody,
+        @Part("carbohydrate") carbohydrate: RequestBody,
+        @Part image: MultipartBody.Part?
+    ) : PostFoodResponse
+
+    @GET("api/daily-intake")
+    @Headers("Accept: application/json")
+    suspend fun getDailyNutrition(@Header("Authorization") token: String) : GetDailyNutritionResponse
+
+    @GET("api/foods")
+    @Headers("Accept: application/json")
+    suspend fun getFoods(@Header("Authorization") token: String) : GetFoodResponse
 }

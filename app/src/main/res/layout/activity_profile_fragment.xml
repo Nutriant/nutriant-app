@@ -52,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="32dp"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -147,11 +148,20 @@
             android:layout_gravity="center"/>
     </FrameLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppinsbold"
+        android:textSize="16sp"
+        android:text="@string/personalInformation"
+        android:layout_marginTop="32dp"/>
+
     <RelativeLayout
         android:id="@+id/layoutPersonalData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp">
 
         <ImageView
             android:id="@+id/icon_profile"
@@ -176,17 +186,19 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
+
     <RelativeLayout
-        android:id="@+id/layoutSettings"
+        android:id="@+id/layoutChangePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp">
 
         <ImageView
-            android:id="@+id/icon_settings"
+            android:id="@+id/icon_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/setting"/>
+            android:src="@drawable/password_minimalistic_svgrepo_com"/>
 
         <TextView
             android:layout_marginStart="16dp"
@@ -194,8 +206,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppinsregular"
             android:textSize="16sp"
-            android:text="@string/settings"
-            android:layout_toEndOf="@id/icon_settings"
+            android:text="@string/change_password"
+            android:layout_toEndOf="@id/icon_password"
             android:layout_centerVertical="true"/>
 
         <ImageView
@@ -205,11 +217,53 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/layoutFnBHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/icon_fnbHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/food_dinner_svgrepo_com"/>
+
+        <TextView
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:textSize="16sp"
+            android:text="@string/food_and_beverage_history"
+            android:layout_toEndOf="@id/icon_fnbHistory"
+            android:layout_centerVertical="true"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppinsbold"
+        android:textSize="16sp"
+        android:text="@string/appsInformation"
+        android:layout_marginTop="16dp"/>
+
     <RelativeLayout
         android:id="@+id/layoutAboutApps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp">
 
         <ImageView
             android:id="@+id/icon_aboutApps"
@@ -234,11 +288,52 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppinsbold"
+        android:textSize="16sp"
+        android:text="@string/settings"
+        android:layout_marginTop="16dp"/>
+
+    <RelativeLayout
+        android:id="@+id/layoutChangeLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp">
+
+        <ImageView
+            android:id="@+id/icon_change_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/language_svgrepo_com"/>
+
+        <TextView
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:textSize="16sp"
+            android:text="@string/changeLanguage"
+            android:layout_toEndOf="@id/icon_change_language"
+            android:layout_centerVertical="true"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/layoutSignOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp">
 
         <ImageView
             android:id="@+id/icon_signOut"
@@ -263,6 +358,4 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
-
-
 </LinearLayout>

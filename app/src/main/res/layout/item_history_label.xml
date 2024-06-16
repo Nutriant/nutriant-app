@@ -1,52 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginBottom="20dp"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="20dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginBottom="20dp"
+    android:paddingHorizontal="20dp">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_img"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:cardCornerRadius="50dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        app:cardCornerRadius="50dp">
+
         <ImageView
             android:id="@+id/img_label"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:src="@drawable/img_label_history"/>
+            tools:src="@drawable/img_label_history" />
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:id="@+id/layout_text"
-        android:layout_toEndOf="@+id/cv_img"
-        android:layout_marginStart="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@+id/cv_img"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/name_label"
-            android:fontFamily="@font/poppinsbold"
             android:layout_width="wrap_content"
-            android:textSize="16sp"
             android:layout_height="wrap_content"
-            tools:text="Testing Label A"/>
+            android:fontFamily="@font/poppinsbold"
+            android:textSize="16sp"
+            tools:text="Testing Label A" />
+
         <TextView
             android:id="@+id/date_label"
-            android:fontFamily="@font/poppinsregular"
-            android:layout_width="wrap_content"
-            android:textSize="14sp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="2 Jun"/>
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/poppinsregular"
+            android:gravity="end"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            tools:text="2 Jun" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layout_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_toEndOf="@+id/cv_img"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/historyCalorDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/calori_title"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/historyProteinDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/proteinTitle"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/historyFatDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/fatTitle"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/historyCarboDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/carboTitle"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
     <View
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_below="@+id/layout_text"
-        android:background="@color/lightGray"/>
+        android:layout_below="@+id/layout_vertical"
+        android:layout_marginTop="8dp"
+        android:background="@color/lightGray" />
 </RelativeLayout>

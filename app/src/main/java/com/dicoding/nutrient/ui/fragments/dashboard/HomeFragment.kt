@@ -1,5 +1,6 @@
 package com.dicoding.nutrient.ui.fragments.dashboard
 
+import android.animation.ObjectAnimator
 import com.dicoding.nutrient.ui.animation.DepthPageTransformer
 import android.app.Activity
 import android.content.Intent
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
@@ -18,24 +20,34 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.nutrient.R
+import com.dicoding.nutrient.data.Result
+import com.dicoding.nutrient.data.model.response.bmi.GetBmisHistoryResponse
 import com.dicoding.nutrient.databinding.ActivityHomeFragmentBinding
 import com.dicoding.nutrient.ui.activities.SearchHomeActivity
 import com.dicoding.nutrient.ui.adapters.BannerAdapter
 import com.dicoding.nutrient.ui.adapters.ListBmiAdapter
 import com.dicoding.nutrient.ui.adapters.ProductBannerAdapter
+import com.dicoding.nutrient.ui.viewmodels.BMIHistoryViewModel
+import com.dicoding.nutrient.ui.viewmodels.FatsecretViewModel
+import com.dicoding.nutrient.ui.viewmodels.FoodViewModel
+import com.dicoding.nutrient.ui.viewmodels.NutritionViewModel
 import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
 import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import com.dicoding.nutrient.utils.Banner
 import com.dicoding.nutrient.utils.Dummy
+import com.dicoding.nutrient.utils.formatNumber
 
 class HomeFragment : Fragment() {
     private var _binding: ActivityHomeFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var pageChangeListener: ViewPager2.OnPageChangeCallback
     private lateinit var userPreferencesViewModel: UserPreferencesViewModel
+    private lateinit var bmiHistoryViewModel: BMIHistoryViewModel
     private var currentPage = 0
     private var handler: Handler? = null
     private lateinit var runnable: Runnable
+    private lateinit var fatsecretViewModel: FatsecretViewModel
+    private lateinit var nutritionViewModel: NutritionViewModel
 
     private val params = LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -56,10 +68,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.progressbar.max = 100
+        binding.progressbar.progress = 0
+
         initViewModel()
         showBanner()
         showRecyclerProductBanner()
-        showRecyclerListBmi()
         setupAction()
         setupComponent()
     }
@@ -120,10 +134,11 @@ class HomeFragment : Fragment() {
         rvProductBanner.adapter = ProductBannerAdapter(Banner.getDataProductBanner)
     }
 
-    private fun showRecyclerListBmi() {
+    private fun showRecyclerListBmi(dataHistoryBmi: GetBmisHistoryResponse) {
         val rvHistoryBmi = binding.rvHistoryBmi
         rvHistoryBmi.layoutManager = LinearLayoutManager(requireContext())
-        rvHistoryBmi.adapter = ListBmiAdapter(Dummy.getListDataBmi)
+//        rvHistoryBmi.adapter = ListBmiAdapter(Dummy.getListDataBmi)
+        rvHistoryBmi.adapter = ListBmiAdapter(dataHistoryBmi.data)
     }
 
     private fun setupAction() {
@@ -143,6 +158,63 @@ class HomeFragment : Fragment() {
         userPreferencesViewModel.getUsername().observe(viewLifecycleOwner) { username ->
             binding.tvUsername.text = username
         }
+
+        userPreferencesViewModel.getTokenValue().observe(viewLifecycleOwner){ token ->
+            bmiHistoryViewModel.getBmisHistory(token)
+            bmiHistoryViewModel.resultBmisHistory.observe(viewLifecycleOwner){ result ->
+                when (result){
+                    is Result.Loading -> {
+                        binding.loadingHistoryBmi.visibility = View.VISIBLE
+                        binding.rvHistoryBmi.visibility = View.GONE
+                    }
+                    is Result.Success -> {
+                        binding.loadingHistoryBmi.visibility = View.GONE
+                        binding.rvHistoryBmi.visibility = View.VISIBLE
+
+                        showRecyclerListBmi(result.data)
+                    }
+                    is Result.ServerError -> {
+                        Toast.makeText(requireContext(), result.serverError, Toast.LENGTH_LONG).show()
+                    }
+                    else -> {}
+                }
+            }
+        }
+
+        userPreferencesViewModel.getTokenValue().observe(viewLifecycleOwner){ token ->
+            nutritionViewModel.getDailyNutrition(token)
+            nutritionViewModel.resultGetDailyNutrition.observe(viewLifecycleOwner){ result ->
+                when (result){
+                    is Result.Loading -> {
+                        binding.cl2.visibility = View.GONE
+                        binding.loadingDailyNutrition.visibility = View.VISIBLE
+                    }
+                    is Result.Success -> {
+                        val getData = result.data.data
+                        binding.cl2.visibility = View.VISIBLE
+                        binding.loadingDailyNutrition.visibility = View.GONE
+
+                        binding.apply {
+                            val totalCalories = getData.max_calories
+                            val currentCalories = getData.daily_calories
+                            targetCal.text = totalCalories
+                            currentCal.text = currentCalories
+                            val progressPercentage = (currentCalories.toDouble() / totalCalories.toDouble()) * 100
+                            binding.progressbar.progress = progressPercentage.toInt()
+                            currentPercentageCal.text = formatNumber(progressPercentage.toString())
+                            tvCurrentSugar.text = getData.daily_sugar
+                            tvCurrentCarbo.text = getData.daily_carbohydrate
+                            tvCurrentFat.text = getData.daily_fat
+                            tvCurrentProtein.text = getData.daily_protein
+                        }
+                    }
+                    is Result.ServerError -> {
+                        Toast.makeText(requireContext(),result.serverError, Toast.LENGTH_LONG).show()
+                    }
+                    else -> {}
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -156,5 +228,8 @@ class HomeFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireActivity().application)
         userPreferencesViewModel =
             ViewModelProvider(requireActivity(), factory)[UserPreferencesViewModel::class.java]
+        bmiHistoryViewModel = ViewModelProvider(requireActivity(), factory)[BMIHistoryViewModel::class.java]
+        fatsecretViewModel = ViewModelProvider(requireActivity(), factory)[FatsecretViewModel::class.java]
+        nutritionViewModel = ViewModelProvider(requireActivity(), factory)[NutritionViewModel::class.java]
     }
 }

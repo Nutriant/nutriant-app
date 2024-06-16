@@ -40,9 +40,9 @@ class DashboardWithBotNavActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(homeFragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, homeFragment)
+        transaction.replace(R.id.fragment_container, fragment)
         transaction.commit()
     }
 }

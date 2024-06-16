@@ -18,6 +18,19 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     private val IS_LOGGED_IN_KEY = booleanPreferencesKey("is_logged_in")
     private val EMAIL = stringPreferencesKey("email")
     private val USERNAME = stringPreferencesKey("username")
+    private val FATSECRET_TOKEN = stringPreferencesKey("fatsecret_token")
+
+    suspend fun setTokenFatsecret(token: String){
+        dataStore.edit { preferences ->
+            preferences[FATSECRET_TOKEN] = token
+        }
+    }
+
+    fun getTokenFatsecret(): Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[FATSECRET_TOKEN] ?: ""
+        }
+    }
 
     suspend fun setTokenValue(token: String) {
         dataStore.edit { preferences ->
