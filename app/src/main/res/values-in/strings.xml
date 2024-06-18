@@ -170,4 +170,12 @@
     <string name="calori_home">Kalori</string>
     <string name="skipInformation"><u>Lewati Informasi</u></string>
     <string name="cameraDesc">Pastikan arahkan kamera secara benar dan berada di tengah label nutrisi makanan atau minuman yang anda miliki</string>
+    <string name="bmiTerms"><u>Ketentuan BMI</u>></string>
+    <string name="metric_measurements">Pengukuran Metrik</string>
+    <string name="whoBMI">Menurut WHO, kategori standar berat badan ideal pria dan wanita berdasarkan BMI adalah:</string>
+    <string name="categoryBMI1">Kurang dari 18,5 menandakan kekurangan berat badan.</string>
+    <string name="categoryBMI2">- Antara 18,5 dan 24,9 menandakan berat badan normal.</string>
+    <string name="categoryBMI3">- Antara 25 dan 29,9 menandakan kelebihan berat badan.</string>
+    <string name="categoryBMI4">- Di atas 30 menandakan obesitas</string>
+    <string name="formulaBMI">Formula:\n [Berat Badan (kg) : {Tinggi Badan (m) x Tinggi Badan (m))]</string>
 </resources>
