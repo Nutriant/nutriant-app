@@ -35,8 +35,8 @@ class InformationLogActivity : AppCompatActivity() {
 
     private val launcherGallery = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
-    ){ uri: Uri? ->
-        if (uri != null){
+    ) { uri: Uri? ->
+        if (uri != null) {
             currentImage = uri
             binding.imgFood.setImageURI(uri)
         }
@@ -48,7 +48,7 @@ class InformationLogActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val bundle: Bundle? = intent.extras
-        if (bundle != null){
+        if (bundle != null) {
             getDataFromParseIntent(bundle)
         }
 
@@ -56,13 +56,53 @@ class InformationLogActivity : AppCompatActivity() {
         initViewModel()
         setupData()
         setupAction()
+
+        val extractedText = intent.getStringExtra("EXTRACTED_TEXT")
+        if (extractedText != null) {
+            extractNutritionalValues(extractedText)
+            setupData()
+        }
     }
 
-    private fun initComponents(){
+    private fun extractNutritionalValues(text: String) {
+        val keyTerms = mapOf(
+            "Energy" to listOf("energi total", "total energy", "calories", "Energi Total", "Total Energy", "Calories"),
+            "Fat" to listOf("lemak total", "total fat", "Lemak Total", "Total Fat"),
+            "Protein" to listOf("protein", "Protein"),
+            "Carbohydrate" to listOf("karbohidrat total", "total carbohydrate", "Karbohidrat Total", "Total Carbohydrate"),
+            "Sugar" to listOf("gula total", "total sugars", "gula", "sugar", "Gula Total", "Total Sugars", "Gula", "Sugar")
+        )
+
+        val nutritionalInfo = extractValuesFromText(text, keyTerms)
+        calor = nutritionalInfo["Energy"]?.toInt() ?: 0
+        karbo = nutritionalInfo["Carbohydrate"]?.toDouble() ?: 0.0
+        protein = nutritionalInfo["Protein"]?.toDouble() ?: 0.0
+        sugar = nutritionalInfo["Sugar"]?.toDouble() ?: 0.0
+        lemak = nutritionalInfo["Fat"]?.toDouble() ?: 0.0
+    }
+
+    private fun extractValuesFromText(text: String, keyTerms: Map<String, List<String>>): Map<String, String> {
+        val nutritionalInfo = mutableMapOf<String, String>()
+        for ((key, terms) in keyTerms) {
+            for (term in terms) {
+                val pattern = Regex("$term\\s+(\\d+(\\.\\d+)?)\\s*(g|kcal|mg)?", RegexOption.IGNORE_CASE)
+                val match = pattern.find(text)
+                if (match != null) {
+                    nutritionalInfo[key] = match.groupValues[1]
+                    break
+                }
+            }
+        }
+        return nutritionalInfo
+    }
+
+
+    private fun initComponents() {
         loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
         loadingDialog.apply {
             titleText = getString(R.string.loading)
-            progressHelper.barColor = ContextCompat.getColor(this@InformationLogActivity, R.color.greenApps)
+            progressHelper.barColor =
+                ContextCompat.getColor(this@InformationLogActivity, R.color.greenApps)
             setCancelable(false)
         }
         alertDialog = SweetAlertDialog(this@InformationLogActivity, SweetAlertDialog.ERROR_TYPE)
@@ -75,7 +115,7 @@ class InformationLogActivity : AppCompatActivity() {
         }
     }
 
-    private fun getDataFromParseIntent(bundle: Bundle){
+    private fun getDataFromParseIntent(bundle: Bundle) {
         bundle.apply {
             calor = getInt(DATA_CALORI, 0)
             karbo = getDouble(DATA_KARBO, 0.0)
@@ -86,7 +126,7 @@ class InformationLogActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupData(){
+    private fun setupData() {
         binding.apply {
             edCarbo.setText(karbo.toString())
             edFat.setText(lemak.toString())
@@ -97,7 +137,7 @@ class InformationLogActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.ivBack.setOnClickListener {
             startActivity(Intent(this, CameraActivity::class.java))
         }
@@ -112,7 +152,7 @@ class InformationLogActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveFood(){
+    private fun saveFood() {
         val carbo = binding.edCarbo.text.toString().trim().toDouble().toInt()
         val glucose = binding.edGlucose.text.toString().trim().toDouble().toInt()
         val fat = binding.edFat.text.toString().trim().toDouble().toInt()
@@ -120,12 +160,12 @@ class InformationLogActivity : AppCompatActivity() {
         val food_name = binding.edFoodAndBev.text.toString()
 
         var filePhoto: File? = null
-        if (currentImage != null){
+        if (currentImage != null) {
             val inputStream = this.contentResolver.openInputStream(currentImage!!)
             val cursor = this.contentResolver.query(currentImage!!, null, null, null, null)
             cursor?.use { c ->
                 val nameIndex = c.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                if (c.moveToFirst()){
+                if (c.moveToFirst()) {
                     val name = c.getString(nameIndex)
                     inputStream?.let { inputStream ->
                         val file = File(this.cacheDir, name)
@@ -140,7 +180,7 @@ class InformationLogActivity : AppCompatActivity() {
             }
         }
 
-        userPreferencesViewModel.getTokenValue().observe(this){ token ->
+        userPreferencesViewModel.getTokenValue().observe(this) { token ->
             foodViewModel.resultPostFood(
                 token,
                 food_name,
@@ -150,43 +190,55 @@ class InformationLogActivity : AppCompatActivity() {
                 protein,
                 carbo,
                 filePhoto
-            ).observe(this){ result ->
-                when (result){
+            ).observe(this) { result ->
+                when (result) {
                     is Result.Loading -> {
                         loadingDialog.show()
                     }
+
                     is Result.Success -> {
                         loadingDialog.dismiss()
-                        Toast.makeText(this@InformationLogActivity, result.data.message, Toast.LENGTH_LONG).show()
-                        val intent = Intent(this@InformationLogActivity, DashboardWithBotNavActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        Toast.makeText(
+                            this@InformationLogActivity,
+                            result.data.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                        val intent = Intent(
+                            this@InformationLogActivity,
+                            DashboardWithBotNavActivity::class.java
+                        )
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     }
+
                     is Result.ErrorPostFood -> {
                         loadingDialog.dismiss()
                         val error = result.error.message
 
-                        if (error.fat.isNotEmpty()){
+                        if (error.fat.isNotEmpty()) {
                             binding.edFat.error = error.fat[0]
                         }
-                        if (error.name.isNotEmpty()){
+                        if (error.name.isNotEmpty()) {
                             binding.edFoodAndBev.error = error.name[0]
                         }
-                        if (error.protein.isNotEmpty()){
+                        if (error.protein.isNotEmpty()) {
                             binding.edProtein.error = error.protein[0]
                         }
-                        if (error.sugar.isNotEmpty()){
+                        if (error.sugar.isNotEmpty()) {
                             binding.edGlucose.error = error.sugar[0]
                         }
-                        if (error.carbohydrate.isNotEmpty()){
+                        if (error.carbohydrate.isNotEmpty()) {
                             binding.edCarbo.error = error.carbohydrate[0]
                         }
                     }
+
                     is Result.ServerError -> {
                         loadingDialog.dismiss()
                         alertDialog.setContentText(result.serverError)
                         alertDialog.show()
                     }
+
                     else -> {
                         loadingDialog.dismiss()
                     }
@@ -195,10 +247,11 @@ class InformationLogActivity : AppCompatActivity() {
         }
     }
 
-    private fun initViewModel(){
+    private fun initViewModel() {
         val factory = ViewModelFactory.getInstance(this.application)
         foodViewModel = ViewModelProvider(this, factory)[FoodViewModel::class.java]
-        userPreferencesViewModel = ViewModelProvider(this, factory)[UserPreferencesViewModel::class.java]
+        userPreferencesViewModel =
+            ViewModelProvider(this, factory)[UserPreferencesViewModel::class.java]
     }
 
     companion object {

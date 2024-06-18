@@ -27,6 +27,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        mlModelBinding = true
     }
 
     buildTypes {
@@ -48,6 +49,19 @@ android {
 }
 
 dependencies {
+
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.9.0")
+    implementation ("org.tensorflow:tensorflow-lite:2.13.0")
+    implementation ("org.tensorflow:tensorflow-lite-select-tf-ops:2.4.0")
+//    implementation("com.googlecode.tesseract.android:tess-two:9.0.0")
+//    implementation("com.googlecode.leptonica.android:leptonica-android:1.74.4")
+    implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.4")
+
+    implementation ("com.google.mlkit:barcode-scanning:17.0.3")
+    implementation ("com.google.mlkit:text-recognition:16.0.0")
+    implementation ("com.google.mlkit:vision-common:16.0.0")
 
     val cameraxVersion = "1.3.0"
 
