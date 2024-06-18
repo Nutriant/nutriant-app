@@ -5,6 +5,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.OpenableColumns
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -66,11 +68,32 @@ class InformationLogActivity : AppCompatActivity() {
 
     private fun extractNutritionalValues(text: String) {
         val keyTerms = mapOf(
-            "Energy" to listOf("energi total", "total energy", "calories", "Energi Total", "Total Energy", "Calories"),
+            "Energy" to listOf(
+                "energi total",
+                "total energy",
+                "calories",
+                "Energi Total",
+                "Total Energy",
+                "Calories"
+            ),
             "Fat" to listOf("lemak total", "total fat", "Lemak Total", "Total Fat"),
             "Protein" to listOf("protein", "Protein"),
-            "Carbohydrate" to listOf("karbohidrat total", "total carbohydrate", "Karbohidrat Total", "Total Carbohydrate"),
-            "Sugar" to listOf("gula total", "total sugars", "gula", "sugar", "Gula Total", "Total Sugars", "Gula", "Sugar")
+            "Carbohydrate" to listOf(
+                "karbohidrat total",
+                "total carbohydrate",
+                "Karbohidrat Total",
+                "Total Carbohydrate"
+            ),
+            "Sugar" to listOf(
+                "gula total",
+                "total sugars",
+                "gula",
+                "sugar",
+                "Gula Total",
+                "Total Sugars",
+                "Gula",
+                "Sugar"
+            )
         )
 
         val nutritionalInfo = extractValuesFromText(text, keyTerms)
@@ -81,11 +104,15 @@ class InformationLogActivity : AppCompatActivity() {
         lemak = nutritionalInfo["Fat"]?.toDouble() ?: 0.0
     }
 
-    private fun extractValuesFromText(text: String, keyTerms: Map<String, List<String>>): Map<String, String> {
+    private fun extractValuesFromText(
+        text: String,
+        keyTerms: Map<String, List<String>>
+    ): Map<String, String> {
         val nutritionalInfo = mutableMapOf<String, String>()
         for ((key, terms) in keyTerms) {
             for (term in terms) {
-                val pattern = Regex("$term\\s+(\\d+(\\.\\d+)?)\\s*(g|kcal|mg)?", RegexOption.IGNORE_CASE)
+                val pattern =
+                    Regex("$term\\s+(\\d+(\\.\\d+)?)\\s*(g|kcal|mg)?", RegexOption.IGNORE_CASE)
                 val match = pattern.find(text)
                 if (match != null) {
                     nutritionalInfo[key] = match.groupValues[1]
@@ -150,6 +177,26 @@ class InformationLogActivity : AppCompatActivity() {
         binding.imgFood.setOnClickListener {
             launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
+
+        val textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(p0: Editable?) {
+                binding.btSaveHistory.setButtonInformationLog(
+                    etFoodNameResult = binding.edFoodAndBev.text.toString(),
+                    etProteinResult = binding.edProtein.text.toString(),
+                    etFatResult = binding.edFat.text.toString(),
+                    etCarbohydrateResult = binding.edCarbo.text.toString()
+                )
+            }
+        }
+
+        binding.edFoodAndBev.addTextChangedListener(textWatcher)
+        binding.edProtein.addTextChangedListener(textWatcher)
+        binding.edFat.addTextChangedListener(textWatcher)
+        binding.edCarbo.addTextChangedListener(textWatcher)
     }
 
     private fun saveFood() {

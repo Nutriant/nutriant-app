@@ -56,7 +56,7 @@ class OnboardActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         fragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.enter_right_to_left, R.anim.enter_left_to_right)
+            .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_left_to_right)
             .replace(R.id.fragmentView, fragment)
             .commit()
         setFabVisibility(fragment)
@@ -66,7 +66,7 @@ class OnboardActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         fragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_left_to_right)
+            .setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_right_to_left)
             .replace(R.id.fragmentView, fragment)
             .commit()
         setFabVisibility(fragment)

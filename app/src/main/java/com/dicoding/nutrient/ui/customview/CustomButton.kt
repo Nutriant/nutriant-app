@@ -44,7 +44,7 @@ class CustomButton : AppCompatButton {
     fun setButtonEnableAssestment(
         etHeightResult: CharSequence?,
         etWeightResult: CharSequence?
-    ){
+    ) {
         isEnabled = (etWeightResult != null && etWeightResult.toString().isNotEmpty()) &&
                 (etHeightResult != null && etHeightResult.toString().isNotEmpty())
     }
@@ -54,7 +54,52 @@ class CustomButton : AppCompatButton {
         etPasswordResultConfirmation: CharSequence?
     ) {
         isEnabled = (etPasswordResult != null && etPasswordResult.toString().isNotEmpty()) &&
-                (etPasswordResultConfirmation != null && etPasswordResultConfirmation.toString().isNotEmpty())
+                (etPasswordResultConfirmation != null && etPasswordResultConfirmation.toString()
+                    .isNotEmpty())
     }
+
+    fun setButtonEnableFillFnBManual(
+        etFoodNameResult: CharSequence?,
+        etPortionResult: CharSequence?,
+        etServingGramResult: CharSequence?,
+        etProteinResult: CharSequence?,
+        etFatResult: CharSequence?,
+        etCarbohydrateResult: CharSequence?
+    ) {
+        isEnabled = etPortionResult != null && etPortionResult.toString().isNotEmpty() &&
+                etServingGramResult != null && etServingGramResult.toString().isNotEmpty() &&
+                (etFoodNameResult != null && etFoodNameResult.toString().isNotEmpty()) &&
+                (etProteinResult != null && etProteinResult.toString().isNotEmpty()) &&
+                (etFatResult != null && etFatResult.toString().isNotEmpty()) &&
+                (etCarbohydrateResult != null && etCarbohydrateResult.toString().isNotEmpty())
+    }
+
+    fun setButtonInformationLog(
+        etFoodNameResult: CharSequence?,
+        etProteinResult: CharSequence?,
+        etFatResult: CharSequence?,
+        etCarbohydrateResult: CharSequence?
+    ) {
+        isEnabled =
+            (etFoodNameResult != null && etFoodNameResult.toString().isNotEmpty()) &&
+                    (etProteinResult != null && etProteinResult.toString().isNotEmpty()) &&
+                    (etFatResult != null && etFatResult.toString().isNotEmpty()) &&
+                    (etCarbohydrateResult != null && etCarbohydrateResult.toString().isNotEmpty())
+    }
+
+    fun setButtonPersonalData(
+        etNameResult: CharSequence?,
+        etDOBResult: CharSequence?,
+        etGenderResult: CharSequence?,
+        etHeightResult: CharSequence?,
+        etWeightResult: CharSequence?
+    ) {
+        isEnabled = ((etNameResult != null && etNameResult.toString().isNotEmpty())) &&
+                ((etDOBResult != null && etDOBResult.toString().isNotEmpty())) &&
+                ((etGenderResult != null && etGenderResult.toString().isNotEmpty())) &&
+                ((etHeightResult != null && etHeightResult.toString().isNotEmpty())) &&
+                ((etWeightResult != null && etWeightResult.toString().isNotEmpty()))
+    }
+
 
 }
