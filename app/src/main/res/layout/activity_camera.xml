@@ -22,44 +22,53 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvInferenceTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/poppinsbold"
             android:lines="1"
             android:padding="16dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
             android:text="@string/scan_label"
-            android:fontFamily="@font/poppinsbold"/>
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
         <ImageView
             android:id="@+id/ivBackNavs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/backnavs"
+            android:layout_marginStart="24dp"
             android:paddingTop="16dp"
-            android:layout_marginStart="24dp"/>
+            android:src="@drawable/backnavs" />
     </FrameLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/framecamera"
-        android:foregroundGravity="center"/>
+        android:foregroundGravity="center"
+        android:src="@drawable/framecamera" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:background="@color/white"
         android:paddingTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:gravity="center"
+            android:text="@string/cameraDesc"
+            android:textSize="14sp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCapture"
@@ -68,8 +77,8 @@
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/greenApps"
-            android:src="@drawable/camera"
-            android:contentDescription="@string/scan"/>
+            android:contentDescription="@string/scan"
+            android:src="@drawable/camera" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabGallery"
@@ -79,8 +88,8 @@
             android:layout_marginEnd="64dp"
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/white"
-            android:src="@drawable/bx_photo_album"
-            android:contentDescription="@string/gallery"/>
+            android:contentDescription="@string/gallery"
+            android:src="@drawable/bx_photo_album" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabFlashlight"
@@ -90,7 +99,7 @@
             android:layout_marginStart="64dp"
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/white"
-            android:src="@drawable/flashlight_svgrepo_com"
-            android:contentDescription="@string/flashlight"/>
+            android:contentDescription="@string/flashlight"
+            android:src="@drawable/flashlight_svgrepo_com" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

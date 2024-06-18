@@ -2,6 +2,7 @@ package com.dicoding.nutrient.ui.fragments.onboards
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.dicoding.nutrient.R
 import com.dicoding.nutrient.databinding.FragmentThirdOnboardingBinding
+import com.dicoding.nutrient.ui.activities.LoginActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,6 +48,9 @@ class ThirdOnboardingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.skipInformation.setOnClickListener {
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+        }
         playAnimation()
     }
 

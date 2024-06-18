@@ -4,46 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.activities.RegisterActivity"
-        android:padding="16dp">
+        android:padding="16dp"
+        tools:context=".ui.activities.RegisterActivity">
 
         <TextView
-            android:layout_marginTop="16dp"
             android:id="@+id/registerTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/poppinsbold"
+            android:gravity="center"
             android:text="@string/create_account"
             android:textSize="24sp"
-            android:gravity="center"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitleUsername"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tvTitleUsername"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_marginTop="16dp"
             android:id="@+id/tvTitleUsername"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registerTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/poppinsregular"
             android:text="@string/username"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerTitle" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             style="@style/LoginTextInputOuterFieldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:alpha="1"
             app:boxStrokeColor="@color/greenApps"
             app:hintTextColor="@color/greenApps"
             app:layout_constraintBottom_toTopOf="@+id/tvTitleGender"
@@ -51,11 +55,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleUsername"
             app:startIconDrawable="@drawable/baseline_people_24"
-            tools:alpha="100"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:alpha="1">
+            tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_register_username"
@@ -69,102 +69,102 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:layout_marginTop="8dp"
             android:id="@+id/tvTitleGender"
-            app:layout_constraintBottom_toTopOf="@+id/spinnerGender"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/poppinsregular"
             android:text="@string/gender"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerGender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
         <!--    Spinner goes here -->
         <Spinner
             android:id="@+id/spinnerGender"
             android:layout_width="0dp"
-            android:padding="8dp"
-            android:minHeight="48dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitleDateOfBirth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tvTitleDateOfBirth"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleGender" />
 
         <TextView
             android:id="@+id/tvTitleDateOfBirth"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutDOB"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
             android:text="@string/date_of_birth"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutDOB"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerGender" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutDOB"
             style="@style/LoginTextInputOuterFieldStyle"
-            app:boxStrokeColor="@color/greenApps"
-            app:hintTextColor="@color/greenApps"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleDateOfBirth"
-            app:layout_constraintBottom_toTopOf="@id/tvTitleEmail"
-            app:startIconDrawable="@drawable/baseline_calendar_month_24"
-            tools:alpha="100"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:alpha="1">
+            android:alpha="1"
+            app:boxStrokeColor="@color/greenApps"
+            app:hintTextColor="@color/greenApps"
+            app:layout_constraintBottom_toTopOf="@id/tvTitleEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleDateOfBirth"
+            app:startIconDrawable="@drawable/baseline_calendar_month_24"
+            tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_register_dob"
                 style="@style/LoginTextInputInnerFieldStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
                 android:fontFamily="@font/poppinsregular"
                 android:hint="@string/ph_dateOfBirth"
-                android:focusableInTouchMode="false"
                 android:inputType="date"
                 android:padding="18dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tvTitleEmail"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutEmail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDOB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
+            android:paddingTop="16dp"
             android:text="@string/verify_through_email"
             android:textSize="12sp"
-            android:paddingTop="16dp"/>
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDOB" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutEmail"
             style="@style/LoginTextInputOuterFieldStyle"
-            app:boxStrokeColor="@color/greenApps"
-            app:hintTextColor="@color/greenApps"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleEmail"
-            app:layout_constraintBottom_toTopOf="@id/tvTitlePassword"
-            app:startIconDrawable="@drawable/baseline_email_24"
-            tools:alpha="100"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:alpha="1">
+            android:alpha="1"
+            app:boxStrokeColor="@color/greenApps"
+            app:hintTextColor="@color/greenApps"
+            app:layout_constraintBottom_toTopOf="@id/tvTitlePassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleEmail"
+            app:startIconDrawable="@drawable/baseline_email_24"
+            tools:alpha="100">
 
             <com.dicoding.nutrient.ui.customview.CustomEditTextEmail
                 android:id="@+id/ed_register_email"
@@ -179,17 +179,17 @@
 
         <TextView
             android:id="@+id/tvTitlePassword"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
+            android:paddingTop="16dp"
             android:text="@string/password"
             android:textSize="12sp"
-            android:paddingTop="16dp"/>
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail" />
 
         <com.dicoding.nutrient.ui.customview.CustomTextInputLayout
             android:id="@+id/textInputLayoutPassword"
@@ -202,36 +202,36 @@
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
             app:hintTextColor="@color/greenApps"
+            app:layout_constraintBottom_toTopOf="@id/tvTitlePasswordConfirm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitlePassword"
-            app:layout_constraintBottom_toTopOf="@id/tvTitlePasswordConfirm"
             app:startIconDrawable="@drawable/baseline_password_24"
             tools:alpha="100">
 
             <com.dicoding.nutrient.ui.customview.CustomEditTextPassword
-                android:padding="18dp"
                 android:id="@+id/ed_register_password"
                 style="@style/LoginTextInputInnerFieldStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsregular"
                 android:hint="@string/ph_password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:padding="18dp" />
         </com.dicoding.nutrient.ui.customview.CustomTextInputLayout>
 
         <TextView
             android:id="@+id/tvTitlePasswordConfirm"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutPasswordConfirm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppinsregular"
             android:text="@string/confirm_password"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutPasswordConfirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
 
         <com.dicoding.nutrient.ui.customview.CustomTextInputLayout
             android:id="@+id/textInputLayoutPasswordConfirm"
@@ -244,10 +244,10 @@
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
             app:hintTextColor="@color/greenApps"
+            app:layout_constraintBottom_toTopOf="@+id/buttonRegisterActivity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitlePasswordConfirm"
-            app:layout_constraintBottom_toTopOf="@+id/buttonRegisterActivity"
             app:startIconDrawable="@drawable/baseline_password_24"
             tools:alpha="100">
 
@@ -263,10 +263,6 @@
 
         <com.dicoding.nutrient.ui.customview.CustomButton
             android:id="@+id/buttonRegisterActivity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPasswordConfirm"
-            tools:alpha="100"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -274,13 +270,18 @@
             android:enabled="false"
             android:fontFamily="@font/poppinsregular"
             android:text="@string/register_account"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPasswordConfirm"
+            tools:alpha="100" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
             android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonRegisterActivity">
@@ -289,17 +290,15 @@
                 android:id="@+id/tvBeforeLoginNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:alpha="1"
                 android:fontFamily="@font/poppinsregular"
-                android:text="@string/before_back_to_login"/>
+                android:text="@string/before_back_to_login" />
 
             <TextView
-                android:layout_marginStart="8dp"
                 android:id="@+id/tvLoginNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
                 android:alpha="1"
                 android:fontFamily="@font/poppinsregular"
                 android:text="@string/back_to_login"

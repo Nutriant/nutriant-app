@@ -15,7 +15,7 @@
     <string name="getinformation_description">Don\'t worry about the information provided by the nutrition label, you can see all the detailed information that will be calculated with your daily health status.</string>
     <string name="get_information_title">Get Information</string>
     <string name="trackwithlabel_title">Track with Label</string>
-    <string name="trackwithlabel_description">You can scan the nutrition label to see the detailed information on the package.</string>
+    <string name="trackwithlabel_description">You can scan the nutrition label to see the detailed information on the package. Get some nutrition like Calories, Carbo, Protein, and Fat</string>
     <string name="connectBMI_description">Connect your BMI so that you can know the nutrition obtained from the packaged food or drinks that you will consume every day.</string>
     <string name="connectBMI_title">Connect Your BMI</string>
     <string name="sign_in">Sign In</string>
@@ -168,4 +168,6 @@
     <string name="fat_home">Fat</string>
     <string name="carbo_home">Carbo</string>
     <string name="calori_home">Calori</string>
+    <string name="skipInformation"><u>Skip Information</u></string>
+    <string name="cameraDesc">Make sure to point the camera correctly and center the nutrition label of the food or drink you have</string>
 </resources>

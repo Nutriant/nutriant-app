@@ -25,9 +25,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:src="@drawable/nutrientlogo" />
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:src="@drawable/nutrientlogin" />
 
             <TextView
                 android:id="@+id/loginTitle"
@@ -143,10 +143,43 @@
                 android:text="@string/sign_in"
                 android:textColor="@color/white" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonLoginActivity"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/tvBeforeRegister"
+                    tools:alpha="100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="1"
+                    android:fontFamily="@font/poppinsregular"
+                    android:text="@string/before_register"
+                    android:layout_marginEnd="6dp"/>
+
+                <TextView
+                    android:id="@+id/tvRegisterNow"
+                    tools:alpha="100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="1"
+                    android:fontFamily="@font/poppinsregular"
+                    android:text="@string/register_here"
+                    android:textColor="@color/greenApps"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineHorizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintGuide_percent="0.45"
+                app:layout_constraintGuide_percent="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="64dp"
@@ -162,33 +195,5 @@
                 android:indeterminate="true"
                 android:visibility="gone" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/tvBeforeRegister"
-                tools:alpha="100"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="1"
-                android:fontFamily="@font/poppinsregular"
-                android:text="@string/before_register"
-                android:layout_marginEnd="6dp"/>
-
-            <TextView
-                android:id="@+id/tvRegisterNow"
-                tools:alpha="100"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="1"
-                android:fontFamily="@font/poppinsregular"
-                android:text="@string/register_here"
-                android:textColor="@color/greenApps"
-                android:textStyle="italic" />
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

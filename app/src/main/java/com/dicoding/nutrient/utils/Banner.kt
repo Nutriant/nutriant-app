@@ -19,6 +19,12 @@ object Banner {
         UUID.randomUUID().toString(),
     )
 
+    val urlBanner = arrayOf(
+        "https://my.clevelandclinic.org/health/diseases/11209-weight-control-and-obesity",
+        "https://my.clevelandclinic.org/health/diseases/23296-marasmus",
+        "https://my.clevelandclinic.org/health/diseases/23099-kwashiorkor"
+    )
+
     private val productImageBanner = arrayOf(
         R.drawable.chitato,
         R.drawable.ultramilk,
@@ -65,10 +71,12 @@ object Banner {
                 for (i in imageBanner.indices){
                     val getImageBanner = imageBanner[i]
                     val getIdBanner = idBanner[i]
+                    val getUrlBanner = urlBanner[i]
 
                     listBanner.add(DataBanner(
                         getIdBanner,
-                        getImageBanner
+                        getImageBanner,
+                        getUrlBanner
                     ))
                 }
                 return listBanner

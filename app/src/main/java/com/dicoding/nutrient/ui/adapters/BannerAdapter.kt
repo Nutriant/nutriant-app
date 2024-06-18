@@ -1,6 +1,8 @@
 package com.dicoding.nutrient.ui.adapters
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.nutrient.data.model.banner.DataBanner
 import com.dicoding.nutrient.databinding.ItemBannerBinding
+import com.dicoding.nutrient.utils.Banner
 
 class BannerAdapter : ListAdapter<DataBanner, BannerAdapter.ViewHolder>(DIFF_CALLBACK) {
 
@@ -22,6 +25,10 @@ class BannerAdapter : ListAdapter<DataBanner, BannerAdapter.ViewHolder>(DIFF_CAL
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val getBaner = getItem(position)
         holder.binding.imageItemBanner.setImageDrawable(holder.itemView.context.getDrawable(getBaner.image))
+        holder.itemView.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(Banner.urlBanner[position]))
+            it.context.startActivity(intent)
+        }
     }
 
     companion object {

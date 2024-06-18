@@ -2,10 +2,12 @@ package com.dicoding.nutrient.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.dicoding.nutrient.R
 import com.dicoding.nutrient.databinding.ActivityOnboardBinding
+import com.dicoding.nutrient.ui.fragments.onboards.FirstOnboardingFragment
 import com.dicoding.nutrient.ui.fragments.onboards.SecondOnboardingFragment
 import com.dicoding.nutrient.ui.fragments.onboards.ThirdOnboardingFragment
 
@@ -21,30 +23,60 @@ class OnboardActivity : AppCompatActivity() {
         setContentView(binding.root)
         initComponents()
         setupAction()
+        loadFragment(fragmentCounter[counter])
     }
 
     private fun initComponents() {
-        fragmentCounter = mutableListOf(SecondOnboardingFragment(), ThirdOnboardingFragment())
+        fragmentCounter = mutableListOf(
+            FirstOnboardingFragment(),
+            SecondOnboardingFragment(),
+            ThirdOnboardingFragment()
+        )
     }
 
     private fun setupAction(){
         binding.fab.setOnClickListener {
-            if (fragmentCounter.size == counter){
+            if (fragmentCounter.size == counter + 1) {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             } else {
-                loadFragment(fragmentCounter[counter])
                 counter++
+                loadFragment(fragmentCounter[counter])
+            }
+        }
+        binding.fabBack.setOnClickListener {
+            if (counter > 0) {
+                counter--
+                loadFragmentBack(fragmentCounter[counter])
             }
         }
     }
 
-    private fun loadFragment(fragment: Fragment){
+    private fun loadFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         fragmentManager
             .beginTransaction()
             .setCustomAnimations(R.anim.enter_right_to_left, R.anim.enter_left_to_right)
             .replace(R.id.fragmentView, fragment)
             .commit()
+        setFabVisibility(fragment)
+    }
+
+    private fun loadFragmentBack(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        fragmentManager
+            .beginTransaction()
+            .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_left_to_right)
+            .replace(R.id.fragmentView, fragment)
+            .commit()
+        setFabVisibility(fragment)
+    }
+
+    private fun setFabVisibility(fragment: Fragment) {
+        if (fragment is FirstOnboardingFragment) {
+            binding.fabBack.visibility = View.GONE
+        } else {
+            binding.fabBack.visibility = View.VISIBLE
+        }
     }
 }
