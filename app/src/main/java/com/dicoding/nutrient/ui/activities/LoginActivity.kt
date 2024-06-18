@@ -1,5 +1,6 @@
 package com.dicoding.nutrient.ui.activities
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         setupAction()
     }
 
-    private fun initComponents(){
+    private fun initComponents() {
         loadingDialog = SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
         loadingDialog.apply {
             titleText = getString(R.string.loading)
@@ -51,28 +52,37 @@ class LoginActivity : AppCompatActivity() {
             buttonLoginActivity.setOnClickListener {
                 val email = edLoginEmail.text.toString()
                 val password = edLoginPassword.text.toString()
-                loginViewModel.login(email, password).observe(this@LoginActivity){ result ->
-                    when(result){
+                loginViewModel.login(email, password).observe(this@LoginActivity) { result ->
+                    when (result) {
                         is Result.Loading -> {
                             loadingDialog.show()
                         }
+
                         is Result.Success -> {
                             loadingDialog.dismiss()
-                            if (result.data.new_user == 1){
-                                val intent = Intent(this@LoginActivity, SelfAssesmentActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            if (result.data.new_user == 1) {
+                                val intent =
+                                    Intent(this@LoginActivity, SelfAssesmentActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
                             } else {
-                                val intent = Intent(this@LoginActivity, DashboardWithBotNavActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                val intent = Intent(
+                                    this@LoginActivity,
+                                    DashboardWithBotNavActivity::class.java
+                                )
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
                             }
                         }
+
                         is Result.ErrorLogin -> {
                             loadingDialog.dismiss()
                             alertDialog.setContentText(result.errorLogin.message)
                             alertDialog.show()
                         }
+
                         else -> {
                             loadingDialog.dismiss()
                         }
@@ -80,7 +90,14 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             tvRegisterNow.setOnClickListener {
-                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+                val options = ActivityOptions.makeSceneTransitionAnimation(
+                    this@LoginActivity,
+                    tvRegisterNow,
+                    getString(R.string.register_account)
+                ).toBundle()
+
+                startActivity(intent, options)
             }
 
             val textWatcher = object : TextWatcher {
@@ -106,8 +123,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun initViewModel(){
+    private fun initViewModel() {
         val factory = ViewModelFactory.getInstance(this@LoginActivity.application)
-        loginViewModel = ViewModelProvider(this@LoginActivity, factory).get(LoginViewModel::class.java)
+        loginViewModel =
+            ViewModelProvider(this@LoginActivity, factory).get(LoginViewModel::class.java)
     }
 }

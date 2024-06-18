@@ -1,5 +1,6 @@
 package com.dicoding.nutrient.ui.activities
 
+import android.app.ActivityOptions
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Color
@@ -104,7 +105,14 @@ class RegisterActivity : AppCompatActivity() {
                     }
             }
             tvLoginNow.setOnClickListener {
-                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                val options = ActivityOptions.makeSceneTransitionAnimation(
+                    this@RegisterActivity,
+                    tvLoginNow,
+                    getString(R.string.register_account)
+                ).toBundle()
+
+                startActivity(intent, options)
             }
         }
 

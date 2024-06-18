@@ -94,6 +94,12 @@ class PersonalDataActivity : AppCompatActivity() {
             showDialog()
         }
 
+        binding.edPersonaldataEmail.apply {
+            isEnabled = false
+            setTextColor(ContextCompat.getColor(this@PersonalDataActivity, R.color.lightGray))
+            setHintTextColor(ContextCompat.getColor(this@PersonalDataActivity, R.color.lightGray))
+        }
+
         binding.avImage.setOnClickListener {
             launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }

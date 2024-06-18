@@ -21,6 +21,7 @@ import com.dicoding.nutrient.databinding.ActivityProfileFragmentBinding
 import com.dicoding.nutrient.databinding.CustomPopupDialogBinding
 import com.dicoding.nutrient.ui.activities.ChangePasswordActivity
 import com.dicoding.nutrient.ui.activities.DashboardWithBotNavActivity
+import com.dicoding.nutrient.ui.activities.LoginActivity
 import com.dicoding.nutrient.ui.activities.PersonalDataActivity
 import com.dicoding.nutrient.ui.fragments.childfragment.BottomSheetAboutAppsFragment
 import com.dicoding.nutrient.ui.viewmodels.LogoutViewModel
@@ -80,6 +81,7 @@ class ProfileFragment : Fragment() {
                                 loadingDialog.dismiss()
                                 requireActivity().finishAffinity()
                                 logoutViewModel.logout(token).removeObserver(this)
+                                startActivity(Intent(requireContext(), LoginActivity::class.java))
                             }
 
                             is Result.Error -> {
