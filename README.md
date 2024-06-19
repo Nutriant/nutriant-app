@@ -1,7 +1,7 @@
 
 # Nutrient Application
 
-Nutrient is an application designed to help you track your daily nutrition intake, scan nutrition labels, access related articles, search for products, view your data history, verify emails and authenticate users, and calculate BMI.
+Nutrient is an application designed to help you track your daily nutrition intake, scan nutrition labels, access related articles, search for products, view your data history, account registrations, calculate BMI, change password, personalization, and language.
 
 ## Features
 
