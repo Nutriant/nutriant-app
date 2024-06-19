@@ -27,6 +27,8 @@ import com.dicoding.nutrient.R
 import com.dicoding.nutrient.databinding.ActivityCameraBinding
 import com.dicoding.nutrient.ml.ObjectDetectionHelper
 import com.dicoding.nutrient.ml.TextRecognitionProcessor
+import com.dicoding.nutrient.utils.GetDataScanNutrition
+import com.google.mlkit.vision.text.Text
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -170,8 +172,10 @@ class CameraActivity : AppCompatActivity() {
         // OCR processing
         val textRecognitionProcessor = TextRecognitionProcessor()
         textRecognitionProcessor.recognizeText(bitmap, { visionText ->
-            val extractedText = visionText.text
-            Log.d(TAG, "Extracted Text: $extractedText")
+            val extractedText = extractLeftToRightText(visionText).joinToString(" ")
+//            val getRegexMap = extractedText.GetDataScanNutrition()
+            Log.d(TAG, "Extracted Text: ${extractedText.trimIndent()}")
+//            Log.d("MAP", getRegexMap.get("Lemak").toString())
 
             val intent = Intent(this, InformationLogActivity::class.java).apply {
                 putExtra("EXTRACTED_TEXT", extractedText)
@@ -181,6 +185,39 @@ class CameraActivity : AppCompatActivity() {
             Log.e(TAG, "Text recognition failed: ${e.message}", e)
             showToast("Text recognition failed: ${e.message}")
         })
+    }
+
+    fun extractLeftToRightText(visionText: Text): List<String> {
+        val horizontalText = mutableListOf<String>()
+
+        // Gather all lines of text
+        val lines = mutableListOf<Text.Line>()
+        for (block in visionText.textBlocks) {
+            lines.addAll(block.lines)
+        }
+
+        // Sort lines by their vertical position (top coordinate)
+        lines.sortBy { it.boundingBox?.top }
+
+        // Process each line
+        for (line in lines) {
+            horizontalText.add(correctOcrErrors(line.text))
+        }
+
+        return horizontalText
+    }
+
+    private fun correctOcrErrors(text: String): String {
+        // Define a regex pattern to identify common errors where '9' should be 'g'
+        val pattern = Regex("(\\d)9\\b")  // Look for a digit followed by '9' at the end of a word
+
+        // Replace '9' with 'g'
+        val correctedText = pattern.replace(text) { result ->
+            val digit = result.groupValues[1]
+            "$digit"
+        }
+
+        return correctedText
     }
 
 

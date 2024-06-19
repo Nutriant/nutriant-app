@@ -53,9 +53,10 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
     implementation("org.tensorflow:tensorflow-lite-metadata:0.4.4")
     implementation("org.tensorflow:tensorflow-lite-gpu:2.9.0")
-    implementation ("org.tensorflow:tensorflow-lite:2.13.0")
-    implementation ("org.tensorflow:tensorflow-lite-select-tf-ops:2.4.0")
-//    implementation("com.googlecode.tesseract.android:tess-two:9.0.0")
+    implementation ("org.tensorflow:tensorflow-lite:2.16.1")
+//    implementation ("net.sourceforge.tess4j:tess4j:4.5.4")
+    implementation ("org.tensorflow:tensorflow-lite-select-tf-ops:2.16.1")
+//    implementation("com.googlecode.tesseract.android:tess-two:7.0.0")
 //    implementation("com.googlecode.leptonica.android:leptonica-android:1.74.4")
     implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.4")
 

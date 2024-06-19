@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.util.Log
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
+import org.tensorflow.lite.flex.FlexDelegate
 import org.tensorflow.lite.support.common.FileUtil
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
@@ -15,7 +16,12 @@ class ObjectDetectionHelper(context: Context) {
 
     init {
         val model = FileUtil.loadMappedFile(context, "modelnewbanget.tflite")
-        interpreter = Interpreter(model)
+
+        // Initialize Flex delegate
+        val flexDelegate = FlexDelegate()
+        val options = Interpreter.Options().addDelegate(flexDelegate)
+
+        interpreter = Interpreter(model, options)
 
         // Debug: Print input tensor shape and type
         val inputTensorShape = interpreter.getInputTensor(0).shape()
@@ -30,39 +36,38 @@ class ObjectDetectionHelper(context: Context) {
         val inputTensorShape = interpreter.getInputTensor(0).shape()
         val height = inputTensorShape[1]
         val width = inputTensorShape[2]
-        val channels = inputTensorShape[3]
 
         val resizedImage = Bitmap.createScaledBitmap(image, width, height, true)
 
         // Correct buffer size allocation
-        val inputBuffer = ByteBuffer.allocateDirect(4 * width * height * channels) // 4 bytes per float
+        val inputBuffer = ByteBuffer.allocateDirect(width * height * 3) // 1 byte per pixel
         inputBuffer.order(ByteOrder.nativeOrder())
 
         // Convert the image to ByteBuffer
         val intValues = IntArray(width * height)
         resizedImage.getPixels(intValues, 0, width, 0, 0, width, height)
-        var pixel = 0
-        for (i in 0 until height) {
-            for (j in 0 until width) {
-                val value = intValues[pixel++]
-                inputBuffer.putFloat(((value shr 16) and 0xFF) / 255.0f)
-                inputBuffer.putFloat(((value shr 8) and 0xFF) / 255.0f)
-                inputBuffer.putFloat((value and 0xFF) / 255.0f)
-            }
+        for (value in intValues) {
+            inputBuffer.put(((value shr 16) and 0xFF).toByte()) // Red channel
+            inputBuffer.put(((value shr 8) and 0xFF).toByte()) // Green channel
+            inputBuffer.put((value and 0xFF).toByte()) // Blue channel
         }
 
-        val outputBoxes = TensorBuffer.createFixedSize(intArrayOf(1, 100, 4), DataType.FLOAT32)
-        val outputScores = TensorBuffer.createFixedSize(intArrayOf(1, 100), DataType.FLOAT32)
-        val outputClasses = TensorBuffer.createFixedSize(intArrayOf(1, 100), DataType.FLOAT32)
-        val numDetections = TensorBuffer.createFixedSize(intArrayOf(1), DataType.FLOAT32)
+        // Prepare output buffers with correct sizes
+        val outputBoxes = TensorBuffer.createFixedSize(interpreter.getOutputTensor(0).shape(), DataType.FLOAT32)
+        val outputScores = TensorBuffer.createFixedSize(interpreter.getOutputTensor(1).shape(), DataType.FLOAT32)
+        val outputClasses = TensorBuffer.createFixedSize(interpreter.getOutputTensor(2).shape(), DataType.FLOAT32)
+        val numDetections = TensorBuffer.createFixedSize(interpreter.getOutputTensor(3).shape(), DataType.FLOAT32)
 
-        val outputMap = mapOf(
-            0 to outputBoxes.buffer,
-            1 to outputScores.buffer,
-            2 to outputClasses.buffer,
-            3 to numDetections.buffer
+        // Run model inference
+        interpreter.runForMultipleInputsOutputs(
+            arrayOf(inputBuffer),
+            mapOf(
+                0 to outputBoxes.buffer,
+                1 to outputScores.buffer,
+                2 to outputClasses.buffer,
+                3 to numDetections.buffer
+            )
         )
-        interpreter.runForMultipleInputsOutputs(arrayOf(inputBuffer), outputMap)
 
         val detections = mutableListOf<DetectionResult>()
         val numDetectionsValue = numDetections.floatArray[0].toInt()
