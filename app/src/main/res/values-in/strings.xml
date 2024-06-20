@@ -179,4 +179,5 @@
     <string name="categoryBMI4">- Di atas 30 menandakan obesitas</string>
     <string name="formulaBMI">Formula:\n [Berat Badan (kg) : {Tinggi Badan (m) x Tinggi Badan (m))]</string>
     <string name="warn_scan">Informasi yang diberikan oleh integrasi dalam teknologi auto filling belum tentu benar, pastikan untuk menyesuaikan kembali dengan informasi produk yang ingin anda konsumsi</string>
+    <string name="alert_model_text">Jika model tidak akurat mohon untuk isi manual</string>
 </resources>

@@ -84,6 +84,15 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppinsbold"
+            android:textColor="@color/redApps"
+            android:text="@string/alert_model_text"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/poppinsbold"
             android:text="@string/nutrition_facts"
             android:textSize="18sp" />
 
