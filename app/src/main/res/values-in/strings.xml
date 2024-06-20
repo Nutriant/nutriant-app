@@ -178,4 +178,5 @@
     <string name="categoryBMI3">- Antara 25 dan 29,9 menandakan kelebihan berat badan.</string>
     <string name="categoryBMI4">- Di atas 30 menandakan obesitas</string>
     <string name="formulaBMI">Formula:\n [Berat Badan (kg) : {Tinggi Badan (m) x Tinggi Badan (m))]</string>
+    <string name="alert_model_text">Jika model tidak akurat mohon untuk isi manual</string>
 </resources>

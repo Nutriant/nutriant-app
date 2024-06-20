@@ -178,4 +178,5 @@
     <string name="categoryBMI3">- Between 25 and 29.9 signifies overweight.</string>
     <string name="categoryBMI4">- Above 30 signifies obesity</string>
     <string name="formulaBMI">Formula:\n [Body Weight (kg) : {Body Height (m) x Body Height (m))]</string>
+    <string name="alert_model_text">If the model is not accurate please fill manual</string>
 </resources>
