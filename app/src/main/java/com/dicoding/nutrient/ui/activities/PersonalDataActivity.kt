@@ -87,7 +87,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
     private fun setupAction(){
         binding.ivBack.setOnClickListener {
-            startActivity(Intent(this, DashboardWithBotNavActivity::class.java))
+            onBackPressed()
         }
 
         binding.btSaveProfile.setOnClickListener {

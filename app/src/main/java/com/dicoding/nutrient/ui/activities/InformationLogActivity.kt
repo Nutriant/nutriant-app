@@ -108,7 +108,7 @@ class InformationLogActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.ivBack.setOnClickListener {
-            startActivity(Intent(this, SearchHomeActivity::class.java))
+            onBackPressed()
         }
 
         binding.btSaveHistory.setOnClickListener {

@@ -175,7 +175,7 @@ class InformationLogScanActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.ivBack.setOnClickListener {
-            startActivity(Intent(this, CameraActivity::class.java))
+            onBackPressed()
         }
 
         binding.btSaveHistory.setOnClickListener {

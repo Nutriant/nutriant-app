@@ -38,12 +38,7 @@ class ChangePasswordActivity : AppCompatActivity() {
 
     private fun setupContent() {
         binding.ivBack.setOnClickListener {
-            startActivity(
-                Intent(
-                    this@ChangePasswordActivity,
-                    DashboardWithBotNavActivity::class.java
-                )
-            )
+            onBackPressed()
         }
 
         binding.buttonChangePasswordActivity.setOnClickListener {
