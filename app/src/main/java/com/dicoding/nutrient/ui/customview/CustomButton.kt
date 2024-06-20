@@ -78,13 +78,15 @@ class CustomButton : AppCompatButton {
         etFoodNameResult: CharSequence?,
         etProteinResult: CharSequence?,
         etFatResult: CharSequence?,
-        etCarbohydrateResult: CharSequence?
+        etCarbohydrateResult: CharSequence?,
+        etCaloriesResult: CharSequence?
     ) {
         isEnabled =
             (etFoodNameResult != null && etFoodNameResult.toString().isNotEmpty()) &&
                     (etProteinResult != null && etProteinResult.toString().isNotEmpty()) &&
                     (etFatResult != null && etFatResult.toString().isNotEmpty()) &&
-                    (etCarbohydrateResult != null && etCarbohydrateResult.toString().isNotEmpty())
+                    (etCarbohydrateResult != null && etCarbohydrateResult.toString().isNotEmpty()) &&
+                    (etCaloriesResult != null && etCaloriesResult.toString().isNotEmpty())
     }
 
     fun setButtonPersonalData(

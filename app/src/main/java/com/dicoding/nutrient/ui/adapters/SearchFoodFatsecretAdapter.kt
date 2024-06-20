@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.nutrient.R
 import com.dicoding.nutrient.data.model.response.fatsecret.AllFood
-import com.dicoding.nutrient.data.model.response.fatsecret.GetSearchFoodResponse
 import com.dicoding.nutrient.databinding.ItemSearchFoodFatsecretBinding
 import com.dicoding.nutrient.ui.activities.InformationLogActivity
+import com.dicoding.nutrient.ui.activities.InformationLogScanActivity
 import com.dicoding.nutrient.utils.getDataNutritionFromDesc
 
 class SearchFoodFatsecretAdapter
@@ -26,11 +26,11 @@ class SearchFoodFatsecretAdapter
                     val intent = Intent(itemView.context, InformationLogActivity::class.java)
                     // Berikan put extra disini
                     intent.apply {
-                        putExtra(InformationLogActivity.DATA_CALORI, mapOfNutrition["Calories"]!!.toInt())
-                        putExtra(InformationLogActivity.DATA_KARBO, mapOfNutrition["Carbs"]!!.toDouble())
-                        putExtra(InformationLogActivity.DATA_PROTEIN, mapOfNutrition["Protein"]!!.toDouble())
-                        putExtra(InformationLogActivity.DATA_LEMAK, mapOfNutrition["Fat"]!!.toDouble())
-                        putExtra(InformationLogActivity.NAME_FOOD, clickedFood.food_name)
+                        putExtra(InformationLogScanActivity.DATA_CALORI, mapOfNutrition["Calories"]!!.toInt())
+                        putExtra(InformationLogScanActivity.DATA_KARBO, mapOfNutrition["Carbs"]!!.toDouble())
+                        putExtra(InformationLogScanActivity.DATA_PROTEIN, mapOfNutrition["Protein"]!!.toDouble())
+                        putExtra(InformationLogScanActivity.DATA_LEMAK, mapOfNutrition["Fat"]!!.toDouble())
+                        putExtra(InformationLogScanActivity.NAME_FOOD, clickedFood.food_name)
                     }
                     itemView.context.startActivity(intent)
                 }

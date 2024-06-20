@@ -27,7 +27,6 @@ import com.dicoding.nutrient.R
 import com.dicoding.nutrient.databinding.ActivityCameraBinding
 import com.dicoding.nutrient.ml.ObjectDetectionHelper
 import com.dicoding.nutrient.ml.TextRecognitionProcessor
-import com.dicoding.nutrient.utils.GetDataScanNutrition
 import com.google.mlkit.vision.text.Text
 import java.io.File
 import java.text.SimpleDateFormat
@@ -177,7 +176,7 @@ class CameraActivity : AppCompatActivity() {
             Log.d(TAG, "Extracted Text: ${extractedText.trimIndent()}")
 //            Log.d("MAP", getRegexMap.get("Lemak").toString())
 
-            val intent = Intent(this, InformationLogActivity::class.java).apply {
+            val intent = Intent(this, InformationLogScanActivity::class.java).apply {
                 putExtra("EXTRACTED_TEXT", extractedText)
             }
             startActivity(intent)

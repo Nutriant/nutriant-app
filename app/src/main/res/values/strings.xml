@@ -95,7 +95,7 @@
     <string name="protein">PROTEIN</string>
     <string name="fat">FAT</string>
     <string name="consumptiontime">Consumption Time</string>
-    <string name="caloriestotal">Calories Total: %1$d</string>
+    <string name="caloriestotal">Calories Total:</string>
     <string name="save_history">SAVE HISTORY</string>
     <string name="nutrition_scan">Nutrition Scan</string>
     <string name="failure_title">Oops, Something Went Wrong</string>
@@ -178,4 +178,5 @@
     <string name="categoryBMI3">- Between 25 and 29.9 signifies overweight.</string>
     <string name="categoryBMI4">- Above 30 signifies obesity</string>
     <string name="formulaBMI">Formula:\n [Body Weight (kg) : {Body Height (m) x Body Height (m))]</string>
+    <string name="warn_scan">The information provided by integration in auto filling technology is not necessarily correct, be sure to readjust to the product information you want to consume.</string>
 </resources>

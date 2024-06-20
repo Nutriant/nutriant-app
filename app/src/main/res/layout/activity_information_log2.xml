@@ -12,7 +12,7 @@
         android:background="@drawable/gradient_background"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".ui.activities.InformationLogScanActivity">
+        tools:context=".ui.activities.InformationLogActivity">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -53,36 +53,11 @@
                 android:src="@drawable/foodandbev" />
         </FrameLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_info_product"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            android:layout_margin="8dp">
-
-            <ImageView
-                android:id="@+id/iconImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/bx_info_circle" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/poppinsregular"
-                android:text="@string/warn_scan"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/poppinsbold"
             android:text="@string/nutrition_facts"
             android:textSize="18sp" />

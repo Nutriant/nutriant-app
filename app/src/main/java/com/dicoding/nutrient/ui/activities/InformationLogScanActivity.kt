@@ -15,14 +15,14 @@ import androidx.lifecycle.ViewModelProvider
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.dicoding.nutrient.R
 import com.dicoding.nutrient.data.Result
-import com.dicoding.nutrient.databinding.ActivityInformationLog2Binding
+import com.dicoding.nutrient.databinding.ActivityInformationLogBinding
 import com.dicoding.nutrient.ui.viewmodels.FoodViewModel
 import com.dicoding.nutrient.ui.viewmodels.UserPreferencesViewModel
 import com.dicoding.nutrient.ui.viewmodels.ViewModelFactory
 import java.io.File
 
-class InformationLogActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityInformationLog2Binding
+class InformationLogScanActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityInformationLogBinding
     private lateinit var foodViewModel: FoodViewModel
     private lateinit var userPreferencesViewModel: UserPreferencesViewModel
     private lateinit var loadingDialog: SweetAlertDialog
@@ -46,7 +46,7 @@ class InformationLogActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityInformationLog2Binding.inflate(layoutInflater)
+        binding = ActivityInformationLogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val bundle: Bundle? = intent.extras
@@ -61,8 +61,66 @@ class InformationLogActivity : AppCompatActivity() {
 
         val extractedText = intent.getStringExtra("EXTRACTED_TEXT")
         if (extractedText != null) {
+            extractNutritionalValues(extractedText)
             setupData()
         }
+    }
+
+    private fun extractNutritionalValues(text: String) {
+        val keyTerms = mapOf(
+            "Energy" to listOf(
+                "energi total",
+                "total energy",
+                "calories",
+                "Energi Total",
+                "Total Energy",
+                "Calories"
+            ),
+            "Fat" to listOf("lemak total", "total fat", "Lemak Total", "Total Fat"),
+            "Protein" to listOf("protein", "Protein"),
+            "Carbohydrate" to listOf(
+                "karbohidrat total",
+                "total carbohydrate",
+                "Karbohidrat Total",
+                "Total Carbohydrate"
+            ),
+            "Sugar" to listOf(
+                "gula total",
+                "total sugars",
+                "gula",
+                "sugar",
+                "Gula Total",
+                "Total Sugars",
+                "Gula",
+                "Sugar"
+            )
+        )
+
+        val nutritionalInfo = extractValuesFromText(text, keyTerms)
+        calor = nutritionalInfo["Energy"]?.toInt() ?: 0
+        karbo = nutritionalInfo["Carbohydrate"]?.toDouble() ?: 0.0
+        protein = nutritionalInfo["Protein"]?.toDouble() ?: 0.0
+        sugar = nutritionalInfo["Sugar"]?.toDouble() ?: 0.0
+        lemak = nutritionalInfo["Fat"]?.toDouble() ?: 0.0
+    }
+
+    private fun extractValuesFromText(
+        text: String,
+        keyTerms: Map<String, List<String>>
+    ): Map<String, String> {
+        val nutritionalInfo = mutableMapOf<String, String>()
+        for ((key, terms) in keyTerms) {
+            for (term in terms) {
+                val pattern =
+                    Regex("$term\\s+(\\d+(\\.\\d+)?)\\s*(g|kcal|mg)?", RegexOption.IGNORE_CASE)
+                val match = pattern.find(text)
+                if (match != null) {
+                    nutritionalInfo[key] = match.groupValues[1]
+                    break
+                }
+            }
+        }
+        return nutritionalInfo
     }
 
 
@@ -71,10 +129,10 @@ class InformationLogActivity : AppCompatActivity() {
         loadingDialog.apply {
             titleText = getString(R.string.loading)
             progressHelper.barColor =
-                ContextCompat.getColor(this@InformationLogActivity, R.color.greenApps)
+                ContextCompat.getColor(this@InformationLogScanActivity, R.color.greenApps)
             setCancelable(false)
         }
-        alertDialog = SweetAlertDialog(this@InformationLogActivity, SweetAlertDialog.ERROR_TYPE)
+        alertDialog = SweetAlertDialog(this@InformationLogScanActivity, SweetAlertDialog.ERROR_TYPE)
         alertDialog.apply {
             setCancelable(false)
             setConfirmClickListener { dialog ->
@@ -108,7 +166,7 @@ class InformationLogActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.ivBack.setOnClickListener {
-            startActivity(Intent(this, SearchHomeActivity::class.java))
+            startActivity(Intent(this, CameraActivity::class.java))
         }
 
         binding.btSaveHistory.setOnClickListener {
@@ -190,12 +248,12 @@ class InformationLogActivity : AppCompatActivity() {
                     is Result.Success -> {
                         loadingDialog.dismiss()
                         Toast.makeText(
-                            this@InformationLogActivity,
+                            this@InformationLogScanActivity,
                             result.data.message,
                             Toast.LENGTH_LONG
                         ).show()
                         val intent = Intent(
-                            this@InformationLogActivity,
+                            this@InformationLogScanActivity,
                             DashboardWithBotNavActivity::class.java
                         )
                         intent.flags =
