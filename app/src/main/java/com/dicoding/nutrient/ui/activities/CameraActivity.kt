@@ -12,6 +12,7 @@ import android.graphics.RectF
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.OpenableColumns
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
@@ -134,13 +135,13 @@ class CameraActivity : AppCompatActivity() {
                     val message = "Photo capture succeeded: $savedUri"
                     showToast(message)
                     Log.d(TAG, message)
-                    processImage(photoFile.absolutePath)
+                    processImage(photoFile.absolutePath, savedUri.toString())
                 }
             }
         )
     }
 
-    private fun processImage(imagePath: String) {
+    private fun processImage(imagePath: String, uriString: String) {
         val bitmap = BitmapFactory.decodeFile(imagePath)
 
 //         Run object detection
@@ -178,6 +179,7 @@ class CameraActivity : AppCompatActivity() {
 
             val intent = Intent(this, InformationLogScanActivity::class.java).apply {
                 putExtra("EXTRACTED_TEXT", extractedText)
+                putExtra("URI", uriString)
             }
             startActivity(intent)
         }, { e ->
@@ -225,6 +227,30 @@ class CameraActivity : AppCompatActivity() {
     ) { uri: Uri? ->
         if (uri != null) {
             currentImageUri = uri
+
+            var filePhoto: File? = null
+            val inputStream = this.contentResolver.openInputStream(uri)
+            val cursor = this.contentResolver.query(uri, null, null, null, null)
+            cursor?.use { c ->
+                val nameIndex = c.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                if (c.moveToFirst()){
+                    val name = c.getString(nameIndex)
+                    inputStream?.let { inputStream ->
+                        val file = File(this.cacheDir, name)
+                        val os = file.outputStream()
+                        os.use {
+                            inputStream.copyTo(it)
+                        }
+
+                        filePhoto = file
+                    }
+                }
+            }
+
+            if (filePhoto != null){
+                processImage(filePhoto!!.absolutePath, uri.toString())
+            }
+
         } else {
             Log.d("Photo Picker", "No media selected")
         }

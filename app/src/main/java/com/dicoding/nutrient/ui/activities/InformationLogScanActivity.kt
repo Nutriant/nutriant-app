@@ -60,9 +60,18 @@ class InformationLogScanActivity : AppCompatActivity() {
         setupAction()
 
         val extractedText = intent.getStringExtra("EXTRACTED_TEXT")
-        if (extractedText != null) {
+        val uriString = intent.getStringExtra("URI")
+        if (extractedText != null && uriString != null) {
             extractNutritionalValues(extractedText)
+            extractUriImage(uriString)
             setupData()
+        }
+    }
+
+    private fun extractUriImage(uriString: String){
+        currentImage = Uri.parse(uriString)
+        if (currentImage != null){
+            binding.imgFood.setImageURI(currentImage)
         }
     }
 
