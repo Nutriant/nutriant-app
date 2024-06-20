@@ -1,361 +1,368 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".ui.fragments.dashboard.ProfileFragment"
     android:background="@color/white">
 
-    <TextView
-        android:layout_marginTop="16dp"
-        android:id="@+id/tvProfile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsbold"
-        android:textSize="18sp"
-        android:text="@string/profile_layout"
-        android:gravity="center"/>
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".ui.fragments.dashboard.ProfileFragment"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="32dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_profile"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/avatar_dummy"
-            app:civ_border_width="0.5dp"/>
+        android:layout_width="match_parent">
 
         <TextView
-            android:id="@+id/tv_username"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/account_name"
-            android:fontFamily="@font/poppinsbold"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_marginStart="16dp"/>
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/layout_profile"
-            android:visibility="gone"
+            android:id="@+id/tvProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="center"
+            android:text="@string/profile_layout"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:baselineAligned="false">
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/rounded_profile_information"
-                android:padding="16dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_profile"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/avatar_dummy"
+                app:civ_border_width="0.5dp" />
 
-                <TextView
-                    android:id="@+id/tvHeightProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/centi_meter"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppinsbold"
-                    android:textColor="@color/greenApps"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/height_normal"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppinsregular"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/rounded_profile_information"
-                android:padding="16dp"
-                android:layout_marginStart="16dp">
-
-                <TextView
-                    android:id="@+id/tvWeightProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/kilo_gram"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppinsbold"
-                    android:textColor="@color/greenApps"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/weight_normal"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppinsregular"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/rounded_profile_information"
-                android:padding="16dp"
-                android:layout_marginStart="16dp">
-
-                <TextView
-                    android:id="@+id/tvAgeProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/years_old"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppinsbold"
-                    android:textColor="@color/greenApps"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/age"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppinsregular"/>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppinsbold"
+                android:gravity="center"
+                android:text="@string/account_name"
+                android:textSize="16sp" />
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/loading_profile"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:progressTint="@color/greenApps"
-            android:layout_gravity="center"/>
-    </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsbold"
-        android:textSize="16sp"
-        android:text="@string/personalInformation"
-        android:layout_marginTop="32dp"/>
+            <LinearLayout
+                android:id="@+id/layout_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
-    <RelativeLayout
-        android:id="@+id/layoutPersonalData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_profile_information"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/icon_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_profile"/>
+                    <TextView
+                        android:id="@+id/tvHeightProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppinsbold"
+                        android:gravity="center"
+                        android:text="@string/centi_meter"
+                        android:textColor="@color/greenApps" />
 
-        <TextView
-            android:layout_marginStart="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsregular"
-            android:textSize="16sp"
-            android:text="@string/personal_data"
-            android:layout_toEndOf="@id/icon_profile"
-            android:layout_centerVertical="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppinsregular"
+                        android:gravity="center"
+                        android:text="@string/height_normal" />
+                </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_profile_information"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-    <RelativeLayout
-        android:id="@+id/layoutChangePassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp">
+                    <TextView
+                        android:id="@+id/tvWeightProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppinsbold"
+                        android:gravity="center"
+                        android:text="@string/kilo_gram"
+                        android:textColor="@color/greenApps" />
 
-        <ImageView
-            android:id="@+id/icon_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/password_minimalistic_svgrepo_com"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppinsregular"
+                        android:gravity="center"
+                        android:text="@string/weight_normal" />
+                </LinearLayout>
 
-        <TextView
-            android:layout_marginStart="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsregular"
-            android:textSize="16sp"
-            android:text="@string/change_password"
-            android:layout_toEndOf="@id/icon_password"
-            android:layout_centerVertical="true"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_profile_information"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tvAgeProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppinsbold"
+                        android:gravity="center"
+                        android:text="@string/years_old"
+                        android:textColor="@color/greenApps" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppinsregular"
+                        android:gravity="center"
+                        android:text="@string/age" />
+                </LinearLayout>
+            </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/layoutFnBHistory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp">
-
-        <ImageView
-            android:id="@+id/icon_fnbHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/food_dinner_svgrepo_com"/>
-
-        <TextView
-            android:layout_marginStart="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsregular"
-            android:textSize="16sp"
-            android:text="@string/food_and_beverage_history"
-            android:layout_toEndOf="@id/icon_fnbHistory"
-            android:layout_centerVertical="true"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsbold"
-        android:textSize="16sp"
-        android:text="@string/appsInformation"
-        android:layout_marginTop="16dp"/>
-
-    <RelativeLayout
-        android:id="@+id/layoutAboutApps"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp">
-
-        <ImageView
-            android:id="@+id/icon_aboutApps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/info_square"/>
+            <ProgressBar
+                android:id="@+id/loading_profile"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:progressTint="@color/greenApps" />
+        </FrameLayout>
 
         <TextView
-            android:layout_marginStart="16dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsregular"
-            android:textSize="16sp"
-            android:text="@string/about_apps"
-            android:layout_toEndOf="@id/icon_aboutApps"
-            android:layout_centerVertical="true"/>
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/personalInformation"
+            android:textSize="16sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/layoutPersonalData"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsbold"
-        android:textSize="16sp"
-        android:text="@string/settings"
-        android:layout_marginTop="16dp"/>
+            <ImageView
+                android:id="@+id/icon_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_profile" />
 
-    <RelativeLayout
-        android:id="@+id/layoutChangeLanguage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/icon_profile"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/personal_data"
+                android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/icon_change_language"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_arrow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutChangePassword"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/language_svgrepo_com"/>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:id="@+id/icon_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/password_minimalistic_svgrepo_com" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/icon_password"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/change_password"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_arrow" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/layoutFnBHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:id="@+id/icon_fnbHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/food_dinner_svgrepo_com" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/icon_fnbHistory"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/food_and_beverage_history"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_arrow" />
+        </RelativeLayout>
 
         <TextView
-            android:layout_marginStart="16dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsregular"
-            android:textSize="16sp"
-            android:text="@string/changeLanguage"
-            android:layout_toEndOf="@id/icon_change_language"
-            android:layout_centerVertical="true"/>
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/appsInformation"
+            android:textSize="16sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/layoutAboutApps"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp">
 
-    <RelativeLayout
-        android:id="@+id/layoutSignOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp">
+            <ImageView
+                android:id="@+id/icon_aboutApps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/info_square" />
 
-        <ImageView
-            android:id="@+id/icon_signOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logout"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/icon_aboutApps"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/about_apps"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_arrow" />
+        </RelativeLayout>
 
         <TextView
-            android:layout_marginStart="16dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsregular"
-            android:textSize="16sp"
-            android:text="@string/sign_out"
-            android:layout_toEndOf="@id/icon_signOut"
-            android:layout_centerVertical="true"/>
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/settings"
+            android:textSize="16sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/layoutChangeLanguage"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-</LinearLayout>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:id="@+id/icon_change_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/language_svgrepo_com" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/icon_change_language"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/changeLanguage"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_arrow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:id="@+id/icon_signOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logout" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/icon_signOut"
+                android:fontFamily="@font/poppinsregular"
+                android:text="@string/sign_out"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_arrow" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

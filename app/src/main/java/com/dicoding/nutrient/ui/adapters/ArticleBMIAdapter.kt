@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.dicoding.nutrient.data.model.response.news.ArticlesItem
 import com.dicoding.nutrient.databinding.ItemBmiArticlesBinding
 
-class ArticleBMIAdapter(private val listBMIArticle: List<ArticlesItem>) :
+class ArticleBMIAdapter(private var listBMIArticle: List<ArticlesItem?>) :
     RecyclerView.Adapter<ArticleBMIAdapter.ViewHolder>() {
 
     inner class ViewHolder(var binding: ItemBmiArticlesBinding) :
@@ -28,18 +28,23 @@ class ArticleBMIAdapter(private val listBMIArticle: List<ArticlesItem>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val getBMIArticle = listBMIArticle[position]
         holder.binding.apply {
-            tvArticleTitles.text = getBMIArticle.title
+            tvArticleTitles.text = getBMIArticle?.title
             Glide.with(ivImageBMI.context)
-                .load(getBMIArticle.urlToImage)
+                .load(getBMIArticle?.urlToImage)
                 .into(ivImageBMI)
         }
 
         holder.itemView.setOnClickListener{
-            val url = listBMIArticle[position].url
+            val url = listBMIArticle[position]?.url
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(url)
             holder.itemView.context.startActivity(intent)
         }
+    }
+
+    fun updateList(newList: List<ArticlesItem?>) {
+        listBMIArticle = newList
+        notifyDataSetChanged()
     }
 
 }

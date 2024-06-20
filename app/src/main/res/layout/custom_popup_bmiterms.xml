@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titlePopUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/metric_measurements"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/formulaBMI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:gravity="center"
+            android:text="@string/formulaBMI"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/confirmation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:gravity="center"
+            android:text="@string/whoBMI"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/category1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="start"
+            android:text="@string/categoryBMI1"
+            android:textSize="12sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/category2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="start"
+            android:text="@string/categoryBMI2"
+            android:textSize="12sp"
+            android:layout_marginStart="8dp"/>
+        <TextView
+            android:id="@+id/category3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="start"
+            android:text="@string/categoryBMI3"
+            android:textSize="12sp"
+            android:layout_marginStart="8dp"/>
+        <TextView
+            android:id="@+id/category4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="start"
+            android:text="@string/categoryBMI4"
+            android:textSize="12sp"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

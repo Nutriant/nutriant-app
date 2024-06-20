@@ -3,6 +3,7 @@ package com.dicoding.nutrient.ui.fragments.dashboard
 import android.animation.ObjectAnimator
 import com.dicoding.nutrient.ui.animation.DepthPageTransformer
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -151,6 +152,13 @@ class HomeFragment : Fragment() {
                 )
             // Start activity with the transition
             startActivity(intent, optionsCompat.toBundle())
+        }
+
+        binding.tvStudyBmi.setOnClickListener {
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.custom_popup_bmiterms)
+            dialog.setCancelable(true)
+            dialog.show()
         }
     }
 

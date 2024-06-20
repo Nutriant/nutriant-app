@@ -324,7 +324,7 @@
             android:text="@string/caloriestotal"
             android:textSize="18sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.dicoding.nutrient.ui.customview.CustomButton
             android:id="@+id/btSaveHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

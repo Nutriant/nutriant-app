@@ -29,7 +29,9 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivFirstOnboarding" />
+        app:layout_constraintTop_toBottomOf="@id/ivFirstOnboarding"
+        android:alpha="0"
+        tools:alpha="100"/>
 
     <TextView
         android:id="@+id/tvTitleOnboarding2"
@@ -43,6 +45,23 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitleOnboarding" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitleOnboarding"
+        android:alpha="0"
+        tools:alpha="100"/>
+
+    <TextView
+        android:id="@+id/skipInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppinsregular"
+        android:text="@string/skipInformation"
+        android:textColor="@color/grayApps"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

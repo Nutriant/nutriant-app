@@ -15,7 +15,7 @@
     <string name="getinformation_description">Don\'t worry about the information provided by the nutrition label, you can see all the detailed information that will be calculated with your daily health status.</string>
     <string name="get_information_title">Get Information</string>
     <string name="trackwithlabel_title">Track with Label</string>
-    <string name="trackwithlabel_description">You can scan the nutrition label to see the detailed information on the package.</string>
+    <string name="trackwithlabel_description">You can scan the nutrition label to see the detailed information on the package. Get some nutrition like Calories, Carbo, Protein, and Fat</string>
     <string name="connectBMI_description">Connect your BMI so that you can know the nutrition obtained from the packaged food or drinks that you will consume every day.</string>
     <string name="connectBMI_title">Connect Your BMI</string>
     <string name="sign_in">Sign In</string>
@@ -168,4 +168,14 @@
     <string name="fat_home">Fat</string>
     <string name="carbo_home">Carbo</string>
     <string name="calori_home">Calori</string>
+    <string name="skipInformation"><u>Skip Information</u></string>
+    <string name="cameraDesc">Make sure to point the camera correctly and center the nutrition label of the food or drink you have</string>
+    <string name="bmiTerms"><u>BMI Terms</u>></string>
+    <string name="metric_measurements">Metric Measurements</string>
+    <string name="whoBMI">According to WHO, the standard categories of men\'s and women’s ideal weight based on BMI are:</string>
+    <string name="categoryBMI1">- Less than 18.5 signifies underweight.</string>
+    <string name="categoryBMI2">- Between 18.5 and 24.9 signifies normal weight.</string>
+    <string name="categoryBMI3">- Between 25 and 29.9 signifies overweight.</string>
+    <string name="categoryBMI4">- Above 30 signifies obesity</string>
+    <string name="formulaBMI">Formula:\n [Body Weight (kg) : {Body Height (m) x Body Height (m))]</string>
 </resources>

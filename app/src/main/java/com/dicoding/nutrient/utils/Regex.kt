@@ -16,3 +16,22 @@ fun String.getDataNutritionFromDesc(): Map<String, String> {
         emptyMap()
     }
 }
+
+fun String.GetDataScanNutrition(): Map<String, String> {
+    val resultTrim = this.trimIndent()
+    val regex = Regex("""Lemak Total\s+(\d+\.\d+)\s+Lemak Jenuh\s+\d+\s+Protein\s+(\d+)\s+Karbohidrat Total\s+(\d+)""")
+    val matchResult = regex.find(resultTrim)
+
+    return if (matchResult != null){
+        val lemakTotal = matchResult.groupValues[1]
+        val protein = matchResult.groupValues[2]
+        val karbohidratTotal = matchResult.groupValues[3]
+        mapOf(
+            "Lemak" to lemakTotal,
+            "Protein" to protein,
+            "Karbohidrat" to karbohidratTotal
+        )
+    } else {
+        emptyMap()
+    }
+}

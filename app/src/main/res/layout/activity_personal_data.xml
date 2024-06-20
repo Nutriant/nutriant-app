@@ -263,7 +263,7 @@
                     tools:ignore="TextFields" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.dicoding.nutrient.ui.customview.CustomButton
                 android:id="@+id/btSaveProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

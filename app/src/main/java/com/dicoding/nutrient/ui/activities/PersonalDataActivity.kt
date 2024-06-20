@@ -94,6 +94,12 @@ class PersonalDataActivity : AppCompatActivity() {
             showDialog()
         }
 
+        binding.edPersonaldataEmail.apply {
+            isEnabled = false
+            setTextColor(ContextCompat.getColor(this@PersonalDataActivity, R.color.lightGray))
+            setHintTextColor(ContextCompat.getColor(this@PersonalDataActivity, R.color.lightGray))
+        }
+
         binding.avImage.setOnClickListener {
             launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
@@ -147,6 +153,30 @@ class PersonalDataActivity : AppCompatActivity() {
             })
             popMenu.show()
         }
+
+        val textWatcher = object : android.text.TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: android.text.Editable?) {
+                binding.btSaveProfile.setButtonPersonalData(
+                    etNameResult = binding.edPersonaldataUsername.text.toString(),
+                    etDOBResult = binding.edField1.text.toString(),
+                    etGenderResult = binding.edField2.text.toString(),
+                    etHeightResult = binding.edPersonaldataHeight.text.toString(),
+                    etWeightResult = binding.edPersonaldataWeight.text.toString()
+                )
+            }
+        }
+
+        binding.edPersonaldataUsername.addTextChangedListener(textWatcher)
+        binding.edField1.addTextChangedListener(textWatcher)
+        binding.edField2.addTextChangedListener(textWatcher)
+        binding.edPersonaldataHeight.addTextChangedListener(textWatcher)
+        binding.edPersonaldataWeight.addTextChangedListener(textWatcher)
     }
 
     private fun showDialog() {

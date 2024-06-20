@@ -1,19 +1,16 @@
 package com.dicoding.nutrient.ui.fragments.dashboard
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.nutrient.data.repository.NewsArticleRepository
 import com.dicoding.nutrient.databinding.ActivityNewsFragmentBinding
-import com.dicoding.nutrient.ui.activities.SearchArticlesActivity
 import com.dicoding.nutrient.ui.adapters.ArticleBMIAdapter
 import com.dicoding.nutrient.ui.adapters.ArticleNutritionAdapter
 import com.dicoding.nutrient.ui.viewmodels.NutritionArticleViewModel
@@ -28,6 +25,10 @@ class NewsFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var nutritionArticleViewModel: NutritionArticleViewModel
     private lateinit var bmiArticleViewModel: BMIArticleViewModel
+    private lateinit var articleNutritionAdapter: ArticleNutritionAdapter
+    private lateinit var articleBMIAdapter: ArticleBMIAdapter
+    private var allNutritionArticles: List<ArticlesItem?> = listOf()
+    private var allBMIArticles: List<ArticlesItem?> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,11 +51,34 @@ class NewsFragment : Fragment() {
         bmiArticleViewModel =
             ViewModelProvider(this, bmiViewModelFactory)[BMIArticleViewModel::class.java]
 
-        setupActionSearch()
+        setupRecyclerViews()
         observeViewModelNutrition()
         observeViewModelBMI()
         nutritionArticleViewModel.getNutritionArticle()
         bmiArticleViewModel.getBMIArticle()
+
+        binding.edSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filterArticles(s.toString())
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun setupRecyclerViews() {
+        articleNutritionAdapter = ArticleNutritionAdapter(listOf())
+        articleBMIAdapter = ArticleBMIAdapter(listOf())
+
+        binding.rvVerticalNews.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = articleNutritionAdapter
+        }
+
+        binding.rvHorizontalNews.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = articleBMIAdapter
+        }
     }
 
     private fun observeViewModelNutrition() {
@@ -68,6 +92,7 @@ class NewsFragment : Fragment() {
                     binding.loadingProfile.visibility = View.GONE
                     val articles = result.data.articles
                     if (articles != null) {
+                        allNutritionArticles = articles
                         showListNutritionArticles(articles)
                     }
                 }
@@ -94,6 +119,7 @@ class NewsFragment : Fragment() {
                     binding.loadingProfile.visibility = View.GONE
                     val articles = result.data.articles
                     if (articles != null) {
+                        allBMIArticles = articles
                         showListBMIArticles(articles)
                     }
                 }
@@ -109,31 +135,29 @@ class NewsFragment : Fragment() {
         }
     }
 
-    private fun setupActionSearch() {
-        binding.edSearch.setOnClickListener {
-            val intent = Intent(requireContext(), SearchArticlesActivity::class.java)
-            val optionsCompat: ActivityOptionsCompat =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    requireContext() as Activity,
-                    Pair(binding.edSearch as View, "search")
-                )
-            startActivity(intent, optionsCompat.toBundle())
-        }
-    }
-
     private fun showListNutritionArticles(articles: List<ArticlesItem?>) {
         val filteredArticles = articles.filterNotNull().filter { it.urlToImage != null }
-        val rvNutritionArticles = binding.rvVerticalNews
-        rvNutritionArticles.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        rvNutritionArticles.adapter = ArticleNutritionAdapter(filteredArticles)
+        articleNutritionAdapter.updateList(filteredArticles)
     }
 
     private fun showListBMIArticles(articles: List<ArticlesItem?>) {
         val filteredArticles = articles.filterNotNull().filter { it.urlToImage != null }
-        val rvBMIArticles = binding.rvHorizontalNews
-        rvBMIArticles.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        rvBMIArticles.adapter = ArticleBMIAdapter(filteredArticles)
+        articleBMIAdapter.updateList(filteredArticles)
+    }
+
+    private fun filterArticles(query: String) {
+        val filteredNutritionArticles = allNutritionArticles.filter {
+            it?.title?.contains(query, ignoreCase = true) == true
+        }
+        val filteredBMIArticles = allBMIArticles.filter {
+            it?.title?.contains(query, ignoreCase = true) == true
+        }
+        articleNutritionAdapter.updateList(filteredNutritionArticles)
+        articleBMIAdapter.updateList(filteredBMIArticles)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
